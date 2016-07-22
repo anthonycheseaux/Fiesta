@@ -1,1 +1,1 @@
-include ':app', ':DAOBackend', ':ServiceBackend'
+include ':app', ':DAOBackend'

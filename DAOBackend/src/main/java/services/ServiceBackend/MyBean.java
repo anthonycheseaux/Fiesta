@@ -1,4 +1,4 @@
-package com.example.Arnaud.myapplication.ServiceBackend;
+package services.ServiceBackend;
 
 /** The object model for the data we are sending through endpoints */
 public class MyBean {

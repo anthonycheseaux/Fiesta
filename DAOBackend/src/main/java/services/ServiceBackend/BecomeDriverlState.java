@@ -1,4 +1,4 @@
-package com.example.Arnaud.myapplication.ServiceBackend;
+package services.ServiceBackend;
 
 /**
  * Created by Arnaud on 22.07.2016.

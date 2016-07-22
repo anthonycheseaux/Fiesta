@@ -10,7 +10,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DAOBackend" />
-            <option value="$PROJECT_DIR$/ServiceBackend" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
@@ -18,7 +17,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DAOBackend" />
-            <option value="$PROJECT_DIR$/ServiceBackend" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

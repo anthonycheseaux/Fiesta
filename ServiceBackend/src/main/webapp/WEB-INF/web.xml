@@ -5,8 +5,8 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>com.example.Arnaud.myapplication.ServiceBackend.MyEndpoint,
-                com.example.Arnaud.myapplication.ServiceBackend.BecomeDriverlStateEndpoint</param-value>
+            <param-value>services.ServiceBackend.MyEndpoint,
+                services.ServiceBackend.BecomeDriverlStateEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
