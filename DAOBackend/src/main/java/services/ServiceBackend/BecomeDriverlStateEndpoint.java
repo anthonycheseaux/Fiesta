@@ -1,8 +1,11 @@
 package services.ServiceBackend;
 
+import com.example.Arnaud.myapplication.backend.DAL_facade;
+import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.api.server.spi.response.NotFoundException;
 
 import java.util.logging.Logger;
 
@@ -24,7 +27,7 @@ import javax.inject.Named;
 public class BecomeDriverlStateEndpoint {
 
     private static final Logger logger = Logger.getLogger(BecomeDriverlStateEndpoint.class.getName());
-
+    private static DAL_facade facade = new DAL_access();
     /**
      * This method gets the <code>BecomeDriverlState</code> object associated with the specified <code>id</code>.
      *
@@ -32,10 +35,17 @@ public class BecomeDriverlStateEndpoint {
      * @return The <code>BecomeDriverlState</code> associated with <code>id</code>.
      */
     @ApiMethod(name = "getBecomeDriverlState")
-    public BecomeDriverlState getBecomeDriverlState(@Named("id") Long id) {
-        // TODO: Implement this function
+    public BecomeDriverlState getBecomeDriverlState(@Named("id") Long id) throws NotFoundException {
         logger.info("Calling getBecomeDriverlState method");
-        return null;
+
+        EventEntity event = facade.getEvent(id);
+
+        BecomeDriverlState becomeDriverlState = new BecomeDriverlState();
+        becomeDriverlState.event_id = event.getId();
+        becomeDriverlState.event_name = event.getName();
+
+        logger.info("Send "+ becomeDriverlState);
+        return becomeDriverlState;
     }
 
     /**
@@ -46,7 +56,7 @@ public class BecomeDriverlStateEndpoint {
      */
     @ApiMethod(name = "insertBecomeDriverlState")
     public BecomeDriverlState insertBecomeDriverlState(BecomeDriverlState becomeDriverlState) {
-        // TODO: Implement this function
+
         logger.info("Calling insertBecomeDriverlState method");
         return becomeDriverlState;
     }

@@ -12,4 +12,6 @@ public class BecomeDriverlState {
     public String driver_email;
     public String driver_phoneNumber;
 
+    public Long lift_Id;
+
 }
