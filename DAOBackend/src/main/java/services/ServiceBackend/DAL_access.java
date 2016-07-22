@@ -8,7 +8,12 @@ import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.NotFoundException;
+import com.google.appengine.api.datastore.Cursor;
+import com.google.appengine.api.datastore.QueryResultIterator;
+import com.googlecode.objectify.cmd.Query;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
@@ -101,7 +106,17 @@ class DAL_access implements DAL_facade {
 
     @Override
     public CollectionResponse<EventEntity> listEvent(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit) {
-        return null;
+        limit = limit == null ? DEFAULT_LIST_LIMIT : limit;
+        Query<EventEntity> query = ofy().load().type(EventEntity.class).limit(limit);
+        if (cursor != null) {
+            query = query.startAt(Cursor.fromWebSafeString(cursor));
+        }
+        QueryResultIterator<EventEntity> queryIterator = query.iterator();
+        List<EventEntity> eventEntityList = new ArrayList<EventEntity>(limit);
+        while (queryIterator.hasNext()) {
+            eventEntityList.add(queryIterator.next());
+        }
+        return CollectionResponse.<EventEntity>builder().setItems(eventEntityList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
     @Override
