@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Fiesta</string>
+    <string name="app_name">Covoiturage Responsable Valais</string>
+    <string name="list_event">Choisi ta fête labelisée Fiesta</string>
+    <string name="a_propos">A propos</string>
+    <string name="avantages">Avantages</string>
+    <string name="title_choice">Choisi ton rôle</string>
 </resources>
