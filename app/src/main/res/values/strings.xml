@@ -4,4 +4,6 @@
     <string name="a_propos">A propos</string>
     <string name="avantages">Avantages</string>
     <string name="title_choice">Choisi ton rôle</string>
+    <string name="regle_driver">Je m'inscris comme conducteur et je m'engage à rester sobre et responsable!</string>
+    <string name="regle_drinker">Je recherche un transport pour me ramener!</string>
 </resources>
