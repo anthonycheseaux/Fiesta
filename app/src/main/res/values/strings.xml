@@ -13,13 +13,17 @@
     <string name="regle_drinker">Je recherche un transport pour me ramener!</string>
 
     <!-- Activity_add_transport.xml -->
-    <string name="creer_transport">Créer le trajet</string>
+    <string name="create_transport">Créer le trajet</string>
     <string name="destination">Destination</string>
     <string name="capacity">Nombre de place(s)</string>
     <string name="departure">Heure de départ</string>
     <string name="reglement">Je m\'engage à rester sobre et responsable</string>
-    <string name="creerTrajet">Créer le trajet</string>
+    <string name="createRoute">Créer le trajet</string>
 
     <!-- Activity_chat.xml -->
     <string name="sendMessage">Envoyer</string>
+
+    <!-- Activity_transport_listing.xml -->
+    <string name="transport_list">Trouver une voiture</string>
+
 </resources>

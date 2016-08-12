@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/creer_transport"
+        android:text="@string/create_transport"
         android:typeface="serif"
         android:textSize="25dp"
         android:layout_gravity="center"
@@ -117,7 +117,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="@string/creerTrajet"
+        android:text="@string/createRoute"
         android:background="@color/colorPrimary"
         android:textColor="@color/blanc"
         android:textStyle="bold"/>
