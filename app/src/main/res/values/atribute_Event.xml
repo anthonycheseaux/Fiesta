@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="id">event_id</string>
+    <string name="name">event_name</string>
+    <string name="beginning">event_beginning</string>
+    <string name="end">event_end</string>
+</resources>
