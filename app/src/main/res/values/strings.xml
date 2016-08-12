@@ -1,17 +1,25 @@
 <resources>
     <string name="app_name">Covoiturage Responsable Valais</string>
+
+    <!-- Activity_main.xml -->
     <string name="list_event">Choisi ta fête labelisée Fiesta</string>
-    <string name="a_propos">A propos</string>
-    <string name="avantages">Avantages</string>
-    <string name="role">Choisi ton rôle</string>
+    <string name="about">A propos</string>
+    <string name="advantage">Avantages</string>
+
+    <!-- Activity_inscription.xml -->
+    <string name="inscription">Inscris-toi!</string>
+    <string name="username">Nom</string>
     <string name="regle_driver">Je m\'inscris comme conducteur et je m\'engage à rester sobre et responsable!</string>
     <string name="regle_drinker">Je recherche un transport pour me ramener!</string>
+
+    <!-- Activity_add_transport.xml -->
     <string name="creer_transport">Créer le trajet</string>
-    <string name="nom_conducteur">Nom du conducteur</string>
     <string name="destination">Destination</string>
-    <string name="nombreDePlaces">Nombre de place(s)</string>
-    <string name="heureDepart">Heure de départ</string>
-    <string name="email">E-mail</string>
+    <string name="capacity">Nombre de place(s)</string>
+    <string name="departure">Heure de départ</string>
     <string name="reglement">Je m\'engage à rester sobre et responsable</string>
     <string name="creerTrajet">Créer le trajet</string>
+
+    <!-- Activity_chat.xml -->
+    <string name="sendMessage">Envoyer</string>
 </resources>
