@@ -18,7 +18,8 @@
                 com.example.Arnaud.myapplication.backend.UserEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.DriverEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.LiftEntityEndpoint,
-                com.example.Arnaud.myapplication.backend.DrinkerEntityEndpoint</param-value>
+                com.example.Arnaud.myapplication.backend.DrinkerEntityEndpoint,
+                com.example.Arnaud.myapplication.backend.service.StateWraperEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
