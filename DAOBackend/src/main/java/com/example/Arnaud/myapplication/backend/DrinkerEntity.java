@@ -10,6 +10,9 @@ public class DrinkerEntity extends UserEntity {
     public DrinkerEntity(String userName, String email, String phoneNumber) {
         super(userName, email, phoneNumber);
     }
+    public DrinkerEntity (Long id, String userName, String email, String phoneNumber) {
+        super(id, userName, email, phoneNumber);
+    }
 
     public DrinkerEntity() {
     }

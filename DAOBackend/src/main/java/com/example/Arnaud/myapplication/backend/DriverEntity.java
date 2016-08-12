@@ -14,7 +14,9 @@ public class DriverEntity extends UserEntity {
     public DriverEntity(String userName, String email, String phoneNumber) {
         super(userName, email, phoneNumber);
     }
-
+    public DriverEntity (Long id, String userName, String email, String phoneNumber) {
+        super(id, userName, email, phoneNumber);
+    }
     public DriverEntity() {
     }
 }

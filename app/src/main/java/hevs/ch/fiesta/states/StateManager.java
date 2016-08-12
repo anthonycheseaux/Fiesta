@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 
 
 import com.example.arnaud.myapplication.backend.eventEntityApi.model.EventEntity;
-import com.example.arnaud.myapplication.backend.service.abstractStateApi.AbstractStateApi;
-import com.example.arnaud.myapplication.backend.service.abstractStateApi.model.AbstractState;
 import com.example.arnaud.myapplication.backend.userEntityApi.model.UserEntity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -20,7 +18,7 @@ import java.io.IOException;
 /**
  * Created by Arnaud on 11.08.2016.
  */
-public class StateManager {
+public class StateManager {/*
     private AbstractState currentState;
 
     private static AbstractStateApi api;
@@ -67,7 +65,7 @@ public class StateManager {
 
         nextPhase.wantedState = InLiftState.STATE_TYPE;
 
-        currentState = nextPhase;B*/
+        currentState = nextPhase;B
 
     }
 
@@ -90,6 +88,6 @@ public class StateManager {
         }
     }
 
-
+*/
 
 }
