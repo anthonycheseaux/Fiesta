@@ -20,7 +20,11 @@
         <activity android:name=".InscriptionActivity" />
         <activity android:name=".AddTransport" />
         <activity android:name=".Chat" />
-        <activity android:name=".TransportListing"></activity>
+        <activity android:name=".TransportListing" />
+        <activity
+            android:name=".views.HypermediaBrowser"
+            android:label="@string/title_activity_hypermedia_browser"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

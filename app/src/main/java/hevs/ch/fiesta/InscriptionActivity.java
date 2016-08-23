@@ -3,7 +3,6 @@ package hevs.ch.fiesta;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.arnaud.myapplication.backend.service.stateWraperApi.model.StateWraper;
 
 public class InscriptionActivity extends AppCompatActivity {
 
@@ -13,4 +12,6 @@ public class InscriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
     }
+
+
 }

@@ -25,5 +25,7 @@
 
     <!-- Activity_transport_listing.xml -->
     <string name="transport_list">Trouver une voiture</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_hypermedia_browser">HypermediaBrowser</string>
 
 </resources>
