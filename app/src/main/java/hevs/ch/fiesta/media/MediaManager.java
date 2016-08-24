@@ -46,10 +46,7 @@ public class MediaManager implements Observable, MediaStack {
     }
     public Media getUpdateMedia(){return states.peek();}
 
-    @Override
-    public MediaAdapter getUpdatedState() {
-        return MediaAdapter.adapt(states.peek());
-    }
+
 
     public void undoLastChange(){
         if (states.size()>1){

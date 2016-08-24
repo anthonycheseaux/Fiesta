@@ -32,7 +32,7 @@ public class HypermediaBrowser extends AppCompatActivity implements MediaDisplay
 
     @Override
     public void changeShowedMedia() {
-        startActivity(new Intent(this, stateStack.getUpdatedState().getNeededActivity()));
+        startActivity(new Intent(this, MediaAdapter.adapt(stateStack.getUpdateMedia()).getNeededActivity()));
     }
 
 }
