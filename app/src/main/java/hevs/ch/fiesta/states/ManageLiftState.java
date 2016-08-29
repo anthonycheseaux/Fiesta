@@ -20,6 +20,11 @@ public class ManageLiftState extends MediaAdapter {
         super(media);
     }
 
+    @Override
+    public void validateData() {
+
+    }
+
 
     //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-
 

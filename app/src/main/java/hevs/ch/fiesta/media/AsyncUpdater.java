@@ -15,8 +15,12 @@ import java.io.IOException;
  * Created by Arnaud on 19.08.2016.
  */
 public class AsyncUpdater extends AsyncTask<Void , Void, Media> {
-    private MediaStack stack;
+    protected MediaStack stack;
     private static MediaApi api;
+
+    protected AsyncUpdater(){
+
+    }
 
     public AsyncUpdater(MediaStack stack){
         this.stack= stack;

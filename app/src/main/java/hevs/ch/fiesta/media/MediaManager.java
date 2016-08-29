@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
+import hevs.ch.fiesta.media.mimicServer.MimicAsyncUpdater;
 import hevs.ch.fiesta.states.MediaAdapter;
 
 
@@ -15,6 +16,7 @@ import hevs.ch.fiesta.states.MediaAdapter;
  * Created by Arnaud on 11.08.2016.
  */
 public class MediaManager implements Observable, MediaStack {
+    private final static boolean USE_MIMIC_API = true;
 
 //____________Singleton part_____________________________
 
@@ -35,25 +37,37 @@ public class MediaManager implements Observable, MediaStack {
 
 //_____________media stack part___________________________
     private Stack<Media> states;
+    private AsyncUpdater asyncUpdater;
 
-    private void setUpForMediaStack(){states = new Stack<Media>();}
+    private void setUpForMediaStack(){
+        states = new Stack<Media>();
+        if (USE_MIMIC_API)
+            asyncUpdater= new MimicAsyncUpdater(this);
+        else
+            asyncUpdater = new AsyncUpdater(this);
+    }
     public void setState (Media media){
-        if (media!= null){
+        if (media!= null) {
             states.push(media);
-            this.notifyStateChange();
         }
+        this.notifyStateChange();
+
 
     }
     public Media getUpdateMedia(){return states.peek();}
 
+    @Override
+    public void askUpdate() {
+        asyncUpdater.execute();
+    }
 
 
     public void undoLastChange(){
         if (states.size()>1){
             states.pop();
-            notifyStateChange();
-        }
 
+        }
+        notifyStateChange();
 
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

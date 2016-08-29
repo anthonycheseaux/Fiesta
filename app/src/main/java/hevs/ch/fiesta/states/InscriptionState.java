@@ -6,46 +6,60 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntit
 
 import java.util.List;
 
+import hevs.ch.fiesta.views.InscriptionActivity;
+import hevs.ch.fiesta.views.ChooseEventActivity;
+
 /**
  * Created by Arnaud on 18.08.2016.
  */
 public final class InscriptionState extends MediaAdapter {
 
+    private UserEntity owner;
+    private List<EventEntity> availableEvents;
+    private EventEntity selectedEvent;
+
     @Override
     public Class<?> getNeededActivity() {
-        return null;
+        if(adapted.getSelectedEvent()!=null)
+            return InscriptionActivity.class;
+        else
+            return ChooseEventActivity.class;
     }
 
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-
     public InscriptionState(Media media) {
         super(media);
+        owner = adapted.getOwner();
+        availableEvents = adapted.getAvailableEvent();
+        selectedEvent = adapted.getSelectedEvent();
+
+        if (owner == null)
+            owner = new UserEntity();
     }
 
-//-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-
+    @Override
+    public void validateData() {
+        adapted.setOwner(owner);
+        adapted.setSelectedEvent(selectedEvent);
+    }
+
+    //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-
     public List<EventEntity> getEventList(){
-        return adapted.getAvailableEvent();
+        return availableEvents;
     }
 
 //-+-+-+-+-+-+ setters -+-+-+-+-+-+-+-+-
-    public boolean selectEvent(EventEntity event){
-        if (adapted.getAvailableEvent().contains(event)){
-            adapted.setSelectedEvent(event);
-            return true;
-        }
-        else
-            return false;
+    public void selectEvent(int index){
+        selectedEvent = availableEvents.get(index%availableEvents.size());
     }
     public void setUserName(String name){
-        checkOwner();
-        adapted.getOwner().setUserName(name);
+        owner.setUserName(name);
     }
     public void setUserEmail(String email){
-        checkOwner();
-        adapted.getOwner().setEmail(email);
+       owner.setEmail(email);
     }
     public void setUserPhone(String phone){
-        checkOwner();
-        adapted.getOwner().setUserName(phone);
+        owner.setUserName(phone);
     }
 
 
@@ -58,9 +72,5 @@ public final class InscriptionState extends MediaAdapter {
 
     }
 
-//+-+-+-+-+-+- Internal -+-+-+-+-+-+-+-+
-    private void checkOwner(){
-        if(adapted.getOwner() == null)
-            adapted.setOwner(new UserEntity());
-    }
+
 }

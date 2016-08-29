@@ -22,6 +22,11 @@ public class CreateTransportState extends MediaAdapter {
         super(media);
     }
 
+    @Override
+    public void validateData() {
+
+    }
+
     //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-
 
 

@@ -32,12 +32,8 @@ public abstract class MediaAdapter {
         adapted=media;
     }
 
-    public String getState(){
-        return adapted.getStateType();
-    }
 
-
-
+    public abstract void validateData();
 
 
 }

@@ -16,6 +16,11 @@ public class DrinkerInLiftState extends MediaAdapter {
         super(media);
     }
 
+    @Override
+    public void validateData() {
+
+    }
+
 
     //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-
 
