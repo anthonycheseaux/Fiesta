@@ -4,6 +4,7 @@ package hevs.ch.fiesta.media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
@@ -37,14 +38,10 @@ public class MediaManager implements Observable, MediaStack {
 
 //_____________media stack part___________________________
     private Stack<Media> states;
-    private AsyncUpdater asyncUpdater;
 
     private void setUpForMediaStack(){
         states = new Stack<Media>();
-        if (USE_MIMIC_API)
-            asyncUpdater= new MimicAsyncUpdater(this);
-        else
-            asyncUpdater = new AsyncUpdater(this);
+
     }
     public void setState (Media media){
         if (media!= null) {
@@ -54,10 +51,23 @@ public class MediaManager implements Observable, MediaStack {
 
 
     }
-    public Media getUpdateMedia(){return states.peek();}
+    public Media getUpdateMedia(){
+        Media respons = null;
+        try {
+            respons = states.peek();
+        }catch ( EmptyStackException e){
+
+        }
+        return respons;
+    }
 
     @Override
     public void askUpdate() {
+        AsyncUpdater asyncUpdater;
+        if (USE_MIMIC_API)
+            asyncUpdater= new MimicAsyncUpdater(this);
+        else
+            asyncUpdater = new AsyncUpdater(this);
         asyncUpdater.execute();
     }
 
@@ -86,7 +96,7 @@ public class MediaManager implements Observable, MediaStack {
     @Override
     public void notifyStateChange() {
         for (Iterator<MediaDisplayer> iterator = registredDisplayer.iterator() ; iterator.hasNext(); )
-            iterator.next().notify();
+            iterator.next().changeShowedMedia();
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

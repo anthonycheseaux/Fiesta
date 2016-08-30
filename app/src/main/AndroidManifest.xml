@@ -10,7 +10,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".views.HypermediaBrowser"
+            android:label="@string/title_activity_hypermedia_browser"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".views.LoadingScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,24 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".views.InscriptionActivity" />
-
-        <activity android:name=".AddTransport" />
-
-        <activity android:name=".Chat" />
-
-        <activity android:name=".TransportListing" />
-
-        <activity
-            android:name=".views.HypermediaBrowser"
-            android:label="@string/title_activity_hypermedia_browser"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".views.ChooseEventActivity" />
-
-
-
+        <activity android:name=".views.InscriptionActivity" />
+        <activity android:name=".views.CreateTransport" />
+        <activity android:name=".Chat" />
+        <activity android:name=".TransportListing" />
+        <activity android:name=".AddTransport"></activity>
     </application>
 
 </manifest>

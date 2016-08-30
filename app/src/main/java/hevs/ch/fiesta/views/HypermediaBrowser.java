@@ -18,13 +18,11 @@ public class HypermediaBrowser extends AppCompatActivity implements MediaDisplay
     protected static MediaStack stateStack = MediaManager.getInstance();
     protected static Observable stateUpdater = MediaManager.getInstance();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-
-
         stateUpdater.register(this);
     }
 

@@ -2,6 +2,7 @@ package com.example.Arnaud.myapplication.backend;
 
 import com.googlecode.objectify.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +25,9 @@ public class LiftEntity {
     private String destination;
     public String getDestination(){return destination;}
 
+    private Date departure;
+    public Date getDeparture(){return departure;}
+
     private List<DrinkerEntity> drinkers;
     public List<DrinkerEntity> getDrinkers() {return drinkers;}
 
@@ -32,19 +36,21 @@ public class LiftEntity {
 
     public boolean isFull(){return drinkers.size()<capacity;}
 
-    public LiftEntity(EventEntity event, DriverEntity driver, String destination, int capacity) {
+    public LiftEntity(EventEntity event, DriverEntity driver, String destination, int capacity, Date departure) {
         this.event = event;
         this.driver = driver;
         this.destination = destination;
         this.capacity = capacity;
+        this.departure = departure;
     }
 
-    public LiftEntity(EventEntity event, DriverEntity driver,String destination, int capacity, List<DrinkerEntity> drinkers) {
+    public LiftEntity(EventEntity event, DriverEntity driver,String destination, int capacity, List<DrinkerEntity> drinkers,Date departure) {
         this.event = event;
         this.driver = driver;
         this.destination = destination;
         this.capacity = capacity;
         this.drinkers = drinkers;
+        this.departure = departure;
     }
 
     public LiftEntity() {

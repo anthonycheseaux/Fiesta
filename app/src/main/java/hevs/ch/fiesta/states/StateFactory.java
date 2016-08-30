@@ -27,6 +27,8 @@ class StateFactory {
 
     //------------use of the methode-------------------------
     public MediaAdapter adapt(Media media){
+        if(media == null)
+            return null;
         Instancier instancier = mapper.get(media.getStateType());
         if (instancier == null)
             return null;

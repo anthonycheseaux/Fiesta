@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="New Text"
-        android:id="@+id/event_name" />
+        android:id="@+id/event_in_list_name" />
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -24,12 +24,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Commence"
-                android:id="@+id/event_start_title" />
+                android:id="@+id/event_in_list_start_title" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/event_start_content" />
+                android:id="@+id/event_in_list_start_content" />
 
         </LinearLayout>
 
@@ -43,12 +43,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Finit"
-                android:id="@+id/event_end_title" />
+                android:id="@+id/event_in_list_end_title" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/event_end_content" />
+                android:id="@+id/event_in_list_end_content" />
 
         </LinearLayout>
 

@@ -14,7 +14,6 @@ import hevs.ch.fiesta.views.ChooseEventActivity;
  */
 public final class InscriptionState extends MediaAdapter {
 
-    private UserEntity owner;
     private List<EventEntity> availableEvents;
     private EventEntity selectedEvent;
 
@@ -29,7 +28,6 @@ public final class InscriptionState extends MediaAdapter {
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-
     public InscriptionState(Media media) {
         super(media);
-        owner = adapted.getOwner();
         availableEvents = adapted.getAvailableEvent();
         selectedEvent = adapted.getSelectedEvent();
 

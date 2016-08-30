@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
@@ -60,7 +61,8 @@ class LiftHelper {
         EventEntity selectedEvent = ofy().load().entity(media.selectedEvent).now();
         DriverEntity driverEntity = ofy().load().entity(media.lift.getDriver()).now();
 
-        LiftEntity lift = new LiftEntity(selectedEvent, driverEntity, media.lift.getDestination(), media.lift.getCapacity());
+
+        LiftEntity lift = new LiftEntity(selectedEvent, driverEntity, media.lift.getDestination(), media.lift.getCapacity(),media.lift.getDeparture());
         ofy().save().entity(lift).now();
 
         //-+-+-+-+-+-+- clean data -+-+-+-+-+-+-

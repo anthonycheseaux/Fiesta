@@ -1,6 +1,7 @@
 package hevs.ch.fiesta.states;
 
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
+import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
 
 /**
  * Created by Arnaud on 18.08.2016.
@@ -21,6 +22,8 @@ public abstract class MediaAdapter {
 
 
     protected Media adapted;
+    protected UserEntity owner;
+
 
     public static MediaAdapter adapt(Media media){
         return factory.adapt(media);
@@ -30,6 +33,7 @@ public abstract class MediaAdapter {
 
     public MediaAdapter(Media media){
         adapted=media;
+        owner= media.getOwner();
     }
 
 

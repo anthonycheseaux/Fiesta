@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hevs.ch.fiesta.AddTransport"
+    tools:context=".views.CreateTransport"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     android:background="#B40404">
 
     <TextView
-        android:id="@+id/TextView_CreerTransport"
+        android:id="@+id/create_trsp_TextView_CreerTransport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -28,7 +28,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/TextView_Destination"
+            android:id="@+id/create_trsp_TextView_Destination"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"
@@ -37,7 +37,7 @@
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/EditText_destination"
+            android:id="@+id/create_trsp_EditText_destination"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
@@ -50,7 +50,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/TextView_nbPlace"
+            android:id="@+id/create_trsp_TextView_nbPlace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"
@@ -59,10 +59,12 @@
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/EditText_nbPlace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="50"/>
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/create_trsp_editText_capacity"
+            android:layout_weight="50" />
 
     </LinearLayout>
 
@@ -73,7 +75,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/TextView_heureDepart"
+            android:id="@+id/create_trsp_TextView_heureDepart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"
@@ -81,8 +83,8 @@
             android:textColor="@color/blanc"
             android:textSize="18dp"/>
 
-        <EditText
-            android:id="@+id/EditText_heureDepart"
+        <TextView
+            android:id="@+id/create_trsp_EditText_heureDepart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
@@ -96,13 +98,13 @@
         android:layout_marginTop="15dp">
 
         <CheckBox
-            android:id="@+id/RadioButton_AccepteRegle"
+            android:id="@+id/create_trsp_chxBox_AccepteRegle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp" />
 
         <TextView
-            android:id="@+id/TextView_Reglement"
+            android:id="@+id/create_trsp_TextView_Reglement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/reglement"
@@ -112,7 +114,7 @@
 
 
     <Button
-        android:id="@+id/button_creerTransport"
+        android:id="@+id/create_trsp_button_creerTransport"
         android:layout_marginTop="25dp"
         android:layout_width="200dp"
         android:layout_height="50dp"
