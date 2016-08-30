@@ -1,12 +1,10 @@
 package hevs.ch.fiesta.views;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,7 +22,7 @@ import hevs.ch.fiesta.R;
 import hevs.ch.fiesta.states.CreateTransportState;
 import hevs.ch.fiesta.states.MediaAdapter;
 
-public class CreateTransport extends HypermediaBrowser implements View.OnClickListener{
+public class CreateTransportAct extends HypermediaBrowser implements View.OnClickListener{
     private CreateTransportState state;
 
     private EditText destinationTxt;
@@ -119,7 +116,7 @@ public class CreateTransport extends HypermediaBrowser implements View.OnClickLi
         state.validateData();
 
         //lanch loading screen
-        startActivity(new Intent(this, LoadingScreen.class));
+        startActivity(new Intent(this, LoadingScreenAct.class));
     }
 
 
@@ -171,7 +168,7 @@ public class CreateTransport extends HypermediaBrowser implements View.OnClickLi
             hour = liftStartCalendar.get(Calendar.HOUR_OF_DAY);
             min = liftStartCalendar.get(Calendar.MINUTE);
 
-            TimePickerDialog dpd = new TimePickerDialog(CreateTransport.this, this, hour, min, true);
+            TimePickerDialog dpd = new TimePickerDialog(CreateTransportAct.this, this, hour, min, true);
             return dpd;
         }
 

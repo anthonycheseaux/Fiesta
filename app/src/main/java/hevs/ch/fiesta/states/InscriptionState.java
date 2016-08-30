@@ -6,8 +6,8 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntit
 
 import java.util.List;
 
-import hevs.ch.fiesta.views.InscriptionActivity;
-import hevs.ch.fiesta.views.ChooseEventActivity;
+import hevs.ch.fiesta.views.InscriptionAct;
+import hevs.ch.fiesta.views.ChooseEventAct;
 
 /**
  * Created by Arnaud on 18.08.2016.
@@ -20,9 +20,9 @@ public final class InscriptionState extends MediaAdapter {
     @Override
     public Class<?> getNeededActivity() {
         if(adapted.getSelectedEvent()!=null)
-            return InscriptionActivity.class;
+            return InscriptionAct.class;
         else
-            return ChooseEventActivity.class;
+            return ChooseEventAct.class;
     }
 
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-

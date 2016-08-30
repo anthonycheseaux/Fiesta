@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public final class ChooseEventActivity extends HypermediaBrowser {
+public final class ChooseEventAct extends HypermediaBrowser {
     private InscriptionState state;
     private EventsAdapter adapter;
     private ListView list;

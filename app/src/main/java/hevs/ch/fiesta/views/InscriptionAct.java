@@ -5,16 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import hevs.ch.fiesta.R;
-import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.states.InscriptionState;
 import hevs.ch.fiesta.states.MediaAdapter;
 
 
-public class InscriptionActivity extends HypermediaBrowser implements View.OnClickListener {
+public class InscriptionAct extends HypermediaBrowser implements View.OnClickListener {
 
     private InscriptionState state;
 
@@ -84,6 +82,6 @@ public class InscriptionActivity extends HypermediaBrowser implements View.OnCli
         state.validateData();
 
         //lanch loading screen
-        startActivity(new Intent(this, LoadingScreen.class));
+        startActivity(new Intent(this, LoadingScreenAct.class));
     }
 }

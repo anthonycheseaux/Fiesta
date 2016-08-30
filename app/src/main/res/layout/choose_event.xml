@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#B40404"
     android:orientation="vertical"
-    tools:context="hevs.ch.fiesta.views.ChooseEventActivity">
+    tools:context=".views.ChooseEventAct">
 
     <LinearLayout
         android:layout_width="wrap_content"

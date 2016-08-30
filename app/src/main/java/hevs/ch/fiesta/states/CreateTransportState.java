@@ -8,7 +8,7 @@ import com.google.api.client.util.DateTime;
 
 import java.util.Date;
 
-import hevs.ch.fiesta.views.CreateTransport;
+import hevs.ch.fiesta.views.CreateTransportAct;
 
 
 /**
@@ -22,7 +22,7 @@ public class CreateTransportState extends MediaAdapter {
 
     @Override
     public Class<?> getNeededActivity() {
-        return CreateTransport.class;
+        return CreateTransportAct.class;
 
     }
 

@@ -49,7 +49,7 @@ public class MediaEndpoint {
      */
     @ApiMethod(
             name = "get",
-            path = "media/{id}",
+            path = "media/",
             httpMethod = ApiMethod.HttpMethod.GET)
     public Media get() {
         logger.info("Getting Media");
@@ -67,7 +67,7 @@ public class MediaEndpoint {
      */
     @ApiMethod(
             name = "update",
-            path = "media/{id}",
+            path = "media/",
             httpMethod = ApiMethod.HttpMethod.PUT)
     public Media update(Media media) throws NotFoundException {
         return manager.manage(media);
