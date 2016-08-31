@@ -11,8 +11,11 @@ public class LoadingScreenAct extends HypermediaBrowser {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
-        stateStack.askUpdate();
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        stateStack.askUpdate();
+    }
 }

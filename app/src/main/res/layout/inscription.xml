@@ -60,6 +60,7 @@
         <EditText
             android:id="@+id/inscription_edtxt_UserPhone"
             android:layout_width="0dp"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
 

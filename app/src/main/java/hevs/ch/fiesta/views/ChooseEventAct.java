@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEntity;
+import com.google.api.client.util.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,7 +56,7 @@ public final class ChooseEventAct extends HypermediaBrowser {
 
     }
     private class EventsAdapter extends ArrayAdapter<EventEntity>{
-        private SimpleDateFormat formater = new SimpleDateFormat("dd/MM");
+        private SimpleDateFormat formater = new SimpleDateFormat("MM/dd");
 
         public EventsAdapter(Context context, List<EventEntity> Events) {
             super(context, 0, Events);
@@ -69,9 +70,24 @@ public final class ChooseEventAct extends HypermediaBrowser {
             if (convertView == null)
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_in_list, parent, false);
 
+            DateTime dtEventStart = eventEntity.getBeginning();
+            DateTime dtEventEnd = eventEntity.getEnd();
+
+            Date start;
+            Date end;
+
+            if(dtEventStart == null)
+                start=new Date();
+            else
+                start= new Date(dtEventStart.getValue());
+            if(dtEventEnd == null)
+                end = start;
+            else
+                end = new Date(dtEventEnd.getValue());
+
             ((TextView) convertView.findViewById(R.id.event_in_list_name)).setText(eventEntity.getName());
-            ((TextView) convertView.findViewById(R.id.event_in_list_start_content)).setText(formater.format(new Date(eventEntity.getBeginning().getValue())));
-            ((TextView) convertView.findViewById(R.id.event_in_list_end_content)).setText(formater.format(new Date(eventEntity.getEnd().getValue())));
+            ((TextView) convertView.findViewById(R.id.event_in_list_start_content)).setText(formater.format(start));
+            ((TextView) convertView.findViewById(R.id.event_in_list_end_content)).setText(formater.format(end));
 
             return convertView;
         }

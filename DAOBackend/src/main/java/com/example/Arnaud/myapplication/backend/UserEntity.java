@@ -4,32 +4,29 @@ package com.example.Arnaud.myapplication.backend;
  * Created by Arnaud on 17.07.2016.
  */
 
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.*;
 
 @Entity
-public abstract class UserEntity {
-    public static final String CLASS_PREFIX = "user_";
+public class UserEntity {
 
 
-    public static final String ID = CLASS_PREFIX+"id";
+
     @Id
     private Long id;
     public Long getId() {return id;}
 
-    public static final String USERNAME = CLASS_PREFIX+"userName";
     @Index
     private String userName;
     public void setUserName(String userName){this.userName=userName;}
     public String getUserName() {return userName;}
 
 
-    public static final String EMAIL = CLASS_PREFIX+"email";
     @Index
     private String email;
     public void setEmail(String email) {this.email = email;}
     public String getEmail() {return email;}
 
-    public static final String PHONE_NUMBER = CLASS_PREFIX+"phoneNumber";
     private String phoneNumber;
     public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
     public String getPhoneNumber() {return phoneNumber;}

@@ -18,6 +18,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * provide simple static methode who act on Media, visibility to package
  * this class DO NOT HAVE TO BE INSTANCIED
  */
+@Deprecated
 class InscriptionHelper {
     private InscriptionHelper(){}
 
@@ -49,7 +50,7 @@ class InscriptionHelper {
     static Media doInscriptionAsDriver(Media media){
 
         //-+-+-+-+-+-+- get data -+-+-+-+-+-+-
-        DriverEntity owner = new DriverEntity(
+     /*   DriverEntity owner = new DriverEntity(
                 media.owner.getUserName(),
                 media.owner.getEmail(),
                 media.owner.getPhoneNumber()
@@ -71,20 +72,20 @@ class InscriptionHelper {
         //-+-+-+-+-+-+- set needed data -+-+-+-+-+-+-
         media.owner = ofy().load().entity(owner).now();
         media.selectedEvent = ofy().load().entity(eventEntity).now();
-
+*/
         //TODO conservert state dans ofy;
         return media;
     }
     static Media doInscriptionAsDrinker(Media media){
 
         //-+-+-+-+-+-+- get data -+-+-+-+-+-+-
-        DrinkerEntity owner = new DrinkerEntity(
+     /*   DrinkerEntity owner = new DrinkerEntity(
                 media.owner.getUserName(),
                 media.owner.getEmail(),
                 media.owner.getPhoneNumber()
         );
         ofy().save().entity(owner).now();
-
+*/
         EventEntity selectedEvent = ofy().load().entity(media.selectedEvent).now();
 
         //-+-+-+-+-+-+- clean data -+-+-+-+-+-+-
@@ -99,10 +100,10 @@ class InscriptionHelper {
         media.availableStates.add(Media.SN_IN_LIFT_STATE);
 
         //-+-+-+-+-+-+- set needed data -+-+-+-+-+-+-
-        media.owner = ofy().load().entity(owner).now();
+     /*   media.owner = ofy().load().entity(owner).now();
         media.selectedEvent = selectedEvent;
 
-
+*/
         //TODO conserver state dans ofy;
         return media;
     }

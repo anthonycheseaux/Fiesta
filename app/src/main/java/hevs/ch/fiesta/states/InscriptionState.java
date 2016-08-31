@@ -57,7 +57,7 @@ public final class InscriptionState extends MediaAdapter {
        owner.setEmail(email);
     }
     public void setUserPhone(String phone){
-        owner.setUserName(phone);
+        owner.setPhoneNumber(phone);
     }
 
 

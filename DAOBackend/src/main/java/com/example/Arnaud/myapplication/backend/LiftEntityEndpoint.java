@@ -23,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p/>
+ * <p>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -41,12 +41,12 @@ public class LiftEntityEndpoint {
     private static final Logger logger = Logger.getLogger(LiftEntityEndpoint.class.getName());
 
     private static final int DEFAULT_LIST_LIMIT = 20;
-
+/*
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(LiftEntity.class);
     }
-
+*/
     /**
      * Returns the {@link LiftEntity} with the corresponding ID.
      *
@@ -64,14 +64,6 @@ public class LiftEntityEndpoint {
         if (liftEntity == null) {
             throw new NotFoundException("Could not find LiftEntity with ID: " + id);
         }
-
-
-        logger.info("Getting EventEntity with ID: " + id);
-        EventEntity eventEntity = ofy().load().type(EventEntity.class).id(liftEntity.getEvent().getId()).now();
-        if (eventEntity == null) {
-            throw new NotFoundException("Could not find EventEntity with ID: " + id);
-        }
-
         return liftEntity;
     }
 

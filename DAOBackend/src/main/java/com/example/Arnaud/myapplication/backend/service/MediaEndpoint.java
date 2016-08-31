@@ -1,5 +1,11 @@
 package com.example.Arnaud.myapplication.backend.service;
 
+import com.example.Arnaud.myapplication.backend.DrinkerEntity;
+import com.example.Arnaud.myapplication.backend.DriverEntity;
+import com.example.Arnaud.myapplication.backend.EventEntity;
+import com.example.Arnaud.myapplication.backend.LiftEntity;
+import com.example.Arnaud.myapplication.backend.UserEntity;
+import com.example.Arnaud.myapplication.backend.requestManager.Facade;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -31,15 +37,18 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 )
 public class MediaEndpoint {
 
-    private final static RequestManger manager = new RequestManger();
+    private final static Manager manager = new Facade();
 
     private static final Logger logger = Logger.getLogger(MediaEndpoint.class.getName());
-
-    private static final int DEFAULT_LIST_LIMIT = 20;
 
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(Media.class);
+        ObjectifyService.register(UserEntity.class);
+        ObjectifyService.register(LiftEntity.class);
+        ObjectifyService.register(EventEntity.class);
+        ObjectifyService.register(DriverEntity.class);
+        ObjectifyService.register(DrinkerEntity.class);
     }
 
     /**
@@ -53,7 +62,7 @@ public class MediaEndpoint {
             httpMethod = ApiMethod.HttpMethod.GET)
     public Media get() {
         logger.info("Getting Media");
-        return manager.getInitialState();
+        return manager.getInitalState();
     }
 
 

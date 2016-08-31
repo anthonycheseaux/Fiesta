@@ -18,7 +18,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 /**
  * Created by Arnaud on 12.08.2016.
  */
-class RequestManger {
+@Deprecated
+class RequestManger implements Manager {
     /*
     Table of possible path, left is initail state, up is next step
 
@@ -42,8 +43,8 @@ class RequestManger {
     public RequestManger(){
         prepareMapper();
     }
-
-    public Media getInitialState(){
+    @Override
+    public Media getInitalState(){
         return InscriptionHelper.getInscriptionState();
     }
 
@@ -60,6 +61,8 @@ class RequestManger {
             return media;
         return manager.manage(media);
     }
+
+
 
     //------------setting up---------------------------------
 

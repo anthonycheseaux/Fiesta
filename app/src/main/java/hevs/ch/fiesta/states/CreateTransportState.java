@@ -29,12 +29,13 @@ public class CreateTransportState extends MediaAdapter {
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-
     public CreateTransportState(Media media) {
         super(media);
+        /*
         castedOwner = new DriverEntity();
         castedOwner.setId(owner.getId());
         castedOwner.setUserName(owner.getUserName());
         castedOwner.setPhoneNumber(owner.getPhoneNumber());
         castedOwner.setEmail(owner.getEmail());
-
+*/
         selectedEvent = adapted.getSelectedEvent();
 
         this.lift = new LiftEntity();

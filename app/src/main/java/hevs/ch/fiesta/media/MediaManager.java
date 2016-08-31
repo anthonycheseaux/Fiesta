@@ -17,7 +17,7 @@ import hevs.ch.fiesta.states.MediaAdapter;
  * Created by Arnaud on 11.08.2016.
  */
 public class MediaManager implements Observable, MediaStack {
-    private final static boolean USE_MIMIC_API = true;
+    private final static boolean USE_MIMIC_API = false;
 
 //____________Singleton part_____________________________
 

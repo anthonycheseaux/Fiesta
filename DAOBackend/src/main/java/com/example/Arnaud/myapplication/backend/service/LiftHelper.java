@@ -16,6 +16,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 /**
  * Created by Arnaud on 19.08.2016.
  */
+@Deprecated
 class LiftHelper {
     private LiftHelper(){}
 

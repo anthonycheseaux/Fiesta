@@ -23,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p/>
+ * <p>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -41,12 +41,12 @@ public class DrinkerEntityEndpoint {
     private static final Logger logger = Logger.getLogger(DrinkerEntityEndpoint.class.getName());
 
     private static final int DEFAULT_LIST_LIMIT = 20;
-
+/*
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(DrinkerEntity.class);
     }
-
+*/
     /**
      * Returns the {@link DrinkerEntity} with the corresponding ID.
      *

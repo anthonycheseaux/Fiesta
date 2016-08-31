@@ -1,5 +1,6 @@
 package com.example.Arnaud.myapplication.backend;
 
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.*;
 
 import java.util.Date;
@@ -11,14 +12,20 @@ import java.util.List;
 
 @Entity
 public class LiftEntity {
+
+
+
     @Id
     private Long id;
     public Long getId() {return id;}
 
-    @Index
+
+    @Container
     private EventEntity event;
     public EventEntity getEvent() {return event;}
 
+
+    @Container
     private DriverEntity driver;
     public DriverEntity getDriver() {return driver;}
 
@@ -28,6 +35,8 @@ public class LiftEntity {
     private Date departure;
     public Date getDeparture(){return departure;}
 
+
+    @Container
     private List<DrinkerEntity> drinkers;
     public List<DrinkerEntity> getDrinkers() {return drinkers;}
 
@@ -35,6 +44,14 @@ public class LiftEntity {
     public int getCapacity(){ return capacity;}
 
     public boolean isFull(){return drinkers.size()<capacity;}
+
+    public LiftEntity(EventEntity event, DriverEntity driver){
+        this.event = event;
+        this.driver = driver;
+        this.destination = "";
+        this.capacity = 0;
+        this.departure = event.getEnd();
+    }
 
     public LiftEntity(EventEntity event, DriverEntity driver, String destination, int capacity, Date departure) {
         this.event = event;

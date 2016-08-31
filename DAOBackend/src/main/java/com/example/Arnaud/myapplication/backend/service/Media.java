@@ -32,13 +32,14 @@ public class Media {
 
     public UserEntity owner;
 
+
     public EventEntity selectedEvent;
     public List<EventEntity> availableEvent;
 
     public LiftEntity lift;
     public List<LiftEntity> availableLifts;
 
-    void cleanAll(){
+    public void cleanAll(){
         stateType = null;
         availableStates = null;
         wantedState = "";
