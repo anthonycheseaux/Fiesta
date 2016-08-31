@@ -15,6 +15,10 @@ import java.io.IOException;
  * Created by Arnaud on 19.08.2016.
  */
 public class AsyncUpdater extends AsyncTask<Void , Void, Media> {
+    private final static String BACKEND_URL = "https://projetfiesta-1372.appspot.com/_ah/api/";
+    private final static String LOCAL_URL ="http://10.0.2.2:8080/_ah/api/";
+    //private final static String LOCAL_URL = "http://localhost:8080/_ah/api/";
+    private final static boolean USE_LOCAL = true;
     protected MediaStack stack;
     private static MediaApi api;
 
@@ -24,6 +28,15 @@ public class AsyncUpdater extends AsyncTask<Void , Void, Media> {
 
     public AsyncUpdater(MediaStack stack){
         this.stack= stack;
+        String rootUrl;
+        if (USE_LOCAL){
+            rootUrl = LOCAL_URL;
+        }
+        else{
+            rootUrl = BACKEND_URL;
+        }
+
+
         if (api== null){
             MediaApi.Builder builder = new MediaApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -32,7 +45,7 @@ public class AsyncUpdater extends AsyncTask<Void , Void, Media> {
                     // - turn off compression when running against local devappserver
                     // if you deploy on the cloud backend, use your app name
                     // such as https://<your-app-id>.appspot.com
-                    .setRootUrl("https://projetfiesta-1372.appspot.com/_ah/api/")
+                    .setRootUrl(rootUrl)
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {

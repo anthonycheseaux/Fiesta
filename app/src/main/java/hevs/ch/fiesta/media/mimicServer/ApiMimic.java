@@ -103,21 +103,18 @@ public class ApiMimic {
             UserEntity user;
 
             user=new UserEntity();
-            user.setId(new Long((long)(Math.random()*Long.MAX_VALUE)));
             user.setUserName("jean");
             user.setEmail("jean@none.ch");
             user.setPhoneNumber("079 635 89 74");
             userList.add(user);
 
             user=new UserEntity();
-            user.setId(new Long((long)(Math.random()*Long.MAX_VALUE)));
             user.setUserName("blapi");
             user.setEmail("blapi@none.ch");
             user.setPhoneNumber("078 472 89 74");
             userList.add(user);
 
             user=new UserEntity();
-            user.setId(new Long((long)(Math.random()*Long.MAX_VALUE)));
             user.setUserName("toto");
             user.setEmail("toto@none.ch");
             user.setPhoneNumber("076 589 89 74");

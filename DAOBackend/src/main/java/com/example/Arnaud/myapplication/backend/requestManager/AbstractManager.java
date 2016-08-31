@@ -6,11 +6,15 @@ import com.example.Arnaud.myapplication.backend.service.Media;
 import com.example.Arnaud.myapplication.backend.triggers.AbstractTrigger;
 import com.example.Arnaud.myapplication.backend.triggers.NullTriger;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Arnaud on 30.08.2016.
  */
 abstract class AbstractManager {
-    static String[] missions;
+    private static final Logger logger = Logger.getLogger(AbstractManager.class.getName());
+    private static final boolean ON_DEBUG = true;
+
     protected Media media;
     protected AbstractTrigger triggers;
     protected UserEntity owner;
@@ -20,22 +24,30 @@ abstract class AbstractManager {
         this.media=media;
     }
 
-    public static String getDD(){return "dd";}
 
     public Media permformeManagment(){
-        securityCheck();
+        if (ON_DEBUG)
+            logger.info("Getting media for managment whith: \n" + media.toString());
+
+        if(false == securityCheck())
+            return media;
         if (false ==checkDataConsistency())
             return media;
+        if (ON_DEBUG)
+            logger.info("media does succesfully consistency Check: \n");
         getData();
         cleanMedia();
         setStateType();
         setNextStep();
         setNededData();
         executeTriggers();
+        if (ON_DEBUG)
+            logger.info("respons whith: \n" + media.toString());
+
         return media;
     }
-    protected void securityCheck(){
-
+    protected boolean securityCheck(){
+        return true;
     }
     protected abstract boolean checkDataConsistency();
     protected abstract void getData();

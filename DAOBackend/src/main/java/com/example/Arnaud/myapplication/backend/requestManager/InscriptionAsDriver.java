@@ -18,45 +18,18 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  *  uregistre drinke and registre as driver
  *
  */
-class InscriptionAsDriver extends AbstractManager {
+class InscriptionAsDriver extends Inscription {
     static final String[] misssions = new String[]{
             Media.SN_INSCRIPTION_STATE+ Facade.CONNECTION_TO + Media.SN_CREATE_TRANSPORT_STATE
     };
 
-    private EventEntity selectedEvent;
     private DriverEntity driver;
 
     InscriptionAsDriver(Media media) {
         super(media);
     }
 
-    @Override
-    protected boolean checkDataConsistency() {
-        boolean respons;
-        if (respons= media.owner != null)
-            if (respons = media.selectedEvent!= null)
-                ;
-        return respons;
-    }
 
-    @Override
-    protected void getData() {
-
-
-        owner = ofy().load().type(UserEntity.class).filterKey("email ==", media.owner.getEmail()).first().now();
-        if( owner == null)
-            owner = new UserEntity(
-                    media.owner.getUserName(),
-                    media.owner.getEmail(),
-                    media.owner.getPhoneNumber());
-        else {
-            owner.setUserName(media.owner.getUserName());
-            owner.setPhoneNumber(media.owner.getPhoneNumber());
-        }
-
-        ofy().save().entity(owner).now();
-        selectedEvent = ofy().load().entity(media.selectedEvent).now();
-    }
 
     @Override
     protected void setStateType() {

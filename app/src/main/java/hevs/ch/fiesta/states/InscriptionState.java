@@ -4,6 +4,7 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEnti
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hevs.ch.fiesta.views.InscriptionAct;
@@ -29,6 +30,9 @@ public final class InscriptionState extends MediaAdapter {
     public InscriptionState(Media media) {
         super(media);
         availableEvents = adapted.getAvailableEvent();
+        if (availableEvents == null)
+            availableEvents = new ArrayList<EventEntity>(2);
+
         selectedEvent = adapted.getSelectedEvent();
 
         if (owner == null)

@@ -2,6 +2,7 @@ package com.example.Arnaud.myapplication.backend;
 
 
 import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.*;
 
 /**
@@ -10,42 +11,26 @@ import com.googlecode.objectify.annotation.*;
 @Entity
 public class DrinkerEntity {
 
-
-
-
     @Id Long id;
-
     public Long getId() {
         return id;
     }
 
+    private Ref<UserEntity> user;
+    public UserEntity getUser() {return user.get();}
 
-    @Container
-    private UserEntity user;
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-
-    @Container
-    private EventEntity event;
-
+    private Ref<EventEntity> event;
     public EventEntity getEvent() {
-        return event;
+        return event.get();
     }
 
-
-    @Container
-    private LiftEntity liftEntity;
-
+    private Ref<LiftEntity> liftEntity;
     public LiftEntity getLiftEntity() {
-        return liftEntity;
+        return liftEntity.get();
     }
     public void setLiftEntity(LiftEntity liftEntity) {
-        this.liftEntity = liftEntity;
+        this.liftEntity = Ref.create(liftEntity);
     }
-
 
     public boolean hasLift(){
         return (liftEntity != null);
@@ -55,14 +40,14 @@ public class DrinkerEntity {
     public DrinkerEntity() {
     }
     public DrinkerEntity(UserEntity user, EventEntity event) {
-        this.user = user;
-        this.event = event;
+        this.user = Ref.create(user);
+        this.event = Ref.create(event);
         this.liftEntity = null;
 
     }
     public DrinkerEntity(UserEntity user, EventEntity event, LiftEntity liftEntity) {
-        this.user = user;
-        this.event = event;
-        this.liftEntity = liftEntity;
+        this.user = Ref.create(user);
+        this.event = Ref.create(event);
+        this.liftEntity = Ref.create(liftEntity);
     }
 }

@@ -8,6 +8,7 @@ import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -49,5 +50,6 @@ public class Media {
         lift = null;
         availableLifts = null;
     }
+
 
 }

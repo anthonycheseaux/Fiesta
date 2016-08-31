@@ -10,19 +10,13 @@ import com.googlecode.objectify.annotation.*;
 @Entity
 public class UserEntity {
 
-
-
-    @Id
-    private Long id;
-    public Long getId() {return id;}
-
     @Index
     private String userName;
     public void setUserName(String userName){this.userName=userName;}
     public String getUserName() {return userName;}
 
 
-    @Index
+    @Id
     private String email;
     public void setEmail(String email) {this.email = email;}
     public String getEmail() {return email;}
@@ -33,12 +27,6 @@ public class UserEntity {
 
 
     public UserEntity(String userName, String email, String phoneNumber) {
-        this.userName = userName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
-    public UserEntity(Long id, String userName, String email, String phoneNumber) {
-        this.id = id;
         this.userName = userName;
         this.email = email;
         this.phoneNumber = phoneNumber;

@@ -7,6 +7,7 @@ import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
@@ -14,6 +15,9 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * Created by Arnaud on 30.08.2016.
  */
 class GetInitialState extends AbstractManager {
+
+    private static final Logger logger = Logger.getLogger(GetInitialState.class.getName());
+
     static final String[] misssions = new String[]{
             Media.SN_INSCRIPTION_STATE+ Facade.CONNECTION_TO + Media.SN_INSCRIPTION_STATE
     };
@@ -27,7 +31,8 @@ class GetInitialState extends AbstractManager {
     }
 
     @Override
-    protected void securityCheck() {
+    protected boolean securityCheck() {
+        return true;
     }
 
     @Override

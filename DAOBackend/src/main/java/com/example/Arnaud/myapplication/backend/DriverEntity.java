@@ -4,6 +4,8 @@ import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.*;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 /**
  * Created by Arnaud on 17.07.2016.
  */
@@ -18,34 +20,33 @@ public class DriverEntity {
         return id;
     }
 
-    @Container
-    private UserEntity user;
+
+    private Ref<UserEntity> user;
     public UserEntity getUser() {
-        return user;
+        return user.get();
     }
 
 
-    @Container
-    private EventEntity event;
-
+    private Ref<EventEntity> event;
     public EventEntity getEvent() {
-        return event;
+        return event.get();
     }
 
 
-    @Container
-    private LiftEntity liftEntity;
-
+    private Ref<LiftEntity> liftEntity;
     public LiftEntity getLiftEntity() {
-        return liftEntity;
+        if (liftEntity == null){
+            LiftEntity lift = new LiftEntity(event.get(), this);
+            ofy().save().entity(lift).now();
+            this.liftEntity = Ref.create(lift);
+        }
+        return liftEntity.get();
     }
-
 
 
     public DriverEntity(UserEntity user, EventEntity event) {
-        this.user =user;
-        this.event = event;
-        this.liftEntity = new LiftEntity(event, this);
+        this.user =Ref.create(user);
+        this.event = Ref.create(event);
     }
 
     public DriverEntity() {

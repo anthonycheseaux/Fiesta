@@ -23,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p>
+ * <p/>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -41,28 +41,24 @@ public class UserEntityEndpoint {
     private static final Logger logger = Logger.getLogger(UserEntityEndpoint.class.getName());
 
     private static final int DEFAULT_LIST_LIMIT = 20;
-/*
-    static {
-        // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
-        ObjectifyService.register(UserEntity.class);
-    }
-*/
+
+
     /**
      * Returns the {@link UserEntity} with the corresponding ID.
      *
-     * @param id the ID of the entity to be retrieved
+     * @param email the ID of the entity to be retrieved
      * @return the entity with the corresponding ID
      * @throws NotFoundException if there is no {@code UserEntity} with the provided ID.
      */
     @ApiMethod(
             name = "get",
-            path = "userEntity/{id}",
+            path = "userEntity/{email}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public UserEntity get(@Named("id") Long id) throws NotFoundException {
-        logger.info("Getting UserEntity with ID: " + id);
-        UserEntity userEntity = ofy().load().type(UserEntity.class).id(id).now();
+    public UserEntity get(@Named("email") String email) throws NotFoundException {
+        logger.info("Getting UserEntity with ID: " + email);
+        UserEntity userEntity = ofy().load().type(UserEntity.class).id(email).now();
         if (userEntity == null) {
-            throw new NotFoundException("Could not find UserEntity with ID: " + id);
+            throw new NotFoundException("Could not find UserEntity with ID: " + email);
         }
         return userEntity;
     }
@@ -76,12 +72,12 @@ public class UserEntityEndpoint {
             httpMethod = ApiMethod.HttpMethod.POST)
     public UserEntity insert(UserEntity userEntity) {
         // Typically in a RESTful API a POST does not have a known ID (assuming the ID is used in the resource path).
-        // You should validate that userEntity.id has not been set. If the ID type is not supported by the
+        // You should validate that userEntity.email has not been set. If the ID type is not supported by the
         // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
         //
         // If your client provides the ID then you should probably use PUT instead.
         ofy().save().entity(userEntity).now();
-        logger.info("Created UserEntity with ID: " + userEntity.getId());
+        logger.info("Created UserEntity with ID: " + userEntity.getEmail());
 
         return ofy().load().entity(userEntity).now();
     }
@@ -89,19 +85,19 @@ public class UserEntityEndpoint {
     /**
      * Updates an existing {@code UserEntity}.
      *
-     * @param id         the ID of the entity to be updated
+     * @param email      the ID of the entity to be updated
      * @param userEntity the desired state of the entity
      * @return the updated version of the entity
-     * @throws NotFoundException if the {@code id} does not correspond to an existing
+     * @throws NotFoundException if the {@code email} does not correspond to an existing
      *                           {@code UserEntity}
      */
     @ApiMethod(
             name = "update",
-            path = "userEntity/{id}",
+            path = "userEntity/{email}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public UserEntity update(@Named("id") Long id, UserEntity userEntity) throws NotFoundException {
+    public UserEntity update(@Named("email") String email, UserEntity userEntity) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
-        checkExists(id);
+        checkExists(email);
         ofy().save().entity(userEntity).now();
         logger.info("Updated UserEntity: " + userEntity);
         return ofy().load().entity(userEntity).now();
@@ -110,18 +106,18 @@ public class UserEntityEndpoint {
     /**
      * Deletes the specified {@code UserEntity}.
      *
-     * @param id the ID of the entity to delete
-     * @throws NotFoundException if the {@code id} does not correspond to an existing
+     * @param email the ID of the entity to delete
+     * @throws NotFoundException if the {@code email} does not correspond to an existing
      *                           {@code UserEntity}
      */
     @ApiMethod(
             name = "remove",
-            path = "userEntity/{id}",
+            path = "userEntity/{email}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("id") Long id) throws NotFoundException {
-        checkExists(id);
-        ofy().delete().type(UserEntity.class).id(id).now();
-        logger.info("Deleted UserEntity with ID: " + id);
+    public void remove(@Named("email") String email) throws NotFoundException {
+        checkExists(email);
+        ofy().delete().type(UserEntity.class).id(email).now();
+        logger.info("Deleted UserEntity with ID: " + email);
     }
 
     /**
@@ -149,11 +145,11 @@ public class UserEntityEndpoint {
         return CollectionResponse.<UserEntity>builder().setItems(userEntityList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long id) throws NotFoundException {
+    private void checkExists(String email) throws NotFoundException {
         try {
-            ofy().load().type(UserEntity.class).id(id).safe();
+            ofy().load().type(UserEntity.class).id(email).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {
-            throw new NotFoundException("Could not find UserEntity with ID: " + id);
+            throw new NotFoundException("Could not find UserEntity with ID: " + email);
         }
     }
 }
