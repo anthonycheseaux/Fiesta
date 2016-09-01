@@ -36,6 +36,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
                 packagePath = ""
         )
 )
+@Deprecated
 public class DriverEntityEndpoint {
 
     private static final Logger logger = Logger.getLogger(DriverEntityEndpoint.class.getName());

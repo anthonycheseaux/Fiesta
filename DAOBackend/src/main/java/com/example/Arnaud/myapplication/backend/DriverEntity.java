@@ -9,13 +9,12 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 /**
  * Created by Arnaud on 17.07.2016.
  */
-
+@Deprecated
 @Entity
 public class DriverEntity {
 
 
     @Id Long id;
-
     public Long getId() {
         return id;
     }
@@ -36,7 +35,7 @@ public class DriverEntity {
     private Ref<LiftEntity> liftEntity;
     public LiftEntity getLiftEntity() {
         if (liftEntity == null){
-            LiftEntity lift = new LiftEntity(event.get(), this);
+            LiftEntity lift = new LiftEntity(event.get(), this.user.get());
             ofy().save().entity(lift).now();
             this.liftEntity = Ref.create(lift);
         }
@@ -47,6 +46,9 @@ public class DriverEntity {
     public DriverEntity(UserEntity user, EventEntity event) {
         this.user =Ref.create(user);
         this.event = Ref.create(event);
+        LiftEntity lift = new LiftEntity(event, user);
+        ofy().save().entity(lift).now();
+
     }
 
     public DriverEntity() {

@@ -1,7 +1,6 @@
 package hevs.ch.fiesta.states;
 
-import com.example.arnaud.myapplication.backend.service.mediaApi.model.DriverEntity;
-import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEntity;
+
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.LiftEntity;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.google.api.client.util.DateTime;
@@ -16,8 +15,7 @@ import hevs.ch.fiesta.views.CreateTransportAct;
  */
 public class CreateTransportState extends MediaAdapter {
     private LiftEntity lift;
-    private DriverEntity castedOwner;
-    private EventEntity selectedEvent;
+
 
 
     @Override
@@ -29,23 +27,19 @@ public class CreateTransportState extends MediaAdapter {
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-
     public CreateTransportState(Media media) {
         super(media);
-        /*
-        castedOwner = new DriverEntity();
-        castedOwner.setId(owner.getId());
-        castedOwner.setUserName(owner.getUserName());
-        castedOwner.setPhoneNumber(owner.getPhoneNumber());
-        castedOwner.setEmail(owner.getEmail());
-*/
-        selectedEvent = adapted.getSelectedEvent();
-
-        this.lift = new LiftEntity();
-        this.lift.setDriver(this.castedOwner);
-        this.lift.setEvent(selectedEvent);
+        this.lift = adapted .getLift();
     }
 
     @Override
     public void validateData() {
-        adapted.setLift(lift);
+        adapted.setLiftId(lift.getId());
+        adapted.setLiftDeparture(lift.getDeparture());
+        adapted.setLiftDestination(lift.getDestination());
+        adapted.setLiftCapacity(lift.getCapacity());
+        adapted.setLiftOwner(lift.getDriver().getEmail());
+        adapted.setLiftEventId(lift.getEvent().getId());
+
+        adapted.setLift(null);
     }
 
     //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-

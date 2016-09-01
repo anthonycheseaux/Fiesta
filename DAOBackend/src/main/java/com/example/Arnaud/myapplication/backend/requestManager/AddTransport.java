@@ -18,9 +18,6 @@ class AddTransport extends AbstractManager {
             Media.SN_CREATE_TRANSPORT_STATE+ Facade.CONNECTION_TO + Media.SN_MANAGE_LIFT
     };
 
-    private UserEntity owner;
-    private EventEntity selectedEvent;
-    private DriverEntity driverEntity;
     private LiftEntity lift;
 
     AddTransport(Media media) {
@@ -31,19 +28,24 @@ class AddTransport extends AbstractManager {
     protected boolean checkDataConsistency() {
         boolean respons;
         if (respons= media.owner != null)
-            if (respons = media.selectedEvent!= null)
-                if (respons = media.lift != null)
-                    if (respons = media.lift.getDriver() != null)
-                ;
+            if (respons = media.lift_id != null)
+                if(respons = media.lift_capacity>0)
+                    if (respons = media.lift_departure!= null)
+                        if (respons = media.lift_destination!= null)
+                            if (respons != media.lift_destination.equals(""))
+                                if(respons= media.lift_eventId != null)
+                                    if (respons = media.owner.getEmail().equals(media.lift_owner))
+                                        ;
         return respons;
     }
 
     @Override
     protected void getData() {
         owner = ofy().load().entity(media.owner).now();
-        selectedEvent = ofy().load().entity(media.selectedEvent).now();
-        driverEntity = ofy().load().entity(media.lift.getDriver()).now();
-        lift = new LiftEntity(selectedEvent, driverEntity, media.lift.getDestination(), media.lift.getCapacity(),media.lift.getDeparture());
+        lift = ofy().load().type(LiftEntity.class).id(media.lift_id).now();
+        lift.setDestination(media.lift_destination);
+        lift.setCapacity(media.lift_capacity);
+        lift.setDeparture(media.lift_departure);
         ofy().save().entity(lift).now();
     }
 
@@ -60,7 +62,11 @@ class AddTransport extends AbstractManager {
 
     @Override
     protected void setNededData() {
-        media.owner = ofy().load().entity(owner).now();
-        media.lift= ofy().load().entity(lift).now();
+        owner = ofy().load().entity(owner).now();
+        lift= ofy().load().entity(lift).now();
+
+
+        media.owner = owner;
+        media.lift= lift;
     }
 }

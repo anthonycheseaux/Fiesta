@@ -1,5 +1,6 @@
 package com.example.Arnaud.myapplication.backend;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.*;
@@ -15,8 +16,11 @@ import java.util.List;
 
 @Entity
 public class LiftEntity {
-
-
+    private static UserEntity noneUser = new UserEntity("none", "none", "none");
+    static {
+        ofy().save().entities(noneUser).now();
+        noneUser = ofy().load().entity(noneUser).now();
+    }
 
     @Id
     private Long id;
@@ -28,55 +32,65 @@ public class LiftEntity {
     public EventEntity getEvent() {return event.get();}
 
 
-    private Ref<DriverEntity> driver;
-    public DriverEntity getDriver() {return driver.get();}
+
+    private Ref<UserEntity> driver;
+    public UserEntity getDriver() {return driver.get();}
 
     private String destination;
     public String getDestination(){return destination;}
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+
 
     private Date departure;
     public Date getDeparture(){return departure;}
+    public void setDeparture(Date departure) {
+        this.departure = departure;
+    }
 
 
 
-    private List<Ref<DrinkerEntity>> drinkers;
-    public List<DrinkerEntity> getDrinkers() {
-        List<DrinkerEntity> respons = new ArrayList<>(drinkers.size());
-        for (Iterator<Ref<DrinkerEntity>> iterator = drinkers.iterator(); iterator.hasNext();)
+
+    private List<Ref<UserEntity>> drinkers;
+    public List<UserEntity> getDrinkers() {
+        List<UserEntity> respons = new ArrayList<UserEntity>(drinkers.size());
+        for (Iterator<Ref<UserEntity>> iterator = drinkers.iterator(); iterator.hasNext();)
             respons.add(iterator.next().get());
+        respons.remove(noneUser);
         return respons;
     }
+
+    public void setDrinkers(List<UserEntity> drinkers) {
+        if (drinkers == null || drinkers.size()==0){
+            this.drinkers = new ArrayList<Ref<UserEntity>>(1);
+            this.drinkers.add(Ref.create(noneUser));
+        }else {
+            this.drinkers = new ArrayList<Ref<UserEntity>>(drinkers.size());
+            for (Iterator<UserEntity> iterator = drinkers.iterator(); iterator.hasNext();)
+                this.drinkers.add(Ref.create(iterator.next()));
+        }
+    }
+
     private int capacity;
     public int getCapacity(){ return capacity;}
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 
     public boolean isFull(){return drinkers.size()<capacity;}
 
-    public LiftEntity(EventEntity event, DriverEntity driver){
+    public LiftEntity(EventEntity event, UserEntity driver){
         this.event = Ref.create(event);
         this.driver = Ref.create(driver);
         this.destination = "";
         this.capacity = 0;
         this.departure = event.getEnd();
+        drinkers = new ArrayList<Ref<UserEntity>>(1);
+        drinkers.add(Ref.create(noneUser));
     }
 
-    public LiftEntity(EventEntity event, DriverEntity driver, String destination, int capacity, Date departure) {
-        this.event = Ref.create(event);
-        this.driver = Ref.create(driver);
-        this.destination = destination;
-        this.capacity = capacity;
-        this.departure = departure;
-    }
-
-    public LiftEntity(EventEntity event, DriverEntity driver,String destination, int capacity, List<DrinkerEntity> drinkers,Date departure) {
-        this.event = Ref.create(event);
-        this.driver = Ref.create(driver);
-        this.destination = destination;
-        this.capacity = capacity;
-        this.drinkers = new ArrayList<>(drinkers.size());
-        for (Iterator<DrinkerEntity> iterator = drinkers.iterator(); iterator.hasNext();)
-            this.drinkers.add(Ref.create(iterator.next()));
-        this.departure = departure;
-    }
 
     public LiftEntity() {
     }

@@ -1,8 +1,7 @@
 package com.example.Arnaud.myapplication.backend.requestManager;
 
 import com.example.Arnaud.myapplication.backend.DriverEntity;
-import com.example.Arnaud.myapplication.backend.EventEntity;
-import com.example.Arnaud.myapplication.backend.UserEntity;
+import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.service.Media;
 
 import java.util.ArrayList;
@@ -23,8 +22,7 @@ class InscriptionAsDriver extends Inscription {
             Media.SN_INSCRIPTION_STATE+ Facade.CONNECTION_TO + Media.SN_CREATE_TRANSPORT_STATE
     };
 
-    private DriverEntity driver;
-
+    private LiftEntity lift;
     InscriptionAsDriver(Media media) {
         super(media);
     }
@@ -46,9 +44,11 @@ class InscriptionAsDriver extends Inscription {
     protected void setNededData() {
         owner = ofy().load().entity(owner).now();
         selectedEvent = ofy().load().entity(selectedEvent).now();
-        driver = new DriverEntity(owner, selectedEvent);
-        ofy().save().entities(driver);
+        lift = new LiftEntity(selectedEvent, owner);
+        ofy().save().entities(lift).now();
+        lift = ofy().load().entity(lift).now();
+
         media.owner = owner;
-        media.selectedEvent = selectedEvent;
+        media.lift = lift;
     }
 }

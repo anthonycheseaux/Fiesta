@@ -8,6 +8,7 @@ import com.googlecode.objectify.annotation.*;
 /**
  * Created by Arnaud on 17.07.2016.
  */
+@Deprecated
 @Entity
 public class DrinkerEntity {
 

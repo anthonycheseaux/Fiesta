@@ -7,7 +7,9 @@ import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Load;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,15 +42,29 @@ public class Media {
     public LiftEntity lift;
     public List<LiftEntity> availableLifts;
 
+    public Long lift_id;
+    public Date lift_departure;
+    public String lift_destination;
+    public int lift_capacity;
+    public String lift_owner;
+    public Long lift_eventId;
+
     public void cleanAll(){
         stateType = null;
         availableStates = null;
-        wantedState = "";
+        wantedState = null;
         owner = null;
         selectedEvent = null;
         availableEvent = null;
         lift = null;
         availableLifts = null;
+        lift_id = null;
+        lift_departure = null;
+        lift_destination = null;
+        lift_capacity = -1;
+        lift_owner = null;
+        lift_eventId = null;
+
     }
 
 

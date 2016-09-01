@@ -36,6 +36,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
                 packagePath = ""
         )
 )
+
+@Deprecated
 public class DrinkerEntityEndpoint {
 
     private static final Logger logger = Logger.getLogger(DrinkerEntityEndpoint.class.getName());

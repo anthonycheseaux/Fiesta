@@ -37,14 +37,14 @@ public final class ChooseEventAct extends HypermediaBrowser {
         setContentView(R.layout.choose_event);
 
         state=(InscriptionState) MediaAdapter.adapt(stateStack.getUpdateMedia());
-
+        list = (ListView) findViewById(R.id.choose_event_listView);
         if(state.getEventList() == null || state.getEventList().size()==0)
             adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{"il n'y a pas d'évenement\npour l'instant"});
         else {
             adapter = new EventsAdapter(this, state.getEventList());
             list.setOnItemClickListener(new Listner());
         }
-        list = (ListView) findViewById(R.id.choose_event_listView);
+
         list.setAdapter(adapter);
     }
 

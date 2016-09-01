@@ -60,11 +60,11 @@ class LiftHelper {
         //-+-+-+-+-+-+- get data -+-+-+-+-+-+-
         UserEntity owner = ofy().load().entity(media.owner).now();
         EventEntity selectedEvent = ofy().load().entity(media.selectedEvent).now();
-        DriverEntity driverEntity = ofy().load().entity(media.lift.getDriver()).now();
+        //DriverEntity driverEntity = ofy().load().entity(media.lift.getDriver()).now();
 
 
-        LiftEntity lift = new LiftEntity(selectedEvent, driverEntity, media.lift.getDestination(), media.lift.getCapacity(),media.lift.getDeparture());
-        ofy().save().entity(lift).now();
+        //LiftEntity lift = new LiftEntity(selectedEvent, driverEntity, media.lift.getDestination(), media.lift.getCapacity(),media.lift.getDeparture());
+        //ofy().save().entity(lift).now();
 
         //-+-+-+-+-+-+- clean data -+-+-+-+-+-+-
         media.cleanAll();
@@ -79,7 +79,7 @@ class LiftHelper {
         //-+-+-+-+-+-+- set needed data -+-+-+-+-+-+-
         media.owner = ofy().load().entity(owner).now();
 
-        media.lift= ofy().load().entity(lift).now();
+       // media.lift= ofy().load().entity(lift).now();
 
         //TODO conserver state dans ofy;
         return media;

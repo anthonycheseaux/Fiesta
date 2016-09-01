@@ -12,8 +12,8 @@ import java.util.logging.Logger;
  * Created by Arnaud on 30.08.2016.
  */
 abstract class AbstractManager {
-    private static final Logger logger = Logger.getLogger(AbstractManager.class.getName());
-    private static final boolean ON_DEBUG = true;
+    protected static final Logger logger = Logger.getLogger(AbstractManager.class.getName());
+    protected static final boolean ON_DEBUG = true;
 
     protected Media media;
     protected AbstractTrigger triggers;
@@ -27,14 +27,18 @@ abstract class AbstractManager {
 
     public Media permformeManagment(){
         if (ON_DEBUG)
-            logger.info("Getting media for managment whith: \n" + media.toString());
+            logger.info(" \n Getting media for managment whith: " + media.stateType);
 
         if(false == securityCheck())
             return media;
-        if (false ==checkDataConsistency())
+        if (false ==checkDataConsistency()){
+            logger.info(" \n media DOES NOT succesfully consistency Check.");
             return media;
+        }
         if (ON_DEBUG)
-            logger.info("media does succesfully consistency Check: \n");
+            logger.info(" \n media does succesfully consistency Check.");
+
+
         getData();
         cleanMedia();
         setStateType();
@@ -42,7 +46,7 @@ abstract class AbstractManager {
         setNededData();
         executeTriggers();
         if (ON_DEBUG)
-            logger.info("respons whith: \n" + media.toString());
+            logger.info(" \n respons whith: " + media.stateType);
 
         return media;
     }
