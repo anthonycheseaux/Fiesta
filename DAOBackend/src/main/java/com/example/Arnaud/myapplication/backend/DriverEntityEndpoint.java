@@ -23,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p/>
+ * <p>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -36,17 +36,18 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
                 packagePath = ""
         )
 )
+@Deprecated
 public class DriverEntityEndpoint {
 
     private static final Logger logger = Logger.getLogger(DriverEntityEndpoint.class.getName());
 
     private static final int DEFAULT_LIST_LIMIT = 20;
-
+/*
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(DriverEntity.class);
     }
-
+*/
     /**
      * Returns the {@link DriverEntity} with the corresponding ID.
      *
