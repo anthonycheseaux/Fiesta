@@ -23,7 +23,7 @@ class AddTransport extends AbstractManager {
     AddTransport(Media media) {
         super(media);
     }
-
+/*
     @Override
     protected boolean checkDataConsistency() {
         boolean respons;
@@ -38,7 +38,7 @@ class AddTransport extends AbstractManager {
                                         ;
         return respons;
     }
-
+*/
     @Override
     protected void getData() {
         owner = ofy().load().entity(media.owner).now();
@@ -50,15 +50,12 @@ class AddTransport extends AbstractManager {
     }
 
     @Override
-    protected void setStateType() {
+    protected void setNavigation() {
         media.stateType= Media.SN_MANAGE_LIFT;
-    }
-
-    @Override
-    protected void setNextStep() {
         media.availableStates= new ArrayList<String>();
         media.availableStates.add(Media.SN_MANAGE_LIFT);
     }
+
 
     @Override
     protected void setNededData() {

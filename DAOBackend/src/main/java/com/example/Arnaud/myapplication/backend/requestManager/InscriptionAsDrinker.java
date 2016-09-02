@@ -28,18 +28,13 @@ class InscriptionAsDrinker extends Inscription {
         super(media);
     }
 
-
-
     @Override
-    protected void setStateType() {
+    protected void setNavigation() {
         media.stateType= Media.SN_SEARCH_TRANSPORT_STATE;
-    }
-
-    @Override
-    protected void setNextStep() {
         media.availableStates= new ArrayList<String>();
         media.availableStates.add(Media.SN_IN_LIFT_STATE);
     }
+
 
     @Override
     protected void setNededData() {

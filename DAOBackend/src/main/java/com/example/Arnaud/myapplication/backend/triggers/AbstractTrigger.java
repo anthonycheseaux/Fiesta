@@ -14,12 +14,21 @@ public abstract class AbstractTrigger implements Runnable {
     /**
      * we use a Template pattern to rewrite the natural behaior of Runanable.
      * run is final and the "new Run()" is performeAction. the dobjective of all of that is to execute the all chain in 1 thread.
+     * if any exceteption will be raise by a trigger, il will not influence execution of nexts triggers
      */
     @Override
     public final void run() {
-        performeAction();
+        try {
+            performeAction();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         nextTrigger.run();
     }
+
+    /**
+     * the actions who will be performed by the trigger
+     */
     protected abstract void performeAction();
 
     public void lauchTriggerChain(){

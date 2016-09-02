@@ -27,18 +27,13 @@ class InscriptionAsDriver extends Inscription {
         super(media);
     }
 
-
-
     @Override
-    protected void setStateType() {
+    protected void setNavigation() {
         media.stateType= Media.SN_CREATE_TRANSPORT_STATE;
-    }
-
-    @Override
-    protected void setNextStep() {
         media.availableStates= new ArrayList<String>();
         media.availableStates.add(Media.SN_MANAGE_LIFT);
     }
+
 
     @Override
     protected void setNededData() {

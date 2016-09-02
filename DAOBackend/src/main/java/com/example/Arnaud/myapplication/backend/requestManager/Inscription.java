@@ -17,7 +17,7 @@ public abstract class Inscription extends AbstractManager {
     Inscription(Media media) {
         super(media);
     }
-
+/*
     @Override
     protected final boolean checkDataConsistency() {
         boolean respons;
@@ -28,7 +28,7 @@ public abstract class Inscription extends AbstractManager {
                         ;
         return respons;
     }
-
+*/
     @Override
     protected final void getData() {
         try {
