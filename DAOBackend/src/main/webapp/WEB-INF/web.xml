@@ -20,8 +20,8 @@
                 com.example.Arnaud.myapplication.backend.EventEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.LiftEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.UserEntityEndpoint,
-                com.example.Arnaud.myapplication.backend.Chat.MailBoxEntityEndpoint
-                </param-value>
+                com.example.Arnaud.myapplication.backend.Chat.MailBoxEntityEndpoint,
+                com.example.Arnaud.myapplication.backend.Chat.MessageEntityEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

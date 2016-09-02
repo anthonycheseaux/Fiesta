@@ -16,11 +16,7 @@ import java.util.List;
 
 @Entity
 public class LiftEntity {
-    private static UserEntity noneUser = new UserEntity("none", "none", "none");
-    static {
-        ofy().save().entities(noneUser).now();
-        noneUser = ofy().load().entity(noneUser).now();
-    }
+
 
     @Id
     private Long id;
@@ -53,25 +49,15 @@ public class LiftEntity {
 
 
 
-    private List<Ref<UserEntity>> drinkers;
+    private List<Ref<UserEntity>> content;
     public List<UserEntity> getDrinkers() {
-        List<UserEntity> respons = new ArrayList<UserEntity>(drinkers.size());
-        for (Iterator<Ref<UserEntity>> iterator = drinkers.iterator(); iterator.hasNext();)
+        List<UserEntity> respons = new ArrayList<UserEntity>(content.size());
+        for (Iterator<Ref<UserEntity>> iterator = content.iterator(); iterator.hasNext();)
             respons.add(iterator.next().get());
-        respons.remove(noneUser);
         return respons;
     }
 
-    public void setDrinkers(List<UserEntity> drinkers) {
-        if (drinkers == null || drinkers.size()==0){
-            this.drinkers = new ArrayList<Ref<UserEntity>>(1);
-            this.drinkers.add(Ref.create(noneUser));
-        }else {
-            this.drinkers = new ArrayList<Ref<UserEntity>>(drinkers.size());
-            for (Iterator<UserEntity> iterator = drinkers.iterator(); iterator.hasNext();)
-                this.drinkers.add(Ref.create(iterator.next()));
-        }
-    }
+
 
     private int capacity;
     public int getCapacity(){ return capacity;}
@@ -79,7 +65,7 @@ public class LiftEntity {
         this.capacity = capacity;
     }
 
-    public boolean isFull(){return drinkers.size()<capacity;}
+    public boolean isFull(){return content.size()<=capacity;}
 
     public LiftEntity(EventEntity event, UserEntity driver){
         this.event = Ref.create(event);
@@ -87,8 +73,8 @@ public class LiftEntity {
         this.destination = "";
         this.capacity = 0;
         this.departure = event.getEnd();
-        drinkers = new ArrayList<Ref<UserEntity>>(1);
-        drinkers.add(Ref.create(noneUser));
+        content = new ArrayList<Ref<UserEntity>>(1);
+        content.add( Ref.create(driver));
     }
 
 

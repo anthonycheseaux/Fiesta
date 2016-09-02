@@ -1,5 +1,7 @@
 package com.example.Arnaud.myapplication.backend.service;
 
+import com.example.Arnaud.myapplication.backend.Chat.MailBoxEntity;
+import com.example.Arnaud.myapplication.backend.Chat.MessageEntity;
 import com.example.Arnaud.myapplication.backend.DrinkerEntity;
 import com.example.Arnaud.myapplication.backend.DriverEntity;
 import com.example.Arnaud.myapplication.backend.EventEntity;
@@ -49,6 +51,8 @@ public class MediaEndpoint {
         ObjectifyService.register(EventEntity.class);
         ObjectifyService.register(DriverEntity.class);
         ObjectifyService.register(DrinkerEntity.class);
+        ObjectifyService.register(MailBoxEntity.class);
+        ObjectifyService.register(MessageEntity.class);
     }
 
     /**

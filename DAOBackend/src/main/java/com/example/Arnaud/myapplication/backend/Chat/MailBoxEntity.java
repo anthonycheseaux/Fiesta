@@ -1,10 +1,12 @@
 package com.example.Arnaud.myapplication.backend.Chat;
 
 import com.google.appengine.api.mail.MailService;
+import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,34 +17,30 @@ import java.util.List;
 public class MailBoxEntity {
 
     @Id
-    private Long id;
-    public Long getId() {return id;}
+    private String id;
+    public String getId(){return id;}
 
-    private List<MessageEntity> incomeMessages;
-    private List<MessageEntity> outcomeMessages;
-    private MessageEntity nullMessage = null;
+    private List<Ref<MessageEntity>> content;
+    public List<MessageEntity> getContent(){
+        List<MessageEntity> respons = new ArrayList<>(content.size());
+        for (Iterator<Ref<MessageEntity>> iterator = content.iterator(); iterator.hasNext();)
+            respons.add(iterator.next().get());
+        return respons;
+    }
 
 
     public MailBoxEntity(){
-        incomeMessages = new ArrayList<>();
-        incomeMessages.add(nullMessage);
-        outcomeMessages = new ArrayList<>();
-        outcomeMessages.add(nullMessage);
+
     }
 
-    public List<MessageEntity> getOutcomeMessages() {
-        return outcomeMessages;
+    public MailBoxEntity(String id){
+        this.id = id;
+        this.content = new ArrayList<>();
     }
 
-    public List<MessageEntity> getIncomeMessages() {
-        return incomeMessages;
+
+    public void addMessage(MessageEntity message){
+        this.content.add(Ref.create(message));
     }
 
-    public void addOutcomeMessage(MessageEntity outcomeMessage){
-        this.outcomeMessages.add(outcomeMessage);
-    }
-
-    public void addIncomeMessage(MessageEntity incomeMessage){
-        this.incomeMessages.add(incomeMessage);
-    }
 }

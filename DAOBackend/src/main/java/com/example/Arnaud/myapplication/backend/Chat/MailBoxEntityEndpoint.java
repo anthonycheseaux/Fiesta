@@ -23,7 +23,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
  * restrictions and no data validation.
- * <p>
+ * <p/>
  * DO NOT deploy this code unchanged as part of a real application to real users.
  */
 @Api(
@@ -45,6 +45,7 @@ public class MailBoxEntityEndpoint {
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(MailBoxEntity.class);
+        ObjectifyService.register(MessageEntity.class);
     }
 
     /**
@@ -58,7 +59,7 @@ public class MailBoxEntityEndpoint {
             name = "get",
             path = "mailBoxEntity/{id}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public MailBoxEntity get(@Named("id") Long id) throws NotFoundException {
+    public MailBoxEntity get(@Named("id") String id) throws NotFoundException {
         logger.info("Getting MailBoxEntity with ID: " + id);
         MailBoxEntity mailBoxEntity = ofy().load().type(MailBoxEntity.class).id(id).now();
         if (mailBoxEntity == null) {
@@ -81,7 +82,7 @@ public class MailBoxEntityEndpoint {
         //
         // If your client provides the ID then you should probably use PUT instead.
         ofy().save().entity(mailBoxEntity).now();
-        logger.info("Created MailBoxEntity with ID: " + mailBoxEntity.getId());
+        logger.info("Created MailBoxEntity.");
 
         return ofy().load().entity(mailBoxEntity).now();
     }
@@ -99,7 +100,7 @@ public class MailBoxEntityEndpoint {
             name = "update",
             path = "mailBoxEntity/{id}",
             httpMethod = ApiMethod.HttpMethod.PUT)
-    public MailBoxEntity update(@Named("id") Long id, MailBoxEntity mailBoxEntity) throws NotFoundException {
+    public MailBoxEntity update(@Named("id") String id, MailBoxEntity mailBoxEntity) throws NotFoundException {
         // TODO: You should validate your ID parameter against your resource's ID here.
         checkExists(id);
         ofy().save().entity(mailBoxEntity).now();
@@ -118,7 +119,7 @@ public class MailBoxEntityEndpoint {
             name = "remove",
             path = "mailBoxEntity/{id}",
             httpMethod = ApiMethod.HttpMethod.DELETE)
-    public void remove(@Named("id") Long id) throws NotFoundException {
+    public void remove(@Named("id") String id) throws NotFoundException {
         checkExists(id);
         ofy().delete().type(MailBoxEntity.class).id(id).now();
         logger.info("Deleted MailBoxEntity with ID: " + id);
@@ -149,7 +150,7 @@ public class MailBoxEntityEndpoint {
         return CollectionResponse.<MailBoxEntity>builder().setItems(mailBoxEntityList).setNextPageToken(queryIterator.getCursor().toWebSafeString()).build();
     }
 
-    private void checkExists(Long id) throws NotFoundException {
+    private void checkExists(String id) throws NotFoundException {
         try {
             ofy().load().type(MailBoxEntity.class).id(id).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {
