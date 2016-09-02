@@ -59,7 +59,7 @@ public class CreateTransportState extends MediaAdapter {
 
     //+-+-+-+-+-+- Actions -+-+-+-+-+-+-+-+
     public void doLisftInscription(){
-        adapted.setWantedState(MediaAdapter.SN_IN_LIFT_STATE);
+        adapted.setWantedState(MediaAdapter.SN_MANAGE_LIFT);
     }
 
 

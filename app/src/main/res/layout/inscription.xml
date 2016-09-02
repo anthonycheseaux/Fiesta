@@ -39,6 +39,7 @@
         <EditText
             android:id="@+id/inscription_edtxt_Username"
             android:layout_width="0dp"
+            android:inputType="textPersonName"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
 
@@ -60,7 +61,7 @@
         <EditText
             android:id="@+id/inscription_edtxt_UserPhone"
             android:layout_width="0dp"
-            android:inputType="number"
+            android:inputType="phone"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
 
@@ -82,6 +83,7 @@
         <EditText
             android:id="@+id/inscription_edtxt_UserMail"
             android:layout_width="0dp"
+            android:inputType="textEmailAddress"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
 

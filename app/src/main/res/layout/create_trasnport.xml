@@ -17,6 +17,7 @@
         android:text="@string/create_transport"
         android:typeface="serif"
         android:textSize="25dp"
+        android:inputType="textPersonName"
         android:layout_gravity="center"
         android:textColor="@color/blanc"
         android:layout_marginBottom="30dp"/>

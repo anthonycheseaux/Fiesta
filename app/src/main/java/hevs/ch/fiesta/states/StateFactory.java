@@ -54,7 +54,9 @@ class StateFactory {
         mapper.put(MediaAdapter.SN_MANAGE_LIFT,
                 new ManageLiftInstancier());
 
-        //TODO search tansport
+        mapper.put(MediaAdapter.SN_SEARCH_TRANSPORT_STATE,
+                new SearchLiftInstancier());
+
     }
 
 
@@ -76,6 +78,13 @@ class StateFactory {
             return new CreateTransportState(media);
         }
     }
+    private class SearchLiftInstancier extends Instancier{
+        MediaAdapter instanciate(Media media) {
+            return new SearchTrasnportState(media);
+        }
+    }
+
+
     private class ManageLiftInstancier extends Instancier{
         @Override
         //TODO changer ici

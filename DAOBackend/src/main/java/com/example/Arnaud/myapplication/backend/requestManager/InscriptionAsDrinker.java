@@ -24,10 +24,6 @@ class InscriptionAsDrinker extends Inscription {
             Media.SN_INSCRIPTION_STATE+ Facade.CONNECTION_TO + Media.SN_SEARCH_TRANSPORT_STATE
     };
 
-
-    private EventEntity selectedEvent;
-    private DrinkerEntity drinker;
-
     InscriptionAsDrinker(Media media) {
         super(media);
     }
@@ -49,10 +45,9 @@ class InscriptionAsDrinker extends Inscription {
     protected void setNededData() {
         owner = ofy().load().entity(owner).now();
         selectedEvent = ofy().load().entity(selectedEvent).now();
-        drinker = new DrinkerEntity(owner, selectedEvent);
-        ofy().save().entities(drinker);
         media.owner = owner;
 
-        media.availableLifts = ofy().load().type(LiftEntity.class).filter("event ==", selectedEvent).list();
+        media.availableLifts = ofy().load().type(LiftEntity.class).list();
+        int i = 0;
     }
 }
