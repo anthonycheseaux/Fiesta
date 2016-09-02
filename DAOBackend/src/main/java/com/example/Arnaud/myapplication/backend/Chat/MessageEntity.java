@@ -9,11 +9,8 @@ import java.util.Date;
 /**
  * Created by darle on 02.09.2016.
  */
-@Entity
-public class MessageEntity {
-    @Id
-    private Long id;
 
+public class MessageEntity {
     private String text;
     private String receiver;
     private String sender;

@@ -47,9 +47,8 @@ public class MessageEntityEndpoint {
 
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
-        ObjectifyService.register(MessageEntity.class);
         ObjectifyService.register(MailBoxEntity.class);
-        ObjectifyService.register(UserEntity.class);
+        ObjectifyService.register(MailMapperEntity.class);
     }
 
 
@@ -61,51 +60,47 @@ public class MessageEntityEndpoint {
             path = "messageEntity",
             httpMethod = ApiMethod.HttpMethod.POST)
     public void insert(MessageEntity messageEntity) {
-        // Typically in a RESTful API a POST does not have a known ID (assuming the ID is used in the resource path).
-        // You should validate that messageEntity.id has not been set. If the ID type is not supported by the
-        // Objectify ID generator, e.g. long or String, then you should generate the unique ID yourself prior to saving.
-        //
-        // If your client provides the ID then you should probably use PUT instead.
-        ofy().save().entity(messageEntity).now();
+
         Comparator<String> comparator = new StringComparator();
-        String discutionId[] = new String[2];
-        if (0 < comparator.compare(messageEntity.getSender(), messageEntity.getReceiver())){
-            discutionId[0] = messageEntity.getSender();
-            discutionId[1] = messageEntity.getReceiver();
+        String[] interlocutors = new String[2];
+        try{
+            interlocutors[0]= messageEntity.getSender();
+            interlocutors[1]=  messageEntity.getReceiver();
         }
-
-        else{
-            discutionId[1] = messageEntity.getSender();
-            discutionId[0] = messageEntity.getReceiver();
+        catch (NullPointerException e)
+        {
+            e.printStackTrace();
+            return;
         }
+        String mailBoxID = null;
+        if (0 < comparator.compare(interlocutors[0],interlocutors[1]))
+            mailBoxID = interlocutors[0]+interlocutors[1];
+        else
+            mailBoxID = interlocutors[1]+interlocutors[0];
 
 
-        MailBoxEntity mb=null;
-        String concat = discutionId[0]+discutionId[1];
-        UserEntity[] users = new UserEntity[0];
+        MailBoxEntity mailBox=null;
         try {
-            mb = ofy().load().type(MailBoxEntity.class).id(concat).safe();
+            mailBox = ofy().load().type(MailBoxEntity.class).id(mailBoxID).safe();
         } catch (com.googlecode.objectify.NotFoundException e) { }
-        if (mb == null){
-            mb= new MailBoxEntity(concat);
-            users = new UserEntity[2];
-            users[0]=ofy().load().type(UserEntity.class).id(discutionId[0]).now();
-            users[1]=ofy().load().type(UserEntity.class).id(discutionId[1]).now();
+        if (mailBox == null)
+            mailBox= new MailBoxEntity(mailBoxID);
+
+        mailBox.addMessage(messageEntity);
+        ofy().save().entity(mailBox).now();
+        mailBox = ofy().load().entity(mailBox).now();
+
+        for (int cpt =0 ; cpt< interlocutors.length; ++cpt){
+            MailMapperEntity mailMapper = null;
+            try {
+                mailMapper = ofy().load().type(MailMapperEntity.class).id(interlocutors[cpt]).safe();
+            } catch (com.googlecode.objectify.NotFoundException e) { }
+            if (mailMapper == null)
+                mailMapper= new MailMapperEntity(interlocutors[cpt]);
+            mailMapper.addMailBox(mailBox);
+            ofy().save().entity(mailMapper);
         }
-
-
-        mb.addMessage(messageEntity);
-         ofy().save().entity(mb);
-
-        for (int cpt = 0; cpt< users.length;++ cpt){
-            users[cpt].addMailBox(mb);
-            ofy().save().entity(users[cpt]);
-        }
-
-
     }
-
-
 
     private void checkExists(Long id) throws NotFoundException {
         try {

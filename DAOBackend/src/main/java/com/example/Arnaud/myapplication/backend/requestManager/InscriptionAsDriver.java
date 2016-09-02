@@ -47,7 +47,6 @@ class InscriptionAsDriver extends Inscription {
         lift = new LiftEntity(selectedEvent, owner);
         ofy().save().entities(lift).now();
         lift = ofy().load().entity(lift).now();
-
         media.owner = owner;
         media.lift = lift;
     }

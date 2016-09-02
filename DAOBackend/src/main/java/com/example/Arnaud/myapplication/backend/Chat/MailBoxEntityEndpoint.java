@@ -45,7 +45,6 @@ public class MailBoxEntityEndpoint {
     static {
         // Typically you would register this inside an OfyServive wrapper. See: https://code.google.com/p/objectify-appengine/wiki/BestPractices
         ObjectifyService.register(MailBoxEntity.class);
-        ObjectifyService.register(MessageEntity.class);
     }
 
     /**
