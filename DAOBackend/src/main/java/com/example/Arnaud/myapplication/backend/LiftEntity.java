@@ -1,8 +1,13 @@
 package com.example.Arnaud.myapplication.backend;
 
+
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
+import com.google.api.server.spi.response.NotFoundException;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.*;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by Arnaud on 17.07.2016.
@@ -29,6 +34,13 @@ public class LiftEntity {
     @Ignore
     private UserEntity driver;
     public UserEntity getDriver(){return driver;}
+
+
+    transient private Ref<LiftMapperEntity> drinkers_ref;
+    @Ignore
+    private HashMap<String, UserEntity> drinkers;
+    public HashMap<String, UserEntity> getDrikers() {return  drinkers;}
+
 
     private String destination;
     public String getDestination(){return destination;}
@@ -75,14 +87,37 @@ public class LiftEntity {
 
         driver_ref = null;
         event_ref = null;
+
+        if (drinkers_ref != null){
+            LiftMapperEntity mapper = drinkers_ref.get();
+            drinkers = mapper.getDrinkers();
+        }
+        else {
+            drinkers = new HashMap<>();
+        }
+        driver_ref = null;
+
+
     }
     @OnSave
     protected void switchToRef(){
         driver_ref = Ref.create(driver);
         event_ref = Ref.create(event);
 
-        driver = null;
-        event = null;
+        LiftMapperEntity mapper = null;
+        try {
+            ofy().load().type(LiftEntity.class).id(this.id).safe();
+        }catch (com.googlecode.objectify.NotFoundException e) {
+           mapper = new LiftMapperEntity(this.id);
+        }
+        try {
+            mapper.setDrinkers(drinkers);
+            ofy().save().entity(drinkers).now();
+        }catch (IllegalStateException e){
+            ofy().delete().entity(mapper);
+        }
+
+
     }
 
 }

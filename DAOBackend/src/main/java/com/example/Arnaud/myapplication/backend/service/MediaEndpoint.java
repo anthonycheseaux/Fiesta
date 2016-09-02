@@ -50,11 +50,7 @@ public class MediaEndpoint {
         ObjectifyService.register(UserEntity.class);
         ObjectifyService.register(LiftEntity.class);
         ObjectifyService.register(EventEntity.class);
-        ObjectifyService.register(DriverEntity.class);
-        ObjectifyService.register(DrinkerEntity.class);
         ObjectifyService.register(MailBoxEntity.class);
-        ObjectifyService.register(LiftMapperEntity.class);
-
     }
 
     /**
