@@ -8,6 +8,6 @@ public class TransportListing extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transport_listing);
+        setContentView(R.layout.search_transport);
     }
 }
