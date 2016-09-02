@@ -1,95 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#B40404"
+    android:background="#efefef"
     android:orientation="vertical"
-    tools:context="hevs.ch.fiesta.Chat">
+    tools:context=".views.ChatAct">
+
+    <ListView
+        android:id="@+id/msgview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF0000"
+        android:divider="@null"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"></ListView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        android:weightSum="3">
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/msg"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:orientation="vertical">
+            android:layout_height="fill_parent"
+            android:layout_weight="2" />
 
-            <ImageView
-                android:id="@+id/ImageView_pictureCoVoit"
-                android:src="@mipmap/covoiturage"
-                android:layout_width="170dp"
-                android:layout_height="85dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginLeft="8dp"/>
-
-            <EditText
-                android:id="@+id/EditText_driverName"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="driverName"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <Button
+            android:id="@+id/send"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/EditText_capacity"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="capacity"
-            />
-
-            <EditText
-                android:id="@+id/EditText_departure"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="time of departure"
-                />
-
-            <EditText
-                android:id="@+id/EditText_dest"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="destination"
-                />
-
-        </LinearLayout>
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Send" />
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/EditText_message"
-        android:layout_width="330dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:background="@color/blanc"
-        android:text="Votre messsage"
-        android:textColor="@color/colorPrimary"/>
-
-    <Button
-        android:id="@+id/button_send"
-        android:layout_marginTop="35dp"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:text="@string/sendMessage"
-        android:textSize="13dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/blanc"/>
-
-
-
 </LinearLayout>
