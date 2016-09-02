@@ -14,14 +14,14 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>
-                com.example.Arnaud.myapplication.backend.service.MediaEndpoint,
+            <param-value>com.example.Arnaud.myapplication.backend.service.MediaEndpoint,
                 com.example.Arnaud.myapplication.backend.DrinkerEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.DriverEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.EventEntityEndpoint,
                 com.example.Arnaud.myapplication.backend.LiftEntityEndpoint,
-                com.example.Arnaud.myapplication.backend.UserEntityEndpoint
-            </param-value>
+                com.example.Arnaud.myapplication.backend.UserEntityEndpoint,
+                com.example.Arnaud.myapplication.backend.Chat.MailBoxEntityEndpoint
+                </param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
