@@ -113,8 +113,11 @@ public class LiftEntity {
         try {
             mapper.setDrinkers(drinkers);
             ofy().save().entity(drinkers).now();
+            mapper = ofy().load().entity(mapper).now();
+            drinkers_ref = Ref.create(mapper);
         }catch (IllegalStateException e){
             ofy().delete().entity(mapper);
+            drinkers_ref = null;
         }
 
 

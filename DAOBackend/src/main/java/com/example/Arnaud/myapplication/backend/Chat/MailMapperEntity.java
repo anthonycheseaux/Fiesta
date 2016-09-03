@@ -18,24 +18,27 @@ public class MailMapperEntity {
     @Id
     String userMail;
 
-    private LiveRef<MailBoxEntity> ownMail;
-    public MailBoxEntity getOwnMail(){
+    private LiveRef<MessageBoxEntity> ownMail;
+    public MessageBoxEntity getOwnMail(){
         return ownMail.get();
     }
 
-    private TreeSet<LiveRef<MailBoxEntity>> myMails;
-    public List<MailBoxEntity> getMyMails(){
-        List<MailBoxEntity> respons = new ArrayList<>(myMails.size());
-        for (Iterator<LiveRef<MailBoxEntity>> iterator = myMails.iterator(); iterator.hasNext();)
+    private TreeSet<LiveRef<MessageBoxEntity>> myMails;
+    public List<MessageBoxEntity> getMyMails(){
+        List<MessageBoxEntity> respons = new ArrayList<>(myMails.size());
+        for (Iterator<LiveRef<MessageBoxEntity>> iterator = myMails.iterator(); iterator.hasNext();)
             respons.add(iterator.next().get());
         respons.remove(ownMail.get());
         return respons;
     }
-    public void addMailBox(MailBoxEntity mailBox){
+    public void addMailBox(MessageBoxEntity mailBox){
         if (false == mailBox.getId().equals(userMail + userMail))
             myMails.add((LiveRef) Ref.create(mailBox));
     }
     MailMapperEntity(String userMail){
         myMails = new TreeSet<>();
+        this.userMail = userMail;
     }
+
+    MailMapperEntity(){}
 }

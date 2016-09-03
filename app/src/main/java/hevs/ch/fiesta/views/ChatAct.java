@@ -9,9 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+
+import com.google.api.client.util.DateTime;
+
 import hevs.ch.fiesta.R;
-import hevs.ch.fiesta.states.ChatArrayAdapter;
-import hevs.ch.fiesta.states.ChatMessage;
+import hevs.ch.fiesta.chat.ChatArrayAdapter;
+import hevs.ch.fiesta.media.MediaManager;
+import hevs.ch.fiesta.media.MediaStack;
 
 /**
  * Created by Yannick on 02.09.2016.
@@ -25,6 +29,8 @@ public class ChatAct extends HypermediaBrowser {
     private Button buttonSend;
     private boolean side = false;
 
+    private MediaStack mediaStack = MediaManager.getInstance();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +41,14 @@ public class ChatAct extends HypermediaBrowser {
 
         listView = (ListView) findViewById(R.id.msgview);
 
-        chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.right);
+        chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.right, mediaStack.getUpdateMedia().getOwner().getEmail());
         listView.setAdapter(chatArrayAdapter);
 
         chatText = (EditText) findViewById(R.id.msg);
         chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return sendChatMessage();
+                    sendChatMessage();
                 }
                 return false;
             }
@@ -67,10 +73,20 @@ public class ChatAct extends HypermediaBrowser {
         });
     }
 
-    private boolean sendChatMessage() {
-        chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
-        chatText.setText("");
-        side = !side;
-        return true;
+    private void sendChatMessage() {
+        //Message msg = new Message();
+
+        //chatArrayAdapter.add();
+        //chatText.setText("");
+        //side = !side;
+
+        //MessageEntity msg = new MessageEntity();
+        //msg.setText(chatText.getText().toString());
+        //msg.setSender();
+        //msg.setReceiver();
+        //msg.setDateMessage(new DateTime());
+
+
+
     }
 }

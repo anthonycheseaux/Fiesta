@@ -9,8 +9,10 @@ import java.util.Date;
 /**
  * Created by darle on 02.09.2016.
  */
-
-public class MessageEntity {
+@Entity
+public class Message {
+    @Id
+    private Long id;
     private String text;
     private String receiver;
     private String sender;
@@ -32,13 +34,13 @@ public class MessageEntity {
         return dateMessage;
     }
 
-    public MessageEntity(String text, String receiver, String sender, Date dateMessage){
+    public Message(String text, String receiver, String sender, Date dateMessage){
         this.text = text;
         this.receiver = receiver;
         this.sender = sender;
         this.dateMessage = dateMessage;
     }
-    public MessageEntity(){
+    public Message(){
 
     }
 
