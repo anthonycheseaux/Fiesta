@@ -1,9 +1,12 @@
 package com.example.Arnaud.myapplication.backend.service;
 
+import com.example.Arnaud.myapplication.backend.Chat.MailBoxEntity;
+import com.example.Arnaud.myapplication.backend.Chat.MessageEntity;
 import com.example.Arnaud.myapplication.backend.DrinkerEntity;
 import com.example.Arnaud.myapplication.backend.DriverEntity;
 import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
+import com.example.Arnaud.myapplication.backend.LiftMapperEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.example.Arnaud.myapplication.backend.requestManager.Facade;
 import com.google.api.server.spi.config.Api;
@@ -47,8 +50,7 @@ public class MediaEndpoint {
         ObjectifyService.register(UserEntity.class);
         ObjectifyService.register(LiftEntity.class);
         ObjectifyService.register(EventEntity.class);
-        ObjectifyService.register(DriverEntity.class);
-        ObjectifyService.register(DrinkerEntity.class);
+        ObjectifyService.register(MailBoxEntity.class);
     }
 
     /**
