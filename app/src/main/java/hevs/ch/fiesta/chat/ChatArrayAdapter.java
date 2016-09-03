@@ -1,4 +1,4 @@
-package hevs.ch.fiesta.states;
+package hevs.ch.fiesta.chat;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -44,13 +44,13 @@ public class ChatArrayAdapter extends ArrayAdapter<ChatMessage> {
         ChatMessage chatMessageObj = getItem(position);
         View row = convertView;
         LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (chatMessageObj.left) {
+        //if (chatMessageObj.left) {
             row = inflater.inflate(R.layout.right, parent, false);
-        }else{
+        //}else{
             row = inflater.inflate(R.layout.left, parent, false);
-        }
+       // }
         chatText = (TextView) row.findViewById(R.id.msgr);
-        chatText.setText(chatMessageObj.message);
+        //chatText.setText(chatMessageObj.message);
         return row;
     }
 }

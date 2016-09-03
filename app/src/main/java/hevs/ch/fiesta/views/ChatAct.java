@@ -9,9 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+
+import com.google.api.client.util.DateTime;
+
+import java.util.Date;
+
 import hevs.ch.fiesta.R;
-import hevs.ch.fiesta.states.ChatArrayAdapter;
-import hevs.ch.fiesta.states.ChatMessage;
+import hevs.ch.fiesta.chat.ChatArrayAdapter;
+import hevs.ch.fiesta.chat.ChatMessage;
 
 /**
  * Created by Yannick on 02.09.2016.
@@ -68,9 +73,17 @@ public class ChatAct extends HypermediaBrowser {
     }
 
     private boolean sendChatMessage() {
-        chatArrayAdapter.add(new ChatMessage(side, chatText.getText().toString()));
-        chatText.setText("");
-        side = !side;
+        //chatArrayAdapter.add(new ChatMessage(chatText.getText().toString()));
+        //chatText.setText("");
+        //side = !side;
+
+        //MessageEntity msg = new MessageEntity();
+        //msg.setText(chatText.getText().toString());
+        //msg.setSender();
+        //msg.setReceiver();
+        //msg.setDateMessage(new DateTime());
+
+
         return true;
     }
 }

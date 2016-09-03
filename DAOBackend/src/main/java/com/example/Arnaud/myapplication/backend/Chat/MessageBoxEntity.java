@@ -1,6 +1,5 @@
 package com.example.Arnaud.myapplication.backend.Chat;
 
-import com.google.appengine.api.mail.MailService;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -14,32 +13,32 @@ import java.util.List;
  */
 
 @Entity
-public class MailBoxEntity {
+public class MessageBoxEntity {
 
     @Id
     private String id;
     public String getId(){return id;}
 
-    private List<Ref<MessageEntity>> content;
-    public List<MessageEntity> getContent(){
-        List<MessageEntity> respons = new ArrayList<>(content.size());
-        for (Iterator<Ref<MessageEntity>> iterator = content.iterator(); iterator.hasNext();)
+    private List<Ref<Message>> content;
+    public List<Message> getContent(){
+        List<Message> respons = new ArrayList<>(content.size());
+        for (Iterator<Ref<Message>> iterator = content.iterator(); iterator.hasNext();)
             respons.add(iterator.next().get());
         return respons;
     }
 
 
-    public MailBoxEntity(){
+    public MessageBoxEntity(){
 
     }
 
-    public MailBoxEntity(String id){
+    public MessageBoxEntity(String id){
         this.id = id;
         this.content = new ArrayList<>();
     }
 
 
-    public void addMessage(MessageEntity message){
+    public void addMessage(Message message){
         this.content.add(Ref.create(message));
     }
 
