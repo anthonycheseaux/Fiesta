@@ -74,7 +74,7 @@ public class LiftEntity {
         int usedPlaces = 0;
         if (drinkers != null)
             usedPlaces = drinkers.size();
-        return capacity > usedPlaces;
+        return false == (capacity > usedPlaces);
     }
 
     public LiftEntity(EventEntity event, UserEntity driver){

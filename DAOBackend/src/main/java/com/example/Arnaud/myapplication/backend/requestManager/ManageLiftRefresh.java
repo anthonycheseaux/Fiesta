@@ -17,6 +17,7 @@ class ManageLiftRefresh extends AbstractManager {
             _NavigationsRules.SN_MANAGE_LIFT+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_MANAGE_LIFT
     };
     private LiftEntity lift;
+    private List<UserEntity> oldContent;
 
     /**
      * @param media the media who will be managed
@@ -33,7 +34,8 @@ class ManageLiftRefresh extends AbstractManager {
 
     @Override
     protected void perfomeActions() {
-        List<UserEntity> oldContent = ofy().load().type(LiftEntity.class).id(lift.getId()).now().getDrikers();
+        LiftEntity oldLift = ofy().load().type(LiftEntity.class).id(lift.getId()).now();
+        oldContent = oldLift.getDrikers();
         ofy().save().entity(this.lift);
         this.lift = ofy().load().entity(this.lift).now();
         triggers.addAtEnd(new NotifyDrinkers_LiftContentChange(this.lift,oldContent));

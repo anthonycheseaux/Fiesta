@@ -36,6 +36,10 @@ public class UserEntity {
     @Ignore
     private List<MessageBoxEntity> myMails;
 
+    public List<MessageBoxEntity> getMyMails() {
+        return myMails;
+    }
+
     public void putMails(){
         MailMapperEntity myMapper= null;
         try {
