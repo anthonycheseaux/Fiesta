@@ -39,7 +39,8 @@
             android:text="@string/advantage"
             android:textSize="13dp"
             android:background="@color/colorPrimary"
-            android:textColor="@color/blanc"/>
+            android:textColor="@color/blanc"
+            android:onClick="goAdvantages"/>
 
     </LinearLayout>
 
