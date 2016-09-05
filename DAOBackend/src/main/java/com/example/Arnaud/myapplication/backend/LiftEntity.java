@@ -1,14 +1,13 @@
 package com.example.Arnaud.myapplication.backend;
 
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
-import com.googlecode.objectify.ObjectifyService;
+
+import com.google.api.server.spi.response.NotFoundException;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.*;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.HashMap;
 
 /**
  * Created by Arnaud on 17.07.2016.
@@ -16,11 +15,8 @@ import java.util.List;
 
 @Entity
 public class LiftEntity {
-    private static UserEntity noneUser = new UserEntity("none", "none", "none");
-    static {
-        ofy().save().entities(noneUser).now();
-        noneUser = ofy().load().entity(noneUser).now();
-    }
+
+
 
     @Id
     private Long id;
@@ -28,13 +24,23 @@ public class LiftEntity {
 
 
 
-    private Ref<EventEntity> event;
-    public EventEntity getEvent() {return event.get();}
+    transient private Ref<EventEntity> event_ref;
+    @Ignore
+    private EventEntity event;
+    public EventEntity getEvent() {return event;}
 
 
+    transient private Ref<UserEntity> driver_ref;
+    @Ignore
+    private UserEntity driver;
+    public UserEntity getDriver(){return driver;}
 
-    private Ref<UserEntity> driver;
-    public UserEntity getDriver() {return driver.get();}
+
+    transient private Ref<LiftMapperEntity> drinkers_ref;
+    @Ignore
+    private HashMap<String, UserEntity> drinkers;
+    public HashMap<String, UserEntity> getDrikers() {return  drinkers;}
+
 
     private String destination;
     public String getDestination(){return destination;}
@@ -51,47 +57,71 @@ public class LiftEntity {
     }
 
 
-
-
-    private List<Ref<UserEntity>> drinkers;
-    public List<UserEntity> getDrinkers() {
-        List<UserEntity> respons = new ArrayList<UserEntity>(drinkers.size());
-        for (Iterator<Ref<UserEntity>> iterator = drinkers.iterator(); iterator.hasNext();)
-            respons.add(iterator.next().get());
-        respons.remove(noneUser);
-        return respons;
-    }
-
-    public void setDrinkers(List<UserEntity> drinkers) {
-        if (drinkers == null || drinkers.size()==0){
-            this.drinkers = new ArrayList<Ref<UserEntity>>(1);
-            this.drinkers.add(Ref.create(noneUser));
-        }else {
-            this.drinkers = new ArrayList<Ref<UserEntity>>(drinkers.size());
-            for (Iterator<UserEntity> iterator = drinkers.iterator(); iterator.hasNext();)
-                this.drinkers.add(Ref.create(iterator.next()));
-        }
-    }
-
     private int capacity;
     public int getCapacity(){ return capacity;}
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
-    public boolean isFull(){return drinkers.size()<capacity;}
+    private boolean isFull;
+    public boolean isFull(){return isFull;}
 
     public LiftEntity(EventEntity event, UserEntity driver){
-        this.event = Ref.create(event);
-        this.driver = Ref.create(driver);
+        this.event_ref = Ref.create(event);
+        this.event =event;
+        this.driver_ref = Ref.create(driver);
+        this.driver = driver;
         this.destination = "";
         this.capacity = 0;
         this.departure = event.getEnd();
-        drinkers = new ArrayList<Ref<UserEntity>>(1);
-        drinkers.add(Ref.create(noneUser));
+
     }
 
 
     public LiftEntity() {
     }
+    @OnLoad
+    protected void switchToReal(){
+        driver = driver_ref.get();
+        event = event_ref.get();
+
+        driver_ref = null;
+        event_ref = null;
+
+        if (drinkers_ref != null){
+            LiftMapperEntity mapper = drinkers_ref.get();
+            drinkers = mapper.getDrinkers();
+        }
+        else {
+            drinkers = new HashMap<>();
+        }
+        driver_ref = null;
+
+
+    }
+    @OnSave
+    protected void switchToRef(){
+        driver_ref = Ref.create(driver);
+        event_ref = Ref.create(event);
+
+        LiftMapperEntity mapper = null;
+        try {
+            ofy().load().type(LiftEntity.class).id(this.id).safe();
+        }catch (com.googlecode.objectify.NotFoundException e) {
+           mapper = new LiftMapperEntity(this.id);
+        }
+        try {
+            mapper.setDrinkers(drinkers);
+            ofy().save().entity(drinkers).now();
+            mapper = ofy().load().entity(mapper).now();
+            drinkers_ref = Ref.create(mapper);
+        }catch (IllegalStateException e){
+            ofy().delete().entity(mapper);
+            drinkers_ref = null;
+        }
+
+
+    }
+
 }
+

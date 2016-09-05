@@ -36,7 +36,4 @@ public class HypermediaBrowser extends AppCompatActivity implements MediaDisplay
         startActivity(new Intent(this, MediaAdapter.adapt(stateStack.getUpdateMedia()).getNeededActivity()));
     }
 
-
-
-
 }

@@ -1,7 +1,6 @@
 package com.example.Arnaud.myapplication.backend.service;
 
-import com.example.Arnaud.myapplication.backend.DrinkerEntity;
-import com.example.Arnaud.myapplication.backend.DriverEntity;
+import com.example.Arnaud.myapplication.backend.Chat.MessageBoxEntity;
 import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
@@ -13,10 +12,6 @@ import com.google.api.server.spi.response.NotFoundException;
 import com.googlecode.objectify.ObjectifyService;
 
 import java.util.logging.Logger;
-
-import javax.inject.Named;
-
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 /**
  * WARNING: This generated code is intended as a sample or starting point for using a
@@ -47,8 +42,7 @@ public class MediaEndpoint {
         ObjectifyService.register(UserEntity.class);
         ObjectifyService.register(LiftEntity.class);
         ObjectifyService.register(EventEntity.class);
-        ObjectifyService.register(DriverEntity.class);
-        ObjectifyService.register(DrinkerEntity.class);
+        ObjectifyService.register(MessageBoxEntity.class);
     }
 
     /**

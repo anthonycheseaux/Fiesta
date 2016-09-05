@@ -95,5 +95,9 @@ public final class ChooseEventAct extends HypermediaBrowser {
 
             return convertView;
         }
+
+        public void goAdvantages(View view){
+            setContentView(R.layout.activity_advantage);
+        }
     }
 }
