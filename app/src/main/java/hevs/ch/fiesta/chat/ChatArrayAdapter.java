@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> hypermedia
 import com.example.arnaud.myapplication.backend.chat.messageBoxEntityApi.model.Message;
 
 import java.security.acl.Owner;

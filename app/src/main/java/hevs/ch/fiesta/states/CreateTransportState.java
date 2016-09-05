@@ -32,14 +32,7 @@ public class CreateTransportState extends MediaAdapter {
 
     @Override
     public void validateData() {
-        adapted.setLiftId(lift.getId());
-        adapted.setLiftDeparture(lift.getDeparture());
-        adapted.setLiftDestination(lift.getDestination());
-        adapted.setLiftCapacity(lift.getCapacity());
-        adapted.setLiftOwner(lift.getDriver().getEmail());
-        adapted.setLiftEventId(lift.getEvent().getId());
-
-        adapted.setLift(null);
+        adapted.setLift(lift);
     }
 
     //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-

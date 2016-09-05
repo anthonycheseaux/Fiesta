@@ -18,17 +18,11 @@ public class MailMapperEntity {
     @Id
     String userMail;
 
-    private LiveRef<MessageBoxEntity> ownMail;
-    public MessageBoxEntity getOwnMail(){
-        return ownMail.get();
-    }
-
     private TreeSet<LiveRef<MessageBoxEntity>> myMails;
     public List<MessageBoxEntity> getMyMails(){
         List<MessageBoxEntity> respons = new ArrayList<>(myMails.size());
         for (Iterator<LiveRef<MessageBoxEntity>> iterator = myMails.iterator(); iterator.hasNext();)
             respons.add(iterator.next().get());
-        respons.remove(ownMail.get());
         return respons;
     }
     public void addMailBox(MessageBoxEntity mailBox){

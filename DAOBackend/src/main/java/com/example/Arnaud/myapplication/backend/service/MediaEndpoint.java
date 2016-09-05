@@ -1,6 +1,6 @@
 package com.example.Arnaud.myapplication.backend.service;
 
-import com.example.Arnaud.myapplication.backend.Chat.MessageBoxEntity;
+import com.example.Arnaud.myapplication.backend.Chat.MailMapperEntity;
 import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
@@ -42,7 +42,8 @@ public class MediaEndpoint {
         ObjectifyService.register(UserEntity.class);
         ObjectifyService.register(LiftEntity.class);
         ObjectifyService.register(EventEntity.class);
-        ObjectifyService.register(MessageBoxEntity.class);
+        ObjectifyService.register(MailMapperEntity.class);
+
     }
 
     /**

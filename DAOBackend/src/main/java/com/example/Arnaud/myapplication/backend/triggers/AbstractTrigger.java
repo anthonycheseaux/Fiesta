@@ -1,5 +1,7 @@
 package com.example.Arnaud.myapplication.backend.triggers;
 
+import static com.google.appengine.api.ThreadManager.createBackgroundThread;
+
 /**
  * Created by Arnaud on 31.08.2016.
  * AbsractTriggers represent side effect of actions performed by managers but who do not need to be done before sendind output. il work a little like asyncTask, but simply.
@@ -14,17 +16,27 @@ public abstract class AbstractTrigger implements Runnable {
     /**
      * we use a Template pattern to rewrite the natural behaior of Runanable.
      * run is final and the "new Run()" is performeAction. the dobjective of all of that is to execute the all chain in 1 thread.
+     * if any exceteption will be raise by a trigger, il will not influence execution of nexts triggers
      */
     @Override
     public final void run() {
-        performeAction();
-        nextTrigger.run();
+        try {
+            performeAction();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if (nextTrigger != null)
+            nextTrigger.run();
     }
+
+    /**
+     * the actions who will be performed by the trigger
+     */
     protected abstract void performeAction();
 
     public void lauchTriggerChain(){
         if (beforeTrigger == null)
-            new Thread(this).run();
+            createBackgroundThread(this).run();
         else
             beforeTrigger.lauchTriggerChain();
     }
