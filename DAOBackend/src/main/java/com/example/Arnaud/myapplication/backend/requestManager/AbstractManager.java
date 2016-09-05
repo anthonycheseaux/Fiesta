@@ -12,8 +12,12 @@ import java.util.logging.Logger;
  * Created by Arnaud on 30.08.2016.
  */
 abstract class AbstractManager {
-    protected static final Logger logger = Logger.getLogger(AbstractManager.class.getName());
+    protected Logger logger;
     protected static final boolean ON_DEBUG = true;
+
+    static final String[] misssions = new String[]{
+            _NavigationsRules.SN_INSCRIPTION_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_SEARCH_TRANSPORT_STATE
+    };
 
     protected Media media;
     protected AbstractTrigger triggers;
@@ -26,6 +30,7 @@ abstract class AbstractManager {
     AbstractManager(Media media){
         triggers = new NullTriger();
         this.media=media;
+        logger = Logger.getLogger(AbstractManager.class.getName());
     }
 
     /**
@@ -44,12 +49,13 @@ abstract class AbstractManager {
         try {
             getData();
         }
-        catch (NullPointerException e){
+        catch (Exception e){
             e.printStackTrace();
             return media;
         }
 
         cleanMedia();
+        setState();
         perfomeActions();
         setNavigation();
         setNededData();
@@ -72,7 +78,7 @@ abstract class AbstractManager {
      * get all needed data from the media, can trow nullpointer exception if the needed data are not in the media
      * @throws NullPointerException
      */
-    protected abstract void getData() throws NullPointerException;
+    protected abstract void getData() throws Exception;
 
     /**
      * clean all medaia data
@@ -81,17 +87,20 @@ abstract class AbstractManager {
         media.cleanAll();
     }
 
+
+
+    protected abstract void setState();
     /**
      * performe aditional cations if needed
      */
-    protected void perfomeActions(){
 
-    }
-
+    protected abstract void perfomeActions();
     /**
      * set the state and the list of available state
      */
-    protected abstract void setNavigation();
+    private final void setNavigation(){
+        media.availableStates= _NavigationsRules.getAvailablePathFor(media.stateType);
+    }
 
     /**
      * set data needed for the current state

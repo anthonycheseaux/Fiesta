@@ -18,10 +18,15 @@ import java.util.List;
  */
 @Entity
 public class Media {
+    @Deprecated
     public final static String SN_INSCRIPTION_STATE = "inscription_state";
+    @Deprecated
     public final static String SN_CREATE_TRANSPORT_STATE = "create_transport_state";
+    @Deprecated
     public final static String SN_SEARCH_TRANSPORT_STATE = "search_transport_state";
+    @Deprecated
     public final static String SN_IN_LIFT_STATE = "in_lift_sate";
+    @Deprecated
     public final static String SN_MANAGE_LIFT = "manage_lift";
 
     @Id
@@ -42,12 +47,6 @@ public class Media {
     public LiftEntity lift;
     public List<LiftEntity> availableLifts;
 
-    public Long lift_id;
-    public Date lift_departure;
-    public String lift_destination;
-    public int lift_capacity;
-    public String lift_owner;
-    public Long lift_eventId;
 
     public void cleanAll(){
         stateType = null;
@@ -58,12 +57,6 @@ public class Media {
         availableEvent = null;
         lift = null;
         availableLifts = null;
-        lift_id = null;
-        lift_departure = null;
-        lift_destination = null;
-        lift_capacity = -1;
-        lift_owner = null;
-        lift_eventId = null;
 
     }
 

@@ -3,34 +3,22 @@ package com.example.Arnaud.myapplication.backend.requestManager;
 import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.example.Arnaud.myapplication.backend.service.Media;
-import com.googlecode.objectify.NotFoundException;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 /**
  * Created by Arnaud on 31.08.2016.
  */
-public abstract class Inscription extends AbstractManager {
+abstract class Inscription extends AbstractManager {
 
     protected EventEntity selectedEvent;
 
     Inscription(Media media) {
         super(media);
     }
-/*
+
     @Override
-    protected final boolean checkDataConsistency() {
-        boolean respons;
-        if (respons= media.owner != null)
-            if (respons= media.owner.getEmail() != null)
-                if (respons= (false == media.owner.getEmail().equals("")))
-                    if (respons = media.selectedEvent!= null)
-                        ;
-        return respons;
-    }
-*/
-    @Override
-    protected final void getData() {
+    protected final void getData() throws NullPointerException {
         try {
             owner = ofy().load().type(UserEntity.class).id(media.owner.getEmail()).safe();
         } catch (com.googlecode.objectify.NotFoundException e) {
@@ -45,10 +33,7 @@ public abstract class Inscription extends AbstractManager {
             owner.setUserName(media.owner.getUserName());
             owner.setPhoneNumber(media.owner.getPhoneNumber());
         }
-
-        ofy().save().entity(owner).now();
-        selectedEvent = ofy().load().entity(media.selectedEvent).now();
-
+        selectedEvent = media.selectedEvent;
     }
 
 }

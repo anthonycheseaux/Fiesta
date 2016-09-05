@@ -36,6 +36,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
                 packagePath = ""
         )
 )
+@Deprecated
 public class MailMapperEntityEndpoint {
 
     private static final Logger logger = Logger.getLogger(MailMapperEntityEndpoint.class.getName());

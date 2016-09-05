@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.arnaud.myapplication.backend.chat.mailBoxEntityApi.model.Message;
+
+import com.example.arnaud.myapplication.backend.chat.messageBoxEntityApi.model.Message;
 
 import java.security.acl.Owner;
 import java.util.ArrayList;

@@ -15,11 +15,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  * Created by Arnaud on 30.08.2016.
  */
 class GetInitialState extends AbstractManager {
-
-    private static final Logger logger = Logger.getLogger(GetInitialState.class.getName());
-
     static final String[] misssions = new String[]{
-            Media.SN_INSCRIPTION_STATE+ Facade.CONNECTION_TO + Media.SN_INSCRIPTION_STATE
+            _NavigationsRules.SN_INSCRIPTION_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_INSCRIPTION_STATE
     };
 
     GetInitialState(){
@@ -28,30 +25,27 @@ class GetInitialState extends AbstractManager {
 
     GetInitialState(Media media) {
         super(media);
+        logger = Logger.getLogger(GetInitialState.class.getName());
     }
 
     @Override
     protected boolean securityCheck() {
         return true;
     }
-/*
-    @Override
-    protected boolean checkDataConsistency() {
-        return true;
-    }
-*/
 
     @Override
-    protected void getData() {
+    protected void getData()  {
 
     }
 
     @Override
-    protected void setNavigation() {
-        media.stateType=Media.SN_INSCRIPTION_STATE;
-        media.availableStates= new ArrayList<String>();
-        media.availableStates.add(Media.SN_CREATE_TRANSPORT_STATE);
-        media.availableStates.add(Media.SN_SEARCH_TRANSPORT_STATE);
+    protected void perfomeActions() {
+
+    }
+
+    @Override
+    protected void setState() {
+        media.stateType = _NavigationsRules.SN_INSCRIPTION_STATE;
     }
 
 
