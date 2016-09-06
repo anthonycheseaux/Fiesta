@@ -74,15 +74,5 @@
         android:textColor="@color/blanc"
         android:text="@string/Two_adv"/>
 
-    <Button
-        android:id="@+id/advantageBackHome"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="50dp"
-        android:textSize="13dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/blanc"
-        android:text="@string/buttonBack"
-        android:onClick="backHome"/>
 
 </LinearLayout>

@@ -22,16 +22,7 @@
         android:text="@string/aboutFiesta"
         />
 
-    <Button
-        android:id="@+id/aboutBackHome"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:textSize="13dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/blanc"
-        android:text="@string/buttonBack"
-        android:onClick="backHomeA"/>
+
 
 
 </LinearLayout>

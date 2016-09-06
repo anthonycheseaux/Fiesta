@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +30,10 @@ public final class ChooseEventAct extends HypermediaBrowser {
     private InscriptionState state;
     private ArrayAdapter adapter;
     private ListView list;
+    private Button advantage;
+    private Button apropos;
+    private Button chat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,31 @@ public final class ChooseEventAct extends HypermediaBrowser {
         }
 
         list.setAdapter(adapter);
+        apropos = (Button) findViewById(R.id.button_apropos);
+        apropos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_apropos);
+            }
+        });
+
+        advantage = (Button) findViewById(R.id.button_avantages);
+        advantage.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_advantage);
+            }
+        });
+
+        chat = (Button) findViewById(R.id.button_chat);
+        chat.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_chat_list);
+            }
+        });
+
     }
 
 
@@ -96,8 +126,6 @@ public final class ChooseEventAct extends HypermediaBrowser {
             return convertView;
         }
 
-        public void goAdvantages(View view){
-            setContentView(R.layout.activity_advantage);
-        }
+
     }
 }
