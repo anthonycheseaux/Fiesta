@@ -34,11 +34,12 @@ public class UserEntity {
     public String getPhoneNumber() {return phoneNumber;}
 
     @Ignore
-    private List<MessageBoxEntity> myMails;
+    private List<String> myMailsId;
 
-    public List<MessageBoxEntity> getMyMails() {
-        return myMails;
+    public List<String> getMyMails() {
+        return myMailsId;
     }
+
 
     public void putMails(){
         MailMapperEntity myMapper= null;
@@ -47,9 +48,9 @@ public class UserEntity {
         }  catch (com.googlecode.objectify.NotFoundException e) {}
 
         if (myMapper != null)
-            myMails= myMapper.getMyMails();
+            myMailsId= myMapper.getMyMailsId();
         else
-            myMails = null;
+            myMailsId = null;
     }
 
 

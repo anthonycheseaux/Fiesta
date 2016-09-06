@@ -25,6 +25,12 @@ public class MailMapperEntity {
             respons.add(iterator.next().get());
         return respons;
     }
+    public List<String> getMyMailsId(){
+        List<String> respons = new ArrayList<>(myMails.size());
+        for (Iterator<LiveRef<MessageBoxEntity>> iterator = myMails.iterator(); iterator.hasNext();)
+            respons.add(iterator.next().get().getId());
+        return respons;
+    }
     public void addMailBox(MessageBoxEntity mailBox){
         if (false == mailBox.getId().equals(userMail + userMail))
             myMails.add((LiveRef) Ref.create(mailBox));

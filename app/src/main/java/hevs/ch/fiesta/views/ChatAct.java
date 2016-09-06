@@ -1,8 +1,7 @@
 package hevs.ch.fiesta.views;
 
-import android.database.DataSetObserver;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
@@ -10,10 +9,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 
-import com.google.api.client.util.DateTime;
-
 import hevs.ch.fiesta.R;
-import hevs.ch.fiesta.chat.ChatArrayAdapter;
+import hevs.ch.fiesta.chat.MessageBoxEntityAdapter;
 import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.media.MediaStack;
 
@@ -23,28 +20,35 @@ import hevs.ch.fiesta.media.MediaStack;
 public class ChatAct extends HypermediaBrowser {
     private static final String TAG = "ChatActivity";
 
-    private ChatArrayAdapter chatArrayAdapter;
     private ListView listView;
     private EditText chatText;
     private Button buttonSend;
-    private boolean side = false;
+
+    private MessageBoxEntityAdapter messageBoxEntityAdapter;
 
     private MediaStack mediaStack = MediaManager.getInstance();
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        listView = (ListView) findViewById(R.id.msgview);
+        chatText = (EditText) findViewById(R.id.msg);
         buttonSend = (Button) findViewById(R.id.send);
 
-        listView = (ListView) findViewById(R.id.msgview);
+        String owner =getIntent().getStringExtra("owner");
+        String id = getIntent().getStringExtra("chatId");
+        messageBoxEntityAdapter = new MessageBoxEntityAdapter(id,owner);
+        messageBoxEntityAdapter.askUpdate();
 
-        chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.right, mediaStack.getUpdateMedia().getOwner().getEmail());
-        listView.setAdapter(chatArrayAdapter);
 
-        chatText = (EditText) findViewById(R.id.msg);
+        listView.setAdapter(messageBoxEntityAdapter.getAdapter(this));
+        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+
+        /* NON C'EST LE TRUC LE + PèTE COUILLES DE LA TERRE
         chatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
@@ -52,41 +56,22 @@ public class ChatAct extends HypermediaBrowser {
                 }
                 return false;
             }
-        });
+        });*/
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                sendChatMessage();
+                messageBoxEntityAdapter.addMessage(chatText.getText().toString());
             }
         });
 
-        listView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
-        listView.setAdapter(chatArrayAdapter);
 
         //to scroll the list view to bottom on data change
-        chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
+/*        chatArrayAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
                 listView.setSelection(chatArrayAdapter.getCount() - 1);
             }
-        });
-    }
-
-    private void sendChatMessage() {
-        //Message msg = new Message();
-
-        //chatArrayAdapter.add();
-        //chatText.setText("");
-        //side = !side;
-
-        //MessageEntity msg = new MessageEntity();
-        //msg.setText(chatText.getText().toString());
-        //msg.setSender();
-        //msg.setReceiver();
-        //msg.setDateMessage(new DateTime());
-
-
-
+        });*/
     }
 }
