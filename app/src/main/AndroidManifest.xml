@@ -24,12 +24,14 @@
         <activity android:name=".views.ChooseEventAct" />
         <activity android:name=".views.InscriptionAct" />
         <activity android:name=".views.CreateTransportAct" />
-        <activity android:name=".Chat" />
-        <activity android:name=".TransportListing" />
-        <activity android:name=".AddTransport" />
+        <activity android:name=".views.ManageLiftAct" />
         <activity android:name=".views.SearchTransportAct" />
+        <activity android:name=".views.ShowLiftAct" />
+        <activity android:name=".views.ChatListAct" />
+        <activity android:name=".views.ChatAct" />
+        <activity android:name=".views.AdderChat" />
         <activity android:name=".views.Advantage" />
-        <activity android:name=".views.APropos"></activity>
+        <activity android:name=".views.APropos" />
     </application>
 
 </manifest>

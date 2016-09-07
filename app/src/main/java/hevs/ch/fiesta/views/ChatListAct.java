@@ -18,6 +18,8 @@ import hevs.ch.fiesta.R;
 import hevs.ch.fiesta.chat.MessageBoxEntityAdapter;
 import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.media.MediaStack;
+import hevs.ch.fiesta.states.ManageLiftState;
+import hevs.ch.fiesta.states.ShowLiftState;
 
 /**
  * Created by Anthony on 06/09/2016.
@@ -25,7 +27,7 @@ import hevs.ch.fiesta.media.MediaStack;
 public class ChatListAct extends HypermediaBrowser implements AdapterView.OnItemClickListener{
     private static final String TAG = "ChatActivity";
 
-    private MessageBoxEntityAdapter messageBoxEntityAdapter;
+    //private MessageBoxEntityAdapter messageBoxEntityAdapter;
     private ListView listView;
 
     private MediaStack mediaStack = MediaManager.getInstance();
@@ -43,11 +45,18 @@ public class ChatListAct extends HypermediaBrowser implements AdapterView.OnItem
 
         listView = (ListView) findViewById(R.id.chatList);
 
-        listView.setOnItemClickListener(this);
+
     }
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(this, ChatAct.class);
+        Intent intent = null;
+
+    /*    try {
+            ManageLiftState state = (ManageLiftState) mediaStack.getCurrentState();
+            intent = new Intent(this, AdderChat.class);
+        }catch (Exception e){*/
+            intent = new Intent(this, ChatAct.class);
+       /* }*/
         intent.putExtra("chatId", messageBoxEntityAdapters.get(i).getMessageBoxId());
         intent.putExtra("owner", messageBoxEntityAdapters.get(i).getOwner());
         startActivity(intent);
@@ -58,19 +67,20 @@ public class ChatListAct extends HypermediaBrowser implements AdapterView.OnItem
         super.onResume();
         mbeIds = mediaStack.getUpdateMedia().getOwner().getMyMails();
 
-        if(mbeIds == null)
-            mbeIds = new ArrayList<>();
+        if(mbeIds == null){
+            interlocutors = new ArrayList<String>();
+            interlocutors.add("vous n'avez pas de messages...\n...pour l'instant");
+        }else {
+           messageBoxEntityAdapters = new ArrayList<>(mbeIds.size());
+            interlocutors = new ArrayList<>(mbeIds.size());
 
-        messageBoxEntityAdapters = new ArrayList<>(mbeIds.size());
-        interlocutors = new ArrayList<>(mbeIds.size());
-
-        for (Iterator<String> iterator = mbeIds.iterator(); iterator.hasNext();) {
-            MessageBoxEntityAdapter tmp =new MessageBoxEntityAdapter(iterator.next(), mediaStack.getUpdateMedia().getOwner().getEmail());
-            messageBoxEntityAdapters.add(tmp);
-            interlocutors.add(tmp.getInterlocutor());
+            for (Iterator<String> iterator = mbeIds.iterator(); iterator.hasNext(); ) {
+                MessageBoxEntityAdapter tmp = new MessageBoxEntityAdapter(iterator.next(), mediaStack.getUpdateMedia().getOwner().getEmail());
+                messageBoxEntityAdapters.add(tmp);
+                interlocutors.add(tmp.getInterlocutor());
+            }
+            listView.setOnItemClickListener(this);
         }
-
-
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, interlocutors));
     }
 }

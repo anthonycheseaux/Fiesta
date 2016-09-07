@@ -33,7 +33,7 @@ abstract class Inscription extends AbstractManager {
             owner.setUserName(media.owner.getUserName());
             owner.setPhoneNumber(media.owner.getPhoneNumber());
         }
-        selectedEvent = media.selectedEvent;
+        selectedEvent = ofy().load().type(EventEntity.class).id(media.selectedEvent.getId()).now();
     }
 
 }

@@ -83,7 +83,7 @@ abstract class AbstractManager {
     /**
      * clean all medaia data
      */
-    private final void cleanMedia(){
+    protected void cleanMedia(){
         media.cleanAll();
     }
 

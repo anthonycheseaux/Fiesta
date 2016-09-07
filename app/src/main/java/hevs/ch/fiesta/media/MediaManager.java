@@ -38,19 +38,23 @@ public class MediaManager implements Observable, MediaStack {
 
 //_____________media stack part___________________________
     private Stack<Media> states;
+    private MediaAdapter currentState;
 
     private void setUpForMediaStack(){
         states = new Stack<Media>();
 
     }
+    @Override
     public void setState (Media media){
         if (media!= null) {
             states.push(media);
+            currentState= MediaAdapter.adapt(media);
         }
         this.notifyStateChange();
 
 
     }
+    @Override
     public Media getUpdateMedia(){
         Media respons = null;
         try {
@@ -59,6 +63,11 @@ public class MediaManager implements Observable, MediaStack {
 
         }
         return respons;
+    }
+
+    @Override
+    public MediaAdapter getCurrentState() {
+        return currentState;
     }
 
     @Override

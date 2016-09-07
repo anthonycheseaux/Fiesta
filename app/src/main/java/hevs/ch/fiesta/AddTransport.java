@@ -2,7 +2,7 @@ package hevs.ch.fiesta;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+@Deprecated
 public class AddTransport extends AppCompatActivity {
 
     @Override

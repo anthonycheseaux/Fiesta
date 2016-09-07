@@ -87,17 +87,15 @@ class StateFactory {
 
     private class ManageLiftInstancier extends Instancier{
         @Override
-        //TODO changer ici
         MediaAdapter instanciate(Media media) {
-            return new InscriptionState(media);
+            return new ManageLiftState(media);
         }
     }
 
     private class DrinkerInLiftInstancier extends Instancier{
-        //TODO changer ici aussi
         @Override
         MediaAdapter instanciate(Media media) {
-            return new CreateTransportState(media);
+            return new ShowLiftState(media);
         }
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

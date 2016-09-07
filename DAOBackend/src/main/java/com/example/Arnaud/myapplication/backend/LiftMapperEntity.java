@@ -37,7 +37,7 @@ public class LiftMapperEntity {
             throw new IllegalStateException("list is empty");
         drinkers = new ArrayList<>();
         for (Iterator<UserEntity> iterator = list.iterator(); iterator.hasNext();)
-                drinkers.add(Ref.create(iterator.next()));
+            drinkers.add(Ref.create(iterator.next()));
 
     }
 

@@ -34,6 +34,10 @@ public class Message {
         return dateMessage;
     }
 
+    public void setDateMessage(Date dateMessage) {
+        this.dateMessage = dateMessage;
+    }
+
     public Message(String text, String receiver, String sender, Date dateMessage){
         this.text = text;
         this.receiver = receiver;

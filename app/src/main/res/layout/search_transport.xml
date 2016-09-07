@@ -10,6 +10,10 @@
     android:background="#B40404"
     android:orientation="vertical"
     tools:context="hevs.ch.fiesta.TransportListing">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/transport_list"
@@ -18,8 +22,18 @@
         android:layout_height="wrap_content"
         android:typeface="serif"
         android:textSize="25dp"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:textColor="@color/blanc"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat"
+        android:layout_gravity="right"
+        android:id="@+id/search_transport_chat_button" />
+
+</LinearLayout>
+
 
 
     <ListView

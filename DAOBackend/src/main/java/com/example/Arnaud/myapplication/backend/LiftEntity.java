@@ -131,10 +131,10 @@ public class LiftEntity {
                 }
             }else
                 try {
-                ofy().delete().type(LiftMapperEntity.class).id(this.id).now();
-            } catch (com.googlecode.objectify.NotFoundException e) {
+                    ofy().delete().type(LiftMapperEntity.class).id(this.id).now();
+                } catch (com.googlecode.objectify.NotFoundException e) {
 
-            }
+                }
     }
 
 }

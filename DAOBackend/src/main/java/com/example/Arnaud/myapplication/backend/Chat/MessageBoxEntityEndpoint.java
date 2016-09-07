@@ -12,6 +12,7 @@ import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -79,6 +80,8 @@ public class MessageBoxEntityEndpoint {
             path = "mailBoxEntity",
             httpMethod = ApiMethod.HttpMethod.POST)
     public void insert(Message message) {
+        if (message.getDateMessage()== null)
+            message.setDateMessage(new Date());
         ofy().save().entity(message).now();
         message = ofy().load().entity(message).now();
 

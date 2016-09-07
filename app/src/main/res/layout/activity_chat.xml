@@ -30,10 +30,18 @@
 
         <Button
             android:id="@+id/send"
-            android:layout_width="0dp"
+            android:layout_width="65dp"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.71"
             android:text="Send" />
+
+        <Button
+            android:layout_width="65dp"
+            android:layout_height="fill_parent"
+            android:text="add in my lift"
+            android:id="@+id/add_in_lift"
+            android:visibility="gone"
+            android:layout_weight="0.16" />
 
     </LinearLayout>
 </LinearLayout>

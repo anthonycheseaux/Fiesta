@@ -39,5 +39,7 @@ public abstract class MediaAdapter {
 
     public abstract void validateData();
 
-
+    public UserEntity getOwner() {
+        return owner;
+    }
 }

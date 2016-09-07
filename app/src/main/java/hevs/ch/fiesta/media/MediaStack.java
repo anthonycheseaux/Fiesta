@@ -10,6 +10,7 @@ import hevs.ch.fiesta.states.MediaAdapter;
 public interface MediaStack {
     void setState (Media media);
     Media getUpdateMedia();
+    MediaAdapter getCurrentState();
     void askUpdate();
     void undoLastChange();
 }
