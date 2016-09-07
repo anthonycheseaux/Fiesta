@@ -36,7 +36,7 @@ public class SearchTransportAct extends HypermediaBrowser {
         state=(SearchTrasnportState) MediaAdapter.adapt(stateStack.getUpdateMedia());
         list = (ListView) findViewById(R.id.search_transport_lift_list);
         if(state.getLifts() == null || state.getLifts().size()==0)
-            adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{"il n'y a pas de conducteurs...\n...pour l'instant"});
+            adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{"il n'y a pas de transport disponibles...\n...pour l'instant"});
         else
             adapter = new LiftAdapter(this, state.getLifts());
 

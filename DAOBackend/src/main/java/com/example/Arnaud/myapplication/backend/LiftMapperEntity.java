@@ -24,24 +24,20 @@ public class LiftMapperEntity {
 
 
     private List<Ref<UserEntity>> drinkers;
-    public HashMap<String,UserEntity> getDrinkers() {
-        HashMap<String,UserEntity> respons = new HashMap<String,UserEntity>((int)(drinkers.size()*1.4));
-        for (Iterator<Ref<UserEntity>> iterator = drinkers.iterator(); iterator.hasNext();){
-            UserEntity user = iterator.next().get();
-            respons.put(user.getEmail(), user);
-        }
+    public List<UserEntity> getDrinkers() {
+        List<UserEntity> respons = new ArrayList<>(drinkers.size());
+        for (Iterator<Ref<UserEntity>> iterator = drinkers.iterator(); iterator.hasNext();)
+            respons.add(iterator.next().get());
+
+
         return respons;
     }
-    public void setDrinkers(HashMap<String, UserEntity> hashMap) throws IllegalStateException{
-        if (hashMap.size() == 0)
-            throw new IllegalStateException("hasmap is empty");
+    public void setDrinkers(List<UserEntity> list) throws IllegalStateException{
+        if (list.size() == 0)
+            throw new IllegalStateException("list is empty");
         drinkers = new ArrayList<>();
-        for (Iterator<Map.Entry<String,UserEntity>> iterator = hashMap.entrySet().iterator(); iterator.hasNext();) {
-            UserEntity itered = iterator.next().getValue();
-            if (itered != null)
-                drinkers.add(Ref.create(itered));
-        }
-
+        for (Iterator<UserEntity> iterator = list.iterator(); iterator.hasNext();)
+                drinkers.add(Ref.create(iterator.next()));
 
     }
 

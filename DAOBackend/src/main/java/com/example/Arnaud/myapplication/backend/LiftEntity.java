@@ -3,11 +3,13 @@ package com.example.Arnaud.myapplication.backend;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
-import com.google.api.server.spi.response.NotFoundException;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Arnaud on 17.07.2016.
@@ -15,6 +17,9 @@ import java.util.HashMap;
 
 @Entity
 public class LiftEntity {
+    static {
+        ObjectifyService.register(LiftMapperEntity.class);
+    }
 
 
 
@@ -38,8 +43,8 @@ public class LiftEntity {
 
     transient private Ref<LiftMapperEntity> drinkers_ref;
     @Ignore
-    private HashMap<String, UserEntity> drinkers;
-    public HashMap<String, UserEntity> getDrikers() {return  drinkers;}
+    private List<UserEntity> drinkers;
+    public List<UserEntity> getDrikers() {return  drinkers;}
 
 
     private String destination;
@@ -63,8 +68,14 @@ public class LiftEntity {
         this.capacity = capacity;
     }
 
+    @Ignore
     private boolean isFull;
-    public boolean isFull(){return isFull;}
+    public boolean isFull(){
+        int usedPlaces = 0;
+        if (drinkers != null)
+            usedPlaces = drinkers.size();
+        return false == (capacity > usedPlaces);
+    }
 
     public LiftEntity(EventEntity event, UserEntity driver){
         this.event_ref = Ref.create(event);
@@ -93,7 +104,7 @@ public class LiftEntity {
             drinkers = mapper.getDrinkers();
         }
         else {
-            drinkers = new HashMap<>();
+            drinkers = new ArrayList<>();
         }
         driver_ref = null;
 
@@ -104,23 +115,26 @@ public class LiftEntity {
         driver_ref = Ref.create(driver);
         event_ref = Ref.create(event);
 
-        LiftMapperEntity mapper = null;
-        try {
-            ofy().load().type(LiftEntity.class).id(this.id).safe();
-        }catch (com.googlecode.objectify.NotFoundException e) {
-           mapper = new LiftMapperEntity(this.id);
-        }
-        try {
-            mapper.setDrinkers(drinkers);
-            ofy().save().entity(drinkers).now();
-            mapper = ofy().load().entity(mapper).now();
-            drinkers_ref = Ref.create(mapper);
-        }catch (IllegalStateException e){
-            ofy().delete().entity(mapper);
-            drinkers_ref = null;
-        }
+        if (id != null)
+            if (drinkers!= null) {
+                LiftMapperEntity mapper = null;
+                try {
+                    ofy().load().type(LiftMapperEntity.class).id(this.id).safe();
+                } catch (com.googlecode.objectify.NotFoundException e) {
+                    mapper = new LiftMapperEntity(this.id);
+                }
+                try {
+                    mapper.setDrinkers(drinkers);
+                    ofy().save().entity(drinkers).now();
+                } catch (IllegalStateException e) {
+                    ofy().delete().entity(mapper);
+                }
+            }else
+                try {
+                ofy().delete().type(LiftMapperEntity.class).id(this.id).now();
+            } catch (com.googlecode.objectify.NotFoundException e) {
 
-
+            }
     }
 
 }

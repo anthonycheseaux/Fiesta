@@ -12,18 +12,8 @@ import javax.inject.Named;
  * Created by Arnaud on 22.07.2016.
  */
 public interface DAL_facade {
-    public DrinkerEntity 						getDrinker		(@Named("id") Long id) throws NotFoundException;
-    public DrinkerEntity 						insertDrinker	(DrinkerEntity drinkerEntity);
-    public DrinkerEntity 						updateDrinker	(@Named("id") Long id, DrinkerEntity drinkerEntity) throws NotFoundException;
     public void 								removeDrinker	(@Named("id") Long id) throws NotFoundException;
-    public CollectionResponse<DrinkerEntity>	listDrinker		(@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit);
-
-    public DriverEntity 					    getDriver	    (@Named("id") Long id) throws NotFoundException;
-    public DriverEntity 					    insertDriver    (DriverEntity driverEntity);
-    public DriverEntity 					    updateDriver    (@Named("id") Long id, DriverEntity driverEntity) throws NotFoundException;
     public void 							    removeDriver    (@Named("id") Long id) throws NotFoundException;
-    public CollectionResponse<DriverEntity>	    listDriver	    (@Nullable @Named("cursor") String cursor, @Nullable @Named("limit") Integer limit);
-
 
     public EventEntity						    getEvent	    (@Named("id") Long id) throws NotFoundException;
     public EventEntity						    insertEvent	    (EventEntity eventEntity);

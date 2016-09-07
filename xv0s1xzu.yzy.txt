@@ -1,0 +1,45 @@
+﻿Merge branch 'hypermedia' into chat
+
+# Conflicts:
+#	app/src/main/java/hevs/ch/fiesta/chat/ChatArrayAdapter.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch chat
+# Your branch is up-to-date with 'origin/chat'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .idea/modules.xml
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/Chat/MailMapperEntity.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/Chat/MailMapperEntityEndpoint.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/LiftEntity.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/LiftMapperEntity.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/UserEntity.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/AbstractManager.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/AddTransport.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/Facade.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/GetInitialState.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/Inscription.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/InscriptionAsDrinker.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/InscriptionAsDriver.java
+#	new file:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/ManageLiftRefresh.java
+#	new file:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/_Factory.java
+#	new file:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/_NavigationsRules.java
+#	new file:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/requestManager/_Registre.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/service/Media.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/service/MediaEndpoint.java
+#	modified:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/triggers/AbstractTrigger.java
+#	new file:   DAOBackend/src/main/java/com/example/Arnaud/myapplication/backend/triggers/NotifyDrinkers_LiftContentChange.java
+#	modified:   app/src/main/java/hevs/ch/fiesta/chat/ChatArrayAdapter.java
+#	modified:   app/src/main/java/hevs/ch/fiesta/states/CreateTransportState.java
+#	modified:   app/src/main/java/hevs/ch/fiesta/views/SearchTransportAct.java
+#
+

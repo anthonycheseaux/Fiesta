@@ -121,6 +121,7 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_choose_event_">ChooseEvent_Activity</string>
+
     <!-- activity_advantage -->
     <string name="title_drinker">Avantages pour le fêtard!</string>
     <string name="adv_One">- Profiter de sa soirée sans avoir peur d un retrait de permis.</string>
@@ -130,6 +131,8 @@
     <string name="One_adv">- Se rendre utile pour d autres personnes</string>
     <string name="Two_adv">- Peut être sauver des vies</string>
     <string name="buttonBack">Retour</string>
+
+    <!-- activity_apropos -->
     <string name="aboutFiesta">Addiction Valais, sise à Sion dans le canton du Valais, est active dans les domaines de la
 prévention et de l’accompagnement des personnes (prévention universelle, sélective et
 indiquée). Elle répond, selon ses ressources et ses compétences, à toute demande liée aux
