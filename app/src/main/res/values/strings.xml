@@ -121,6 +121,8 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_choose_event_">ChooseEvent_Activity</string>
+    <string name="driver">nom du conducteur</string>
 
-
+    <!-- Activity_transport.xml -->
+    <item name="delete_drinkers" type="id">Supprimer</item>
 </resources>
