@@ -1,16 +1,11 @@
 package com.example.Arnaud.myapplication.backend.service;
 
-import com.example.Arnaud.myapplication.backend.DrinkerEntity;
-import com.example.Arnaud.myapplication.backend.DriverEntity;
 import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Load;
 
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**

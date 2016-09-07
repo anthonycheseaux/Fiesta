@@ -1,10 +1,8 @@
 package com.example.Arnaud.myapplication.backend.requestManager;
 
-import com.example.Arnaud.myapplication.backend.DriverEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.service.Media;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
