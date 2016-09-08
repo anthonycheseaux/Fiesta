@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.states.ManageLiftState;
 

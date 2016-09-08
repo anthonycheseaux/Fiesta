@@ -1,11 +1,6 @@
 package hevs.ch.fiesta.views;
 
 
-import hevs.ch.fiesta.BuildConfig;
-import hevs.ch.fiesta.states.InscriptionState;
-import hevs.ch.fiesta.states.MediaAdapter;
-import hevs.ch.fiesta.R;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,14 +12,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEntity;
 import com.google.api.client.util.DateTime;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import hevs.ch.fiesta.R;
+import hevs.ch.fiesta.states.InscriptionState;
+import hevs.ch.fiesta.states.MediaAdapter;
 
 public final class ChooseEventAct extends HypermediaBrowser {
     private InscriptionState state;

@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-
-
 import hevs.ch.fiesta.media.MediaDisplayer;
 import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.media.MediaStack;
 import hevs.ch.fiesta.media.Observable;
-import hevs.ch.fiesta.states.MediaAdapter;
 
 
 public class HypermediaBrowser extends AppCompatActivity implements MediaDisplayer {

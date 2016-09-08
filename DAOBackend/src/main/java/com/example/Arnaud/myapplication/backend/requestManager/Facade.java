@@ -3,10 +3,6 @@ package com.example.Arnaud.myapplication.backend.requestManager;
 import com.example.Arnaud.myapplication.backend.service.Manager;
 import com.example.Arnaud.myapplication.backend.service.Media;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-
 /**
  * Created by Arnaud on 30.08.2016.
  */

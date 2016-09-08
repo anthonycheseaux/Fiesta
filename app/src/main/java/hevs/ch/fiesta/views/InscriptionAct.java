@@ -53,7 +53,7 @@ public class InscriptionAct extends HypermediaBrowser implements View.OnClickLis
         String userPhone= editText_phone.getText().toString();
 
         String validationException="";
-        //// TODO: 30.11.2015 loclaiser
+
         if(username.equals(""))
             validationException += "renseigner votre nom \n";
         if(userMail.equals(""))

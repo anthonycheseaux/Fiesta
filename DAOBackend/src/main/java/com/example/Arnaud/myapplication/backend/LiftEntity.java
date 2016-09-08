@@ -1,15 +1,19 @@
 package com.example.Arnaud.myapplication.backend;
 
 
-import static com.googlecode.objectify.ObjectifyService.ofy;
-
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Ref;
-import com.googlecode.objectify.annotation.*;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Ignore;
+import com.googlecode.objectify.annotation.OnLoad;
+import com.googlecode.objectify.annotation.OnSave;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
 /**
  * Created by Arnaud on 17.07.2016.

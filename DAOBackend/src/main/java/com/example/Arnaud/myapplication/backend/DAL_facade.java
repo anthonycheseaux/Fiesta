@@ -4,7 +4,6 @@ package com.example.Arnaud.myapplication.backend;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.api.server.spi.response.NotFoundException;
 
-
 import javax.annotation.Nullable;
 import javax.inject.Named;
 

@@ -7,8 +7,8 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntit
 import java.util.ArrayList;
 import java.util.List;
 
-import hevs.ch.fiesta.views.InscriptionAct;
 import hevs.ch.fiesta.views.ChooseEventAct;
+import hevs.ch.fiesta.views.InscriptionAct;
 
 /**
  * Created by Arnaud on 18.08.2016.
