@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#efefef"
     android:orientation="vertical"
+    android:background="#E6B40404"
     tools:context=".views.ChatAct">
 
     <ListView
@@ -11,7 +11,6 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#FF0000"
         android:divider="@null"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"></ListView>
@@ -33,7 +32,9 @@
             android:layout_width="65dp"
             android:layout_height="fill_parent"
             android:layout_weight="0.71"
-            android:text="Send" />
+            android:text="Send"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/blanc"/>
 
         <Button
             android:layout_width="65dp"
@@ -41,7 +42,9 @@
             android:text="add in my lift"
             android:id="@+id/add_in_lift"
             android:visibility="gone"
-            android:layout_weight="0.16" />
+            android:layout_weight="0.16"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/blanc"/>
 
     </LinearLayout>
 </LinearLayout>
