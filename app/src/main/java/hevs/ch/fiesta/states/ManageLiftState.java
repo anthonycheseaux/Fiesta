@@ -1,11 +1,7 @@
 package hevs.ch.fiesta.states;
 
-import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEntity;
-import com.example.arnaud.myapplication.backend.service.mediaApi.model.LiftEntity;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
-
-import java.util.List;
 
 import hevs.ch.fiesta.views.ManageLiftAct;
 
@@ -49,6 +45,5 @@ public class ManageLiftState extends ShowLiftState {
         adapted.setLift(liftEntity);
     }
 
-    //+-+-+-+-+-+- Internal -+-+-+-+-+-+-+-+
 
 }

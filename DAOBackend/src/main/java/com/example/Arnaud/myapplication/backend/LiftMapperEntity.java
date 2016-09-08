@@ -3,14 +3,10 @@ package com.example.Arnaud.myapplication.backend;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.impl.ref.LiveRef;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
 
 /**
  * Created by Arnaud on 02.09.2016.

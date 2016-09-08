@@ -128,22 +128,6 @@ public class CreateTransportAct extends HypermediaBrowser implements View.OnClic
         txt = txt + ", soit dans ";
         txt = txt + timeFormat.format(differceDate);
         liftStartTxt.setText(txt);
-        /*
-        String toastTxt;
-
-        SimpleDateFormat toastFormat= new SimpleDateFormat("yyyy/dd/MM - HH:mm");
-        toastTxt = "lift: " + toastFormat.format(liftStartCalendar.getTime()) + "\n" ;
-        toastTxt = toastTxt + "now: " + toastFormat.format(new Date()) + "\n" ;
-
-        toastTxt = toastTxt + "difference: " + toastFormat.format(differceDate) + "\n" ;
-
-
-        Toast.makeText(
-                getApplicationContext(),
-                toastTxt,
-                Toast.LENGTH_LONG)
-                .show();
-                */
 
     }
 

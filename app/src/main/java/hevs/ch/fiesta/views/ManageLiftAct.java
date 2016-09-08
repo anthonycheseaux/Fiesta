@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
+
 import hevs.ch.fiesta.states.ManageLiftState;
 
 /**

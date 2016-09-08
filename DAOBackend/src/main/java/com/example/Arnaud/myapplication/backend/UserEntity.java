@@ -5,12 +5,10 @@ package com.example.Arnaud.myapplication.backend;
  */
 
 import com.example.Arnaud.myapplication.backend.Chat.MailMapperEntity;
-import com.example.Arnaud.myapplication.backend.Chat.MessageBoxEntity;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Ignore;
 import com.googlecode.objectify.annotation.Index;
-import com.googlecode.objectify.annotation.OnLoad;
 
 import java.util.List;
 

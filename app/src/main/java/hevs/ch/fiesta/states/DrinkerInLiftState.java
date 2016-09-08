@@ -21,16 +21,4 @@ public class DrinkerInLiftState extends MediaAdapter {
 
     }
 
-
-    //-+-+-+-+-+-+ getters -+-+-+-+-+-+-+-+-
-
-
-    //-+-+-+-+-+-+ setters -+-+-+-+-+-+-+-+-
-
-
-
-    //+-+-+-+-+-+- Actions -+-+-+-+-+-+-+-+
-
-
-    //+-+-+-+-+-+- Internal -+-+-+-+-+-+-+-+
 }

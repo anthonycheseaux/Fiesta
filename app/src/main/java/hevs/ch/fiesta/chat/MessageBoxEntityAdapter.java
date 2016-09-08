@@ -13,9 +13,7 @@ import com.example.arnaud.myapplication.backend.chat.messageBoxEntityApi.model.M
 import com.example.arnaud.myapplication.backend.chat.messageBoxEntityApi.model.MessageBoxEntity;
 import com.google.api.client.util.DateTime;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;

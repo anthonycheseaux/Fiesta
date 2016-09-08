@@ -7,7 +7,6 @@ import com.google.api.client.util.DateTime;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import hevs.ch.fiesta.states.MediaAdapter;

@@ -1,8 +1,9 @@
 package com.example.Arnaud.myapplication.backend;
 
 
-import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.annotation.*;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
 import java.util.Date;
 
 /**

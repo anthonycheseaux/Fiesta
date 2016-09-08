@@ -2,10 +2,8 @@ package hevs.ch.fiesta.states;
 
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.LiftEntity;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
-import com.google.api.client.util.DateTime;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import hevs.ch.fiesta.views.SearchTransportAct;
@@ -41,9 +39,6 @@ public class SearchTrasnportState extends MediaAdapter {
     public List<LiftEntity> getLifts(){
         return lifts;
     }
-
-    //-+-+-+-+-+-+ setters -+-+-+-+-+-+-+-+-
-
 
 
     //+-+-+-+-+-+- Actions -+-+-+-+-+-+-+-+

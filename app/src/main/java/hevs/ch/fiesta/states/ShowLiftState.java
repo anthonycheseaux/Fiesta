@@ -6,8 +6,6 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntit
 
 import java.util.List;
 
-import hevs.ch.fiesta.views.ManageLiftAct;
-
 /**
  * Created by Arnaud on 07.09.2016.
  */
