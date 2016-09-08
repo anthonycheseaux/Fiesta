@@ -17,6 +17,7 @@ public class Facade implements Manager {
 
     @Override
     public Media manage(Media media) {
+
         if (media.wantedState== null)
             media.wantedState=media.stateType;
 

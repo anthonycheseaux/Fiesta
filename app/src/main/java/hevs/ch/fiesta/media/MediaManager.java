@@ -16,7 +16,7 @@ import hevs.ch.fiesta.states.MediaAdapter;
 /**
  * Created by Arnaud on 11.08.2016.
  */
-public class MediaManager implements Observable, MediaStack {
+public class MediaManager implements ByOneObservable, MediaStack {
     private final static boolean USE_MIMIC_API = false;
 
 //____________Singleton part_____________________________
@@ -92,20 +92,20 @@ public class MediaManager implements Observable, MediaStack {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //____________Observable part_____________________________
-    private List<MediaDisplayer> registredDisplayer;
+    private MediaDisplayer registredDisplayer;
 
-    private void setUpForObservable(){registredDisplayer = new ArrayList<MediaDisplayer>();}
-
-    @Override
-    public void register(MediaDisplayer mediaDisplayer) {registredDisplayer.add(mediaDisplayer);}
+    private void setUpForObservable(){registredDisplayer = null;}
 
     @Override
-    public void unRegister(MediaDisplayer mediaDisplayer) {registredDisplayer.remove(mediaDisplayer);}
+    public void register(MediaDisplayer mediaDisplayer) {registredDisplayer= mediaDisplayer;}
+
+    @Override
+    public void unRegister(MediaDisplayer mediaDisplayer) {registredDisplayer= null;}
 
     @Override
     public void notifyStateChange() {
-        for (Iterator<MediaDisplayer> iterator = registredDisplayer.iterator() ; iterator.hasNext(); )
-            iterator.next().changeShowedMedia();
+        if (registredDisplayer!= null)
+            registredDisplayer.changeShowedMedia();
     }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

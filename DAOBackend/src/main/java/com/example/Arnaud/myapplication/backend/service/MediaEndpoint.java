@@ -13,6 +13,10 @@ import com.googlecode.objectify.ObjectifyService;
 
 import java.util.logging.Logger;
 
+import javax.inject.Named;
+
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 /**
  * WARNING: This generated code is intended as a sample or starting point for using a
  * Google Cloud Endpoints RESTful API with an Objectify entity. It provides no data access
@@ -53,11 +57,22 @@ public class MediaEndpoint {
      */
     @ApiMethod(
             name = "get",
-            path = "media/",
+            path = "media/{id}",
             httpMethod = ApiMethod.HttpMethod.GET)
-    public Media get() {
-        logger.info("Getting Media");
-        return manager.getInitalState();
+    public Media get(@Named("id") Long id)throws NotFoundException {
+        logger.info("trying restoring media whith ID "+id);
+        Media restored = null;
+        try {
+            restored = ofy().load().type(Media.class).id(id).now();
+            logger.info("restoration succesfull");
+        } catch (com.googlecode.objectify.NotFoundException e) {
+            logger.info("restoration FAILED");
+        } catch (NullPointerException e){
+            logger.info("restoration FAILED");
+        }
+        if (restored == null)
+            restored = new Media();
+        return update(restored);
     }
 
 
@@ -74,7 +89,16 @@ public class MediaEndpoint {
             path = "media/",
             httpMethod = ApiMethod.HttpMethod.PUT)
     public Media update(Media media) throws NotFoundException {
-        return manager.manage(media);
+        if (media != null)
+            logger.info("trying managing media whith ID "+media.id);
+        else
+            logger.info("trying managing null media");
+
+        Media managed = manager.manage(media);
+        ofy().save().entity(managed).now();
+        managed = ofy().load().entity(managed).now();
+        logger.info("sending media whith ID "+managed.id+" state type: "+managed.stateType);
+        return managed;
     }
 
 }

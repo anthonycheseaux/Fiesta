@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class LiftMapperEntity {
     @Id
-    private Long liftId;
+    private String liftId;
 
 
 
@@ -37,7 +37,7 @@ public class LiftMapperEntity {
 
     }
 
-    public LiftMapperEntity(Long liftId){
+    public LiftMapperEntity(String liftId){
         this.liftId = liftId;
         drinkers = new ArrayList<>();
     }

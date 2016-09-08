@@ -60,7 +60,7 @@ class ManageLiftRefresh extends AbstractManager {
         this.lift.setDrinkers(current);
         ofy().save().entity(this.lift);
         this.lift = ofy().load().entity(lift).now();
-        triggers.addAtEnd(new NotifyDrinkers_on_liftUpdate( added, removed));
+        triggers.addAtEnd(new NotifyDrinkers_on_liftUpdate( added, removed, this.lift));
         this.owner = ofy().load().entity(this.owner).now();
         this.owner.putMails();
     }

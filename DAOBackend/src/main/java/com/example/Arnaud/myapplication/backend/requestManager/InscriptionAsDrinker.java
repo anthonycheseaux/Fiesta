@@ -1,8 +1,13 @@
 package com.example.Arnaud.myapplication.backend.requestManager;
 
+import com.example.Arnaud.myapplication.backend.DrinkerMapperEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.service.Media;
+import com.google.api.server.spi.response.NotFoundException;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,9 +28,13 @@ class InscriptionAsDrinker extends Inscription {
     };
 
     List<LiftEntity> availebleLift;
+    private boolean hasLift;
+    private LiftEntity potentialLift;
+    private DrinkerMapperEntity dme;
 
     InscriptionAsDrinker(Media media) {
         super(media);
+        hasLift = false;
         logger = Logger.getLogger(InscriptionAsDrinker.class.getName());
     }
 
@@ -36,10 +45,29 @@ class InscriptionAsDrinker extends Inscription {
         this.owner = ofy().load().entity(owner).now();
         this.owner.putMails();
 
-        owner = ofy().load().entity(owner).now();
+        try {
+            dme = ofy().load().type(DrinkerMapperEntity.class).id(owner.getEmail()+selectedEvent.getId()).safe();
+        }catch (com.googlecode.objectify.NotFoundException e) {
+        }
+
         selectedEvent =ofy().load().entity(selectedEvent).now();
 
-        availebleLift= ofy().load().type(LiftEntity.class).list();
+        if (dme == null)
+            dme = new DrinkerMapperEntity(selectedEvent,owner);
+        hasLift= (dme.getLiftEntity()!= null);
+        if (hasLift){
+            potentialLift= dme.getLiftEntity();
+            media.stateType = _NavigationsRules.SN_IN_LIFT_STATE;
+        }else {
+            List<LiftEntity> allLift = ofy().load().type(LiftEntity.class).list();
+            availebleLift = new LinkedList<>();
+            for (Iterator<LiftEntity> iterator= allLift.iterator();iterator.hasNext();){
+                LiftEntity tmp = iterator.next();
+                if (false == tmp.isFull())
+                    if (0==(selectedEvent.getId()-tmp.getEvent().getId()))
+                        availebleLift.add(tmp);
+            }
+        }
     }
 
 
@@ -53,8 +81,14 @@ class InscriptionAsDrinker extends Inscription {
 
 
         media.owner = owner;
-        media.selectedEvent = selectedEvent;
-        media.availableLifts =availebleLift;
+
+        if (hasLift){
+            media.lift= potentialLift;
+        }else {
+            media.selectedEvent = selectedEvent;
+            media.availableLifts =availebleLift;
+        }
+
 
     }
 }

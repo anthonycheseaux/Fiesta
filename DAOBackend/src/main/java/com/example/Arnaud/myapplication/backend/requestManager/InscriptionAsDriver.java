@@ -18,7 +18,9 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  */
 class InscriptionAsDriver extends Inscription {
     static final String[] misssions = new String[]{
-            _NavigationsRules.SN_INSCRIPTION_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_CREATE_TRANSPORT_STATE
+            _NavigationsRules.SN_INSCRIPTION_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_CREATE_TRANSPORT_STATE,
+            _NavigationsRules.SN_CREATE_TRANSPORT_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_CREATE_TRANSPORT_STATE
+
     };
 
     private LiftEntity lift;
@@ -37,9 +39,18 @@ class InscriptionAsDriver extends Inscription {
         this.owner.putMails();
 
         selectedEvent =ofy().load().entity(selectedEvent).now();
-        lift = new LiftEntity(selectedEvent, owner);
-        ofy().save().entities(lift).now();
-        lift = ofy().load().entity(lift).now();
+        lift = null;
+        try {
+            lift=ofy().load().type(LiftEntity.class).id(owner.getEmail()+selectedEvent.getId()).safe();
+            if (lift.getDestination()!= null)
+                media.stateType=_NavigationsRules.SN_MANAGE_LIFT;
+        }catch (Exception e){}
+        if (lift == null){
+            lift = new LiftEntity(selectedEvent, owner);
+            ofy().save().entities(lift).now();
+            lift = ofy().load().entity(lift).now();
+        }
+
     }
 
 
@@ -54,5 +65,6 @@ class InscriptionAsDriver extends Inscription {
     protected void setNededData() {
         media.owner = owner;
         media.lift = lift;
+        media.selectedEvent = selectedEvent;
     }
 }

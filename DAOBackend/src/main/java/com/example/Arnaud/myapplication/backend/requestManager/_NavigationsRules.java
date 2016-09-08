@@ -14,6 +14,7 @@ final class _NavigationsRules {
     public final static String SN_IN_LIFT_STATE = "in_lift_sate";
     public final static String SN_MANAGE_LIFT = "manage_lift";
 
+
     final static String CONNECTION_TO=">>";
 
     private static HashMap<String ,List<String>> paths;

@@ -12,22 +12,25 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import java.io.IOException;
 
 /**
- * Created by Arnaud on 19.08.2016.
+ * Created by Arnaud on 08.09.2016.
  */
-public class AsyncUpdater extends AsyncTask<Void , Void, Media> {
-    private final static String BACKEND_URL = "https://projetfiesta-1372.appspot.com/_ah/api/";
+public class AsyncRestoration extends AsyncTask<Void , Void, Media> {
+private final static String BACKEND_URL = "https://projetfiesta-1372.appspot.com/_ah/api/";
     private final static String LOCAL_URL ="http://10.0.2.2:8080/_ah/api/";
     //private final static String LOCAL_URL = "http://localhost:8080/_ah/api/";
     private final static boolean USE_LOCAL = true;
     protected MediaStack stack;
-    private static MediaApi api;
 
-    protected AsyncUpdater(){
+    private static MediaApi api;
+    protected Long mediaId;
+
+    protected AsyncRestoration(){
 
     }
 
-    public AsyncUpdater(MediaStack stack){
+    public AsyncRestoration(MediaStack stack, Long mediaId){
         this.stack= stack;
+        this.mediaId = mediaId;
         String rootUrl;
         if (USE_LOCAL){
             rootUrl = LOCAL_URL;
@@ -59,12 +62,11 @@ public class AsyncUpdater extends AsyncTask<Void , Void, Media> {
 
     @Override
     protected Media doInBackground(Void... voids) {
-        Media question = stack.getUpdateMedia();
         Media anser= null;
 
         try {
 
-            anser = api.update(question).execute();
+            anser = api.get(mediaId).execute();
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -15,7 +15,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 /**
  * Created by Arnaud on 08.09.2016.
  */
-public class LiftUnregistration extends AbstractManager {
+class LiftUnregistration extends AbstractManager {
     static final String[] misssions = new String[]{
             _NavigationsRules.SN_MANAGE_LIFT+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_INSCRIPTION_STATE
     };

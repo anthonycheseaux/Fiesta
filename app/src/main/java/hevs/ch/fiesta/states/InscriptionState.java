@@ -1,5 +1,7 @@
 package hevs.ch.fiesta.states;
 
+import android.content.SharedPreferences;
+
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEntity;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;

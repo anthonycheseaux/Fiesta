@@ -28,8 +28,8 @@ public class LiftEntity {
 
 
     @Id
-    private Long id;
-    public Long getId() {return id;}
+    private String id;
+    public String getId() {return id;}
 
 
 
@@ -82,6 +82,7 @@ public class LiftEntity {
     }
 
     public LiftEntity(EventEntity event, UserEntity driver){
+        this.id = driver.getEmail()+event.getId();
         this.event_ref = Ref.create(event);
         this.event =event;
         this.driver_ref = Ref.create(driver);

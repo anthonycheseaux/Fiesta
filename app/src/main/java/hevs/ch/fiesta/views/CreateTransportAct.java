@@ -41,7 +41,7 @@ public class CreateTransportAct extends HypermediaBrowser implements View.OnClic
         setContentView(R.layout.create_trasnport);
 
         //instanciation
-        state = (CreateTransportState) MediaAdapter.adapt(stateStack.getUpdateMedia());
+        state = (CreateTransportState) stateStack.getCurrentState();
 
         destinationTxt = (EditText) findViewById(R.id.create_trsp_EditText_destination);
         placepikerTxt = (EditText) findViewById(R.id.create_trsp_editText_capacity);

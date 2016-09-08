@@ -19,8 +19,9 @@ public class LiftUnregistring extends AbstractTrigger {
 
     @Override
     protected void performeAction() {
-        NotifyDrinkers_on_liftUpdate ouserced = new NotifyDrinkers_on_liftUpdate(new ArrayList<UserEntity>(),liftEntity.getDrinkers());
+        NotifyDrinkers_on_liftUpdate ouserced = new NotifyDrinkers_on_liftUpdate(new ArrayList<UserEntity>(),liftEntity.getDrinkers(),liftEntity);
         ouserced.performeAction();
+        ofy().save().entity(liftEntity).now();
         ofy().delete().entity(liftEntity);
     }
 }

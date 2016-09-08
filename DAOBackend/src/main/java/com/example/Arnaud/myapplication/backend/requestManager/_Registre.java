@@ -18,6 +18,7 @@ class _Registre {
             GetInitialState.class,      //A
             InscriptionAsDriver.class,  //B
             AddTransport.class,         //C
+            //AddTrasnportRefresh.class,   //G
             ManageLiftRefresh.class,    //D
             InscriptionAsDrinker.class, //E
             LiftUnregistration.class    //F
@@ -29,11 +30,11 @@ class _Registre {
        -----------------------+---+---+---+---+---+
        inscription      (ins) | A | B |   | E |   |
        -----------------------+---+---+---+---+---+
-       create tranport  (ct)  |   | Z | C |   |   |
+       create tranport  (ct)  |   | B | C |   |   |
        -----------------------+---+---+---+---+---+
        manage Lift      (ml)  | F |   | D |   |   |
        -----------------------+---+---+---+---+---+
-       search transport (st)  |   |   |   | E | Z |
+       search transport (st)  |   |   |   | E | E |
        -----------------------+---+---+---+---+---+
        drinker in lift  (dil) |   |   |   | Z | Z |
        -----------------------+---+---+---+---+---+
