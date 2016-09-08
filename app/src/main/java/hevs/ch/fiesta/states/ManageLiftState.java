@@ -5,6 +5,7 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.LiftEntit
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hevs.ch.fiesta.views.ManageLiftAct;
@@ -22,7 +23,6 @@ public class ManageLiftState extends ShowLiftState {
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-
     public ManageLiftState(Media media) {
         super(media);
-        this.liftEntity = media.getLift();
     }
 
 
@@ -32,13 +32,14 @@ public class ManageLiftState extends ShowLiftState {
 
     //-+-+-+-+-+-+ setters -+-+-+-+-+-+-+-+-
     public void deletePseenger(int index){
-        liftEntity.getDrikers().get(index).setUserName("removed");
+        drinkers.get(index).setUserName("removed");
     }
     public void addUser(String userMail){
         UserEntity added = new UserEntity();
         added.setEmail(userMail);
         added.setUserName("added");
-        liftEntity.getDrikers().add(added);
+
+        drinkers.add(added);
     }
 
 
@@ -46,7 +47,9 @@ public class ManageLiftState extends ShowLiftState {
 
     @Override
     public void validateData() {
+        liftEntity.setDrinkers(drinkers);
         adapted.setLift(liftEntity);
+        adapted.setWantedState(adapted.getAvailableStates().get(0));
     }
 
     //+-+-+-+-+-+- Internal -+-+-+-+-+-+-+-+

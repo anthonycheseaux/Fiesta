@@ -39,7 +39,7 @@ public class UserEntity {
     public List<String> getMyMails() {
         return myMailsId;
     }
-
+    public  void setMyMails(List<String> myMails){this.myMailsId = myMails;}
 
     public void putMails(){
         MailMapperEntity myMapper= null;

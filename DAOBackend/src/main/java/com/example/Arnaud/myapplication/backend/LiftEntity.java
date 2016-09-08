@@ -44,8 +44,8 @@ public class LiftEntity {
     transient private Ref<LiftMapperEntity> drinkers_ref;
     @Ignore
     private List<UserEntity> drinkers;
-    public List<UserEntity> getDrikers() {return  drinkers;}
-
+    public List<UserEntity> getDrinkers() {return  drinkers;}
+    public void setDrinkers(List<UserEntity> drinkers) {this.drinkers = drinkers;}
 
     private String destination;
     public String getDestination(){return destination;}
@@ -116,16 +116,19 @@ public class LiftEntity {
         event_ref = Ref.create(event);
 
         if (id != null)
-            if (drinkers!= null) {
+            if (drinkers != null && drinkers.size()>0) {
                 LiftMapperEntity mapper = null;
                 try {
-                    ofy().load().type(LiftMapperEntity.class).id(this.id).safe();
+                    mapper = ofy().load().type(LiftMapperEntity.class).id(this.id).safe();
+
                 } catch (com.googlecode.objectify.NotFoundException e) {
                     mapper = new LiftMapperEntity(this.id);
                 }
                 try {
                     mapper.setDrinkers(drinkers);
-                    ofy().save().entity(drinkers).now();
+                    ofy().save().entity(mapper).now();
+                    mapper = ofy().load().entity(mapper).now();
+                    drinkers_ref = Ref.create(mapper);
                 } catch (IllegalStateException e) {
                     ofy().delete().entity(mapper);
                 }

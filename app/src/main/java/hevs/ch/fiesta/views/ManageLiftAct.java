@@ -21,7 +21,10 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
         list.setOnItemClickListener(this);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

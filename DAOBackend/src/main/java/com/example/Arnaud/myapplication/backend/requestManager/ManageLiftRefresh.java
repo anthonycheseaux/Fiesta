@@ -4,7 +4,10 @@ import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
 import com.example.Arnaud.myapplication.backend.service.Media;
 import com.example.Arnaud.myapplication.backend.triggers.NotifyDrinkers_LiftContentChange;
+import com.example.Arnaud.myapplication.backend.triggers.NotifyDrinkers_on_liftUpdate;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
@@ -17,7 +20,6 @@ class ManageLiftRefresh extends AbstractManager {
             _NavigationsRules.SN_MANAGE_LIFT+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_MANAGE_LIFT
     };
     private LiftEntity lift;
-    private List<UserEntity> oldContent;
 
     /**
      * @param media the media who will be managed
@@ -34,11 +36,31 @@ class ManageLiftRefresh extends AbstractManager {
 
     @Override
     protected void perfomeActions() {
-        LiftEntity oldLift = ofy().load().type(LiftEntity.class).id(lift.getId()).now();
-        oldContent = oldLift.getDrikers();
+        List<UserEntity> added = new LinkedList<>();
+        List<UserEntity> removed = new LinkedList<>();
+        List<UserEntity> sended = lift.getDrinkers();
+        List<UserEntity> current = new LinkedList<>();
+        if (sended != null){
+            for (Iterator<UserEntity> iterator = sended.iterator(); iterator.hasNext();){
+                UserEntity tmp = iterator.next();
+                if (tmp.getUserName().equals("added")){
+                    tmp = ofy().load().type(UserEntity.class).id(tmp.getEmail()).now();
+                    added.add(tmp);
+                    current.add(tmp);
+                }else if (tmp.getUserName().equals("removed")){
+                    removed.add(tmp);
+                }
+                else {
+                    current.add(tmp);
+                }
+
+            }
+
+        }
+        this.lift.setDrinkers(current);
         ofy().save().entity(this.lift);
-        this.lift = ofy().load().entity(this.lift).now();
-        triggers.addAtEnd(new NotifyDrinkers_LiftContentChange(this.lift,oldContent));
+        this.lift = ofy().load().entity(lift).now();
+        triggers.addAtEnd(new NotifyDrinkers_on_liftUpdate( added, removed));
         this.owner = ofy().load().entity(this.owner).now();
         this.owner.putMails();
     }

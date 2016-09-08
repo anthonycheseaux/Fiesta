@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by Arnaud on 04.09.2016.
  */
+@Deprecated
 public class NotifyDrinkers_LiftContentChange extends AbstractTrigger {
     private LiftEntity lift;
     private List<UserEntity> oldContent;
@@ -28,8 +29,7 @@ public class NotifyDrinkers_LiftContentChange extends AbstractTrigger {
     protected void performeAction() {
 
 
-        List<UserEntity> newContent = this.lift.getDrikers();
-
+        List<UserEntity> newContent = this.lift.getDrinkers();
         List<UserEntity> added = new ArrayList<>();
         List<UserEntity> removed = new ArrayList<>();
 

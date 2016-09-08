@@ -2,6 +2,7 @@ package hevs.ch.fiesta.views;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import hevs.ch.fiesta.media.MediaManager;
@@ -29,7 +30,7 @@ public class AdderChat extends ChatAct implements View.OnClickListener {
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-// 2. Chain together various setter methods to set the dialog characteristics
+        // 2. Chain together various setter methods to set the dialog characteristics
         builder.setMessage(title)
                 .setTitle(title);
         builder.setPositiveButton("oui", new Adder(messageBoxEntityAdapter.getInterlocutor()));
@@ -38,7 +39,7 @@ public class AdderChat extends ChatAct implements View.OnClickListener {
                 // User cancelled the dialog
             }
         });
-// 3. Get the AlertDialog from create()
+        // 3. Get the AlertDialog from create()
         AlertDialog dialog = builder.create();
         dialog.setCancelable(false);
         dialog.show();
@@ -52,6 +53,7 @@ public class AdderChat extends ChatAct implements View.OnClickListener {
         public void onClick(DialogInterface dialogInterface, int i) {
             state.addUser(interlocutor);
             state.validateData();
+            startActivity(new Intent(AdderChat.this, LoadingScreenAct.class));
         }
     }
 

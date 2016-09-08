@@ -51,12 +51,12 @@ public class ChatListAct extends HypermediaBrowser implements AdapterView.OnItem
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = null;
 
-    /*    try {
+        try {
             ManageLiftState state = (ManageLiftState) mediaStack.getCurrentState();
             intent = new Intent(this, AdderChat.class);
-        }catch (Exception e){*/
+        }catch (Exception e){
             intent = new Intent(this, ChatAct.class);
-       /* }*/
+        }
         intent.putExtra("chatId", messageBoxEntityAdapters.get(i).getMessageBoxId());
         intent.putExtra("owner", messageBoxEntityAdapters.get(i).getOwner());
         startActivity(intent);

@@ -38,7 +38,7 @@ public class ShowLiftAct extends HypermediaBrowser {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lift);
 
-        state=(ManageLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
+       // state=(ManageLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
 
 
         list = (ListView) findViewById(R.id.show_lift_passagers_listView);
@@ -49,12 +49,22 @@ public class ShowLiftAct extends HypermediaBrowser {
 
 
 
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        state=(ManageLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
         if(state.getPassengers() == null || state.getPassengers().size()==0)
             adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{"il n'y a pas de passages...\n...pour l'instant"});
         else
             adapter = new DrinkersAdapter(this, state.getPassengers());
 
         list.setAdapter(adapter);
+
 
         drinverName.setText(state.getDriversName());
         destination.setText(state.getDestination());
@@ -72,8 +82,8 @@ public class ShowLiftAct extends HypermediaBrowser {
                 startActivity(new Intent(ShowLiftAct.this, ChatListAct.class));
             }
         });
-    }
 
+    }
 
     private class DrinkersAdapter extends ArrayAdapter<UserEntity>{
 
