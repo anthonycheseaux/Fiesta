@@ -19,7 +19,8 @@ class _Registre {
             InscriptionAsDriver.class,  //B
             AddTransport.class,         //C
             ManageLiftRefresh.class,    //D
-            InscriptionAsDrinker.class  //E
+            InscriptionAsDrinker.class, //E
+            LiftUnregistration.class    //F
     };
         /*
    Table of possible path, left is initail state, up is next step
@@ -30,7 +31,7 @@ class _Registre {
        -----------------------+---+---+---+---+---+
        create tranport  (ct)  |   | Z | C |   |   |
        -----------------------+---+---+---+---+---+
-       manage Lift      (ml)  |   |   | D |   |   |
+       manage Lift      (ml)  | F |   | D |   |   |
        -----------------------+---+---+---+---+---+
        search transport (st)  |   |   |   | E | Z |
        -----------------------+---+---+---+---+---+

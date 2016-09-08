@@ -36,6 +36,7 @@ final class _NavigationsRules {
 
         List<String> from_manageLift = new ArrayList(1);
         from_manageLift.add(SN_MANAGE_LIFT);
+        from_manageLift.add(SN_INSCRIPTION_STATE);
 
         List<String> from_inLift = new ArrayList(1);
         from_inLift.add(SN_IN_LIFT_STATE);

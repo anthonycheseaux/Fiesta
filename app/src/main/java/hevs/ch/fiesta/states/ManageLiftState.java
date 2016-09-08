@@ -4,8 +4,10 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.EventEnti
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.LiftEntity;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
+import com.google.api.client.util.DateTime;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import hevs.ch.fiesta.views.ManageLiftAct;
@@ -31,6 +33,14 @@ public class ManageLiftState extends ShowLiftState {
         // showLift manage this
 
     //-+-+-+-+-+-+ setters -+-+-+-+-+-+-+-+-
+    public void setCapacity(int capacity){
+        liftEntity.setCapacity(capacity);
+    }
+    public void setDeparture(Date departure){
+        liftEntity.setDeparture(new DateTime(departure));
+    }
+
+
     public void deletePseenger(int index){
         drinkers.get(index).setUserName("removed");
     }
@@ -50,6 +60,11 @@ public class ManageLiftState extends ShowLiftState {
         liftEntity.setDrinkers(drinkers);
         adapted.setLift(liftEntity);
         adapted.setWantedState(adapted.getAvailableStates().get(0));
+    }
+    public void unRegistration(){
+        liftEntity.setDrinkers(drinkers);
+        adapted.setLift(liftEntity);
+        adapted.setWantedState(adapted.getAvailableStates().get(1));
     }
 
     //+-+-+-+-+-+- Internal -+-+-+-+-+-+-+-+

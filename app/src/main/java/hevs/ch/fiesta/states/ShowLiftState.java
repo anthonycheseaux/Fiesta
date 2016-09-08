@@ -5,6 +5,7 @@ import com.example.arnaud.myapplication.backend.service.mediaApi.model.Media;
 import com.example.arnaud.myapplication.backend.service.mediaApi.model.UserEntity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +41,9 @@ public class ShowLiftState extends MediaAdapter{
     public String getDriversName(){
         return liftEntity.getDriver().getUserName();
     }
+    public int getCapacity(){return liftEntity.getCapacity();}
+    public Date getDeparture(){return new Date(liftEntity.getDeparture().getValue());}
+
 
     @Override
     public void validateData() {

@@ -4,29 +4,61 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/show_lift_destination"
-        android:layout_gravity="center_vertical" />
+        android:layout_margin="10pt"
+        android:layout_gravity="center_horizontal">
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Destination"
+            android:id="@+id/show_lift_destination" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Conducteur"
+            android:id="@+id/show_lift_driver_name" />
+        <TextView
+            android:id="@+id/show_lift_Text_capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="capcité"
+            android:layout_weight="50"/>
+        <TextView
+            android:id="@+id/show_lift_Text_heureDepart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="heure de départ"
+            android:layout_weight="50"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/show_lift_driver_name"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_horizontal">
+        <TextView
+            android:id="@+id/show_lift_titre_liste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/liste_des_passagers"
+            android:layout_weight="50"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="253dp"
-        android:id="@+id/show_lift_passagers_listView"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.73" />
-
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="253dp"
+            android:id="@+id/show_lift_passagers_listView"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.73" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -45,5 +77,12 @@
             android:layout_height="wrap_content"
             android:text="messages"
             android:id="@+id/show_lift_btn_chat" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supprimer mon transport"
+            android:visibility="gone"
+            android:id="@+id/show_lift_btn_unsubcribe" />
     </LinearLayout>
 </LinearLayout>
