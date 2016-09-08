@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#B40404"
+    android:background="#E6B40404"
     android:orientation="vertical"
     tools:context="hevs.ch.fiesta.TransportListing">
 <LinearLayout
@@ -26,11 +26,12 @@
         android:textColor="@color/blanc"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
         android:text="Chat"
         android:layout_gravity="right"
-        android:id="@+id/search_transport_chat_button" />
+        android:id="@+id/search_transport_chat_button"
+        android:background="@color/colorPrimary" />
 
 </LinearLayout>
 
