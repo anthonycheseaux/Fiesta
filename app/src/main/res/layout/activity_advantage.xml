@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#B40404"
+    android:background="#E6B40404"
     android:orientation="vertical"
     tools:context="hevs.ch.fiesta.views.Advantage">
 
@@ -16,8 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="20dp"
-        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_gravity="left"
         android:textColor="@color/blanc"
         android:text="@string/title_drinker"
         android:layout_marginBottom="10dp"/>
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="@color/blanc"
         android:text="@string/adv_One"/>
     <TextView
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="@color/blanc"
         android:text="@string/adv_Two"/>
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="@color/blanc"
         android:text="@string/adv_Three"/>
 
@@ -51,18 +51,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="20dp"
-        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_gravity="left"
         android:textColor="@color/blanc"
         android:text="@string/title_driver"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="30dp"/>
     <TextView
         android:id="@+id/textView_Oneadv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="@color/blanc"
         android:text="@string/One_adv"/>
     <TextView
@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:typeface="serif"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="@color/blanc"
         android:text="@string/Two_adv"/>
 

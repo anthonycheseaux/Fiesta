@@ -10,7 +10,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
 
         android:text="Destination"
-        android:id="@+id/lift_in_list_destination" />
+        android:id="@+id/lift_in_list_destination"
+        android:textColor="@color/blanc"/>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -25,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="driver"
-                android:id="@+id/lift_in_list_driver" />
+                android:id="@+id/lift_in_list_driver"
+                android:textColor="@color/blanc"/>
 
         </LinearLayout>
 
@@ -39,12 +41,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="departure"
-                android:id="@+id/lift_in_list_departure" />
+                android:id="@+id/lift_in_list_departure"
+                android:textColor="@color/blanc"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="time to departure"
-                android:id="@+id/lift_in_list_time_to_departure" />
+                android:id="@+id/lift_in_list_time_to_departure"
+                android:textColor="@color/blanc"/>
 
         </LinearLayout>
 

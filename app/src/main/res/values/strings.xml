@@ -140,5 +140,7 @@ addictions, en se fondant sur les bonnes pratiques et les connaissances scientif
 actuelles, traduites et adaptées au contexte valaisan. La Fondation Addiction Valais se veut
 la référence en matière d’addictions en Valais. </string>
     <string name="liste_des_passagers">Liste des passagers</string>
+    <string name="ask_add_lift">" demande à être ajouté à votre transport"</string>
+    <string name="no_passenger">il n\'y a pas de passagers...\n...pour l\'instant</string>
 
 </resources>

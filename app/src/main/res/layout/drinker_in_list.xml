@@ -7,11 +7,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="name"
-        android:id="@+id/drinker_in_list_name" />
+        android:id="@+id/drinker_in_list_name"
+        android:textColor="@color/blanc"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="mail"
-        android:id="@+id/drinker_in_list_mail" />
+        android:id="@+id/drinker_in_list_mail"
+        android:textColor="@color/blanc"/>
 
 </LinearLayout>

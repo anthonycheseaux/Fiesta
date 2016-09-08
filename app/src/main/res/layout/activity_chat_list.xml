@@ -9,8 +9,9 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#FFFFFF"
+        android:background="#E6B40404"
         android:divider="@null"
         android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"></ListView>
+        android:transcriptMode="alwaysScroll"
+        android:textFilterEnabled="false"></ListView>
 </LinearLayout>

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#E6B40404">
 
     <LinearLayout
         android:orientation="vertical"
@@ -16,28 +17,34 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Destination"
-            android:id="@+id/show_lift_destination" />
+            android:id="@+id/show_lift_destination"
+            android:textColor="@color/blanc"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Conducteur"
-            android:id="@+id/show_lift_driver_name" />
+            android:id="@+id/show_lift_driver_name"
+            android:textColor="@color/blanc"/>
+
         <TextView
             android:id="@+id/show_lift_Text_capacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="capcité"
-            android:layout_weight="50"/>
+            android:layout_weight="50"
+            android:textColor="@color/blanc"/>
+
         <TextView
             android:id="@+id/show_lift_Text_heureDepart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="heure de départ"
-            android:layout_weight="50"/>
+            android:layout_weight="50"
+            android:textColor="@color/blanc"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -50,14 +57,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/liste_des_passagers"
-            android:layout_weight="50"/>
+            android:layout_weight="50"
+            android:textColor="@color/blanc"/>
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="253dp"
             android:id="@+id/show_lift_passagers_listView"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.73" />
+            android:layout_weight="0.73"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -65,24 +73,37 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="refresh"
             android:layout_gravity="left"
-            android:id="@+id/show_lift_btn_refresh" />
+            android:id="@+id/show_lift_btn_refresh"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/blanc"
+            android:layout_marginRight="5dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="messages"
-            android:id="@+id/show_lift_btn_chat" />
+            android:id="@+id/show_lift_btn_chat"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/blanc"
+            android:layout_marginRight="5dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Supprimer mon transport"
             android:visibility="gone"
-            android:id="@+id/show_lift_btn_unsubcribe" />
+            android:id="@+id/show_lift_btn_unsubcribe"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/blanc"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"/>
     </LinearLayout>
 </LinearLayout>

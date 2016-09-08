@@ -80,7 +80,7 @@ public class ShowLiftAct extends HypermediaBrowser {
 
 
         if(state.getPassengers() == null || state.getPassengers().size()==0)
-            adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{"il n'y a pas de passagers...\n...pour l'instant"});
+            adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{getString(R.string.no_passenger)});
         else
             adapter = new DrinkersAdapter(this, state.getPassengers());
 

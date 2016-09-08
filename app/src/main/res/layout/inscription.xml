@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".views.InscriptionAct"
     android:orientation="vertical"
-    android:background="#B40404">
+    android:background="#E6B40404">
 
     <TextView
         android:id="@+id/inscription_txt__Titre"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/inscription"
         android:typeface="serif"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_gravity="center"
         android:textColor="@color/blanc"
         android:layout_marginBottom="15dp"/>
@@ -31,7 +31,7 @@
             android:id="@+id/inscription_txt_Username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
+            android:layout_weight="3"
             android:text="@string/username"
             android:textColor="@color/blanc"
             android:textSize="18dp"/>
@@ -41,7 +41,7 @@
             android:layout_width="0dp"
             android:inputType="textPersonName"
             android:layout_height="wrap_content"
-            android:layout_weight="50"/>
+            android:layout_weight="7"/>
 
     </LinearLayout>
     <LinearLayout
@@ -53,7 +53,7 @@
             android:id="@+id/inscription_txt_UserPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
+            android:layout_weight="3"
             android:text="@string/userPhone"
             android:textColor="@color/blanc"
             android:textSize="18dp"/>
@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:inputType="phone"
             android:layout_height="wrap_content"
-            android:layout_weight="50"/>
+            android:layout_weight="7"/>
 
     </LinearLayout>
     <LinearLayout
@@ -75,7 +75,7 @@
             android:id="@+id/inscription_txt_UserMail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
+            android:layout_weight="3"
             android:text="@string/userMail"
             android:textColor="@color/blanc"
             android:textSize="18dp"/>
@@ -85,7 +85,7 @@
             android:layout_width="0dp"
             android:inputType="textEmailAddress"
             android:layout_height="wrap_content"
-            android:layout_weight="50"/>
+            android:layout_weight="7"/>
 
     </LinearLayout>
 
@@ -96,7 +96,7 @@
         android:layout_marginTop="40px"
         android:text="@string/regle_driver"
         android:textColor="@color/blanc"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"/>
 
@@ -115,9 +115,10 @@
         android:layout_height="wrap_content"
         android:text="@string/regle_drinker"
         android:textColor="@color/blanc"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/inscription_btn_drinker"

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.lang.Object;
+
 import com.example.arnaud.myapplication.backend.chat.messageBoxEntityApi.model.Message;
 
 import hevs.ch.fiesta.R;

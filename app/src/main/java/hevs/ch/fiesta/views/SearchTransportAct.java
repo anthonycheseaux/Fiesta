@@ -90,12 +90,12 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
         Message msg = new Message();
         msg.setSender(state.getOwner().getEmail());
         msg.setReceiver(selectedLift.getDriver().getEmail());
-        msg.setText(state.getOwner().getUserName()+" demande à être ajouté à votre transport");
+        msg.setText(state.getOwner().getUserName()+getString(R.string.ask_add_lift));
         msg.setDateMessage(new DateTime(new Date()));
         new AsyncSendMessage(msg).execute();
         Toast.makeText(
                 getApplicationContext(),
-                "Votre Demande a étée envoyée, vous pouvez désormais discuter avec son conduceur dans le chat",
+                "Votre Demande a été envoyée, vous pouvez désormais discuter avec son conduceur dans le chat",
                 Toast.LENGTH_LONG)
                 .show();
         startActivity(new Intent(this, LoadingScreenAct.class));

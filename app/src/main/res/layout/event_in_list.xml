@@ -8,8 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFF"
         android:text="New Text"
-        android:id="@+id/event_in_list_name" />
+        android:textSize="20sp"
+        android:id="@+id/event_in_list_name"
+        android:paddingTop="10dp"
+        android:paddingLeft="20sp"/>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -17,19 +22,27 @@
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_weight="4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Commence"
-                android:id="@+id/event_in_list_start_title" />
+                android:textColor="#FFF"
+                android:textSize="17sp"
+                android:text="Du : "
+                android:id="@+id/event_in_list_start_title"
+                android:paddingLeft="30sp"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/event_in_list_start_content" />
+                android:textColor="#FFF"
+                android:textSize="17sp"
+                android:text="Au : "
+                android:id="@+id/event_in_list_end_title"
+                android:paddingLeft="30sp"/>
+
 
         </LinearLayout>
 
@@ -37,18 +50,25 @@
             android:orientation="vertical"
 
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Finit"
-                android:id="@+id/event_in_list_end_title" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textColor="#FFF"
+                android:textSize="17sp"
                 android:text="New Text"
-                android:id="@+id/event_in_list_end_content" />
+                android:id="@+id/event_in_list_start_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFF"
+                android:textSize="17sp"
+                android:text="New Text"
+                android:id="@+id/event_in_list_end_content"
+                android:paddingBottom="10dp"/>
 
         </LinearLayout>
 

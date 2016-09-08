@@ -29,7 +29,6 @@ public final class ChooseEventAct extends HypermediaBrowser {
     private ListView list;
     private Button advantage;
     private Button apropos;
-    private Button chat;
 
 
     @Override
@@ -64,14 +63,7 @@ public final class ChooseEventAct extends HypermediaBrowser {
             }
         });
 
-        chat = (Button) findViewById(R.id.button_chat);
-        chat.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view) {
-                setContentView(R.layout.activity_chat_list);
-            }
-        });
+
 
     }
 

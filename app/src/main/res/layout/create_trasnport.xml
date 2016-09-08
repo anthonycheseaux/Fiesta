@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    android:background="#B40404">
+    android:background="#E6B40404">
 
     <TextView
         android:id="@+id/create_trsp_TextView_CreerTransport"
@@ -86,6 +86,7 @@
 
         <TextView
             android:id="@+id/create_trsp_EditText_heureDepart"
+            android:textSize="18dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"/>
@@ -122,8 +123,7 @@
         android:layout_gravity="center"
         android:text="@string/createRoute"
         android:background="@color/colorPrimary"
-        android:textColor="@color/blanc"
-        android:textStyle="bold"/>
+        android:textColor="@color/blanc"/>
 
 
 </LinearLayout>

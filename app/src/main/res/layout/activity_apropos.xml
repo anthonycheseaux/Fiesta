@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#B40404"
+    android:background="#E6B40404"
     android:orientation="vertical"
     tools:context="hevs.ch.fiesta.views.APropos">
 
