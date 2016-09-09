@@ -9,36 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#E6B40404"
     android:orientation="vertical"
-    tools:context="hevs.ch.fiesta.views.SearchTransportAct">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <Button
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:text="Annuler la recherche"
-        android:layout_gravity="right"
-        android:id="@+id/search_transport_unsearch_button"
-        android:background="@color/colorPrimary" />
+    tools:context="hevs.ch.fiesta.views.SearchTransportAct"
+    android:weightSum="1">
 
-    <Button
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:text="Refresh"
-        android:layout_gravity="right"
-        android:id="@+id/search_transport_refresh_button"
-        android:background="@color/colorPrimary" />
-
-    <Button
-        android:layout_width="72dp"
-        android:layout_height="wrap_content"
-        android:text="Chat"
-        android:layout_gravity="right"
-        android:id="@+id/search_transport_chat_button"
-        android:background="@color/colorPrimary" />
-
-</LinearLayout>
     <TextView
         android:id="@+id/transport_list"
         android:text="@string/transport_list"
@@ -53,11 +26,44 @@
     <ListView
         android:id="@+id/search_transport_lift_list"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="351dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="@color/blanc"/>
+        android:textColor="@color/blanc"
+        android:layout_weight="0.61" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Annuler la recherche"
+            android:layout_gravity="right"
+            android:id="@+id/search_transport_unsearch_button"
+            android:background="@color/colorPrimary"
+            android:layout_marginRight="5dp" />
+
+        <Button
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:text="Refresh"
+            android:layout_gravity="right"
+            android:id="@+id/search_transport_refresh_button"
+            android:background="@color/colorPrimary"
+            android:layout_marginRight="5dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Chat"
+            android:layout_gravity="right"
+            android:id="@+id/search_transport_chat_button"
+            android:background="@color/colorPrimary" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
