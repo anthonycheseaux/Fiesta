@@ -71,7 +71,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
 
 
 
@@ -83,16 +84,8 @@
             android:id="@+id/show_lift_btn_refresh"
             android:background="@color/colorPrimary"
             android:textColor="@color/blanc"
-            android:layout_marginRight="5dp"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="messages"
-            android:id="@+id/show_lift_btn_chat"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/blanc"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:layout_weight="0" />
 
         <Button
             android:layout_width="wrap_content"
@@ -104,5 +97,14 @@
             android:layout_marginRight="5dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="messages"
+            android:id="@+id/show_lift_btn_chat"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/blanc"
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 </LinearLayout>
