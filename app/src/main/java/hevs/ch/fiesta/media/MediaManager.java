@@ -47,6 +47,8 @@ public class MediaManager implements ByOneObservable, MediaStack {
     @Override
     public void setState (Media media){
         if (media!= null) {
+            if (states.size()>0 && states.peek()!= null  && states.peek().getStateType().equals(media.getStateType()))
+                states.pop();
             states.push(media);
             currentState= MediaAdapter.adapt(media);
         }

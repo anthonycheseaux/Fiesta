@@ -25,11 +25,6 @@ public class LoadingScreenAct extends HypermediaBrowser {
         if(stateStack.getUpdateMedia() == null) {
             SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
             Long mediaId = sharedPref.getLong(MEDIA_ID_KEY, -1);
-            Toast.makeText(
-                    getApplicationContext(),
-                    "serached  "+mediaId+ "as media id",
-                    Toast.LENGTH_LONG)
-                    .show();
             new AsyncRestoration(stateStack, mediaId).execute();
         }else
             stateStack.askUpdate();

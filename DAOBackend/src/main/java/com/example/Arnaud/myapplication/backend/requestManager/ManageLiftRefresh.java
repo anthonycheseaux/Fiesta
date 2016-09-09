@@ -54,22 +54,29 @@ class ManageLiftRefresh extends AbstractManager {
         List<UserEntity> old = ofy().load().type(LiftEntity.class).id(lift.getId()).now().getDrinkers();
         HashMap<String, UserEntity> basket = new HashMap<>();
 
-        for (Iterator<UserEntity> iterator = old.iterator(); iterator.hasNext();){
-            UserEntity tmp = iterator.next();
-            basket.put(tmp.getEmail(), tmp);
-        }
-        for (Iterator<UserEntity> iterator = sended.iterator(); iterator.hasNext();){
-            UserEntity tmp = iterator.next();
-            if (tmp.getUserName().equals("added")){
-                tmp = ofy().load().type(UserEntity.class).id(tmp.getEmail()).now();
-                basket.put(tmp.getEmail(),tmp);
-                added.add(tmp);
-            }else if (tmp.getUserName().equals("removed")){
-                basket.remove(tmp.getEmail());
-                removed.add(tmp);
+
+        if (old != null && old.size()>0)
+            for (Iterator<UserEntity> iterator = old.iterator(); iterator.hasNext();){
+                UserEntity tmp = iterator.next();
+                basket.put(tmp.getEmail(), tmp);
             }
-        }
-        triggers.addAtEnd(new NotifyDrinkers_on_liftUpdate( added, removed, this.lift));
+        boolean hasChange = false;
+        if (sended!= null)
+            for (Iterator<UserEntity> iterator = sended.iterator(); iterator.hasNext();){
+                UserEntity tmp = iterator.next();
+                if (tmp.getUserName().equals("added")){
+                    tmp = ofy().load().type(UserEntity.class).id(tmp.getEmail()).now();
+                    basket.put(tmp.getEmail(),tmp);
+                    added.add(tmp);
+                    hasChange = true;
+                }else if (tmp.getUserName().equals("removed")){
+                    basket.remove(tmp.getEmail());
+                    removed.add(tmp);
+                    hasChange = false;
+                }
+            }
+        if (hasChange)
+            triggers.addAtEnd(new NotifyDrinkers_on_liftUpdate( added, removed, this.lift));
 
         lift.setDrinkers(new ArrayList<>(basket.values()));
 

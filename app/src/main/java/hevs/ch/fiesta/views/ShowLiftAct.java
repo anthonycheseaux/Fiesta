@@ -2,6 +2,7 @@ package hevs.ch.fiesta.views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 import hevs.ch.fiesta.R;
+import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.states.ManageLiftState;
 import hevs.ch.fiesta.states.MediaAdapter;
 import hevs.ch.fiesta.states.ShowLiftState;
@@ -47,6 +50,10 @@ public class ShowLiftAct extends HypermediaBrowser {
     private SimpleDateFormat timeFormat;
 
 
+    private static boolean doPerpetualRun = false;
+    private static int durationBeforeReUpdate = 3*1000;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,32 +70,6 @@ public class ShowLiftAct extends HypermediaBrowser {
         refreshBtn = (Button) findViewById(R.id.show_lift_btn_refresh);
         goToChatBtn = (Button) findViewById(R.id.show_lift_btn_chat);
         unregistreButton = (Button) findViewById(R.id.show_lift_btn_unsubcribe);
-
-
-
-
-        timeFormat= new SimpleDateFormat("HH:mm");//TODO localiser la préférence de l'afichage (24 heure | am/pm)
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        state=(ShowLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
-
-        drinverName.setText(state.getDriversName());
-        destination.setText(state.getDestination());
-
-        refreshCapcityField();
-
-        refreshTimeField();
-
-
-        if(state.getPassengers() == null || state.getPassengers().size()==0)
-            adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{getString(R.string.no_passenger)});
-        else
-            adapter = new DrinkersAdapter(this, state.getPassengers());
-
-        list.setAdapter(adapter);
 
         refreshBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,14 +93,47 @@ public class ShowLiftAct extends HypermediaBrowser {
         });
 
 
-        list = (ListView) findViewById(R.id.show_lift_passagers_listView);
+        timeFormat= new SimpleDateFormat("HH:mm");//TODO localiser la préférence de l'afichage (24 heure | am/pm)
+    }
 
-        refreshBtn = (Button) findViewById(R.id.show_lift_btn_refresh);
-        goToChatBtn = (Button) findViewById(R.id.show_lift_btn_chat);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        state=(ShowLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
+
+        drinverName.setText(state.getDriversName());
+        destination.setText(state.getDestination());
+
+        refreshCapcityField();
+        refreshTimeField();
 
 
+        if(state.getPassengers() == null || state.getPassengers().size()==0)
+            adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{getString(R.string.no_passenger)});
+        else
+            adapter = new DrinkersAdapter(this, state.getPassengers());
+
+        list.setAdapter(adapter);
+
+        doPerpetualRun = true;
+        new PerpetualUpdater().execute();
 
     }
+
+    @Override
+    protected void onPause() {
+        doPerpetualRun = false;
+        super.onPause();
+    }
+
+    @Override
+    public void changeShowedMedia() {
+        if(stateStack.getCurrentState().getClass().equals(state.getClass()))
+            onResume();
+        else super.changeShowedMedia();
+
+    }
+
     protected void refreshTimeField(){
         long difference = (state.getDeparture().getTime())- (new Date().getTime());
         String txt = timeFormat.format(state.getDeparture());
@@ -163,6 +177,22 @@ public class ShowLiftAct extends HypermediaBrowser {
             return convertView;
         }
 
+    }
+    private class PerpetualUpdater extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (doPerpetualRun){
+                try {
+                    Thread.sleep(durationBeforeReUpdate);
+                    if(doPerpetualRun)
+                        MediaManager.getInstance().askUpdate();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
     }
 }
 

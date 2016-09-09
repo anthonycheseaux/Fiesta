@@ -43,11 +43,6 @@ public class HypermediaBrowser extends AppCompatActivity implements MediaDisplay
             Long mediaId =stateStack.getUpdateMedia().getId();
             editor.putLong(MEDIA_ID_KEY,  mediaId);
             editor.commit();
-            Toast.makeText(
-                    getApplicationContext(),
-                    "added "+mediaId+ " as media id",
-                    Toast.LENGTH_LONG)
-                    .show();
         }
         startActivity(new Intent(this, stateStack.getCurrentState().getNeededActivity()));
     }

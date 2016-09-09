@@ -36,11 +36,6 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
         super.onCreate(savedInstanceState);
         list.setOnItemClickListener(this);
 
-
-
-
-
-
         liftStartCalendar=Calendar.getInstance();
         referenceCal=Calendar.getInstance();
         referenceCal.setTime(new Date());

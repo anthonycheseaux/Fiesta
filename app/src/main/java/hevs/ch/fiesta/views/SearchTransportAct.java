@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import hevs.ch.fiesta.R;
 import hevs.ch.fiesta.chat.AsyncSendMessage;
+import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.states.MediaAdapter;
 import hevs.ch.fiesta.states.SearchTrasnportState;
 
@@ -36,11 +38,13 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
     private Button refreshButton;
     private LiftEntity selectedLift;
 
+    private static boolean doPerpetualRun = false;
+    private static int durationBeforeReUpdate = 3*1000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_transport);
-        state=(SearchTrasnportState) MediaAdapter.adapt(stateStack.getUpdateMedia());
         list = (ListView) findViewById(R.id.search_transport_lift_list);
         chatButton = (Button) findViewById(R.id.search_transport_chat_button);
         chatButton.setOnClickListener(new View.OnClickListener() {
@@ -56,16 +60,38 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
                 startActivity(new Intent(SearchTransportAct.this,LoadingScreenAct.class));
             }
         });
+
+        list.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        state=(SearchTrasnportState) MediaAdapter.adapt(stateStack.getUpdateMedia());
+
         if(state.getLifts() == null || state.getLifts().size()==0)
             adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,new String[]{"il n'y a pas de transport disponibles...\n...pour l'instant"});
         else
             adapter = new LiftAdapter(this, state.getLifts());
 
         list.setAdapter(adapter);
-        list.setOnItemClickListener(this);
+
+        doPerpetualRun = true;
+        new PerpetualUpdater().execute();
+    }
+    @Override
+    protected void onPause() {
+        doPerpetualRun = false;
+        super.onPause();
+    }
+    @Override
+    public void changeShowedMedia() {
+        if(stateStack.getCurrentState().getClass().equals(state.getClass()))
+            onResume();
+        else super.changeShowedMedia();
 
     }
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String title = "S'inscrire ";
@@ -138,6 +164,22 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
             ((TextView) convertView.findViewById(R.id.lift_in_list_time_to_departure)).setText(formater.format(timeToDeparture));
 
             return convertView;
+        }
+    }
+    private class PerpetualUpdater extends AsyncTask<Void,Void,Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (doPerpetualRun){
+                try {
+                    Thread.sleep(durationBeforeReUpdate);
+                    if(doPerpetualRun)
+                        MediaManager.getInstance().askUpdate();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
         }
     }
 }
