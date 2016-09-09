@@ -7,8 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:textViewStyle">@style/FiestaStyle</item>
     </style>
 
+    <style name="FiestaStyle">
+        <item name="android:fontFamily">Verdana</item>
+    </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
