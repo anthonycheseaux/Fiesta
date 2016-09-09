@@ -41,7 +41,8 @@
             android:layout_width="0dp"
             android:inputType="textPersonName"
             android:layout_height="wrap_content"
-            android:layout_weight="7"/>
+            android:layout_weight="7"
+            android:textColor="@color/blanc" />
 
     </LinearLayout>
     <LinearLayout
@@ -63,7 +64,8 @@
             android:layout_width="0dp"
             android:inputType="phone"
             android:layout_height="wrap_content"
-            android:layout_weight="7"/>
+            android:layout_weight="7"
+            android:textColor="@color/blanc" />
 
     </LinearLayout>
     <LinearLayout
@@ -85,7 +87,8 @@
             android:layout_width="0dp"
             android:inputType="textEmailAddress"
             android:layout_height="wrap_content"
-            android:layout_weight="7"/>
+            android:layout_weight="7"
+            android:textColor="@color/blanc" />
 
     </LinearLayout>
 
