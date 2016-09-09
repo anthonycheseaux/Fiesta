@@ -19,7 +19,7 @@ public class AsyncGetMessageBox extends AsyncTask<Void, Void, MessageBoxEntity> 
     private final static String BACKEND_URL = "https://projetfiesta-1372.appspot.com/_ah/api/";
     private final static String LOCAL_URL ="http://10.0.2.2:8080/_ah/api/";
     //private final static String LOCAL_URL = "http://localhost:8080/_ah/api/";
-    private final static boolean USE_LOCAL = true;
+    private final static boolean USE_LOCAL = false;
 
     private MessageBoxEntityApi api;
     private MessageBoxCaller caller;
