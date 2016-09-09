@@ -36,6 +36,7 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
     private ListView list;
     private Button chatButton;
     private Button refreshButton;
+    private Button retrunHome;
     private LiftEntity selectedLift;
 
     private static boolean doPerpetualRun = false;
@@ -60,7 +61,14 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
                 startActivity(new Intent(SearchTransportAct.this,LoadingScreenAct.class));
             }
         });
-
+        retrunHome = (Button) findViewById(R.id.search_transport_unsearch_button);
+        retrunHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                state.unSearch();
+                startActivity(new Intent(SearchTransportAct.this,LoadingScreenAct.class));
+            }
+        });
         list.setOnItemClickListener(this);
 
     }
@@ -92,6 +100,12 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
         else super.changeShowedMedia();
 
     }
+
+    @Override
+    public void onBackPressed() {
+        stateStack.undoLastChange();
+    }
+
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String title = "S'inscrire ";

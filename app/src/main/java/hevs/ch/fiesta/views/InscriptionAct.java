@@ -1,6 +1,8 @@
 package hevs.ch.fiesta.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import hevs.ch.fiesta.R;
+import hevs.ch.fiesta.media.AsyncRestoration;
 import hevs.ch.fiesta.states.InscriptionState;
 import hevs.ch.fiesta.states.MediaAdapter;
 
@@ -21,7 +24,9 @@ public class InscriptionAct extends HypermediaBrowser implements View.OnClickLis
     private EditText editText_phone;
     private Button btn_driver;
     private Button btn_drinker;
-
+    private final static String USER_NAME = "username";
+    private final static String USER_MAIL = "usermail";
+    private final static String USER_PHONE = "userPhone";
 
 
     @Override
@@ -44,6 +49,14 @@ public class InscriptionAct extends HypermediaBrowser implements View.OnClickLis
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        editText_username.setText(sharedPref.getString(USER_NAME,""));
+        editText_mail.setText(sharedPref.getString(USER_MAIL,""));
+        editText_phone.setText(sharedPref.getString(USER_PHONE,""));
+    }
 
     @Override
     public void onClick(View view) {
@@ -54,12 +67,24 @@ public class InscriptionAct extends HypermediaBrowser implements View.OnClickLis
 
         String validationException="";
 
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
         if(username.equals(""))
             validationException += "renseigner votre nom \n";
+        else
+            editor.putString(USER_NAME,username);
         if(userMail.equals(""))
             validationException += "renseigner votre adresse mail \n";
+        else
+            editor.putString(USER_MAIL,userMail);
         if(userPhone.equals(""))
             validationException += "renseigner votre n° de telephone";
+        else
+            editor.putString(USER_PHONE, userPhone);
+
+        editor.commit();
+
         if(false==(validationException.equals("")) ){
             Toast.makeText(
                     getApplicationContext(),

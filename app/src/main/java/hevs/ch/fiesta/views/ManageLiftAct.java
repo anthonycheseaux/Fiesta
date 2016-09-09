@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import hevs.ch.fiesta.R;
+import hevs.ch.fiesta.media.MediaManager;
 import hevs.ch.fiesta.states.ManageLiftState;
 
 /**
@@ -43,6 +44,7 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
         departure.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NewApi")
             public void onClick(View v) {
+                doPerpetualRun = false;
                 DialogFragment newFragment = new TimeDialog();
                 newFragment.show(getFragmentManager(), "timePicker");
             }
@@ -50,6 +52,7 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
         capacity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                doPerpetualRun = false;
                 final Dialog d = new Dialog(ManageLiftAct.this);
                 d.setTitle("NumberPicker");
                 d.setContentView(R.layout.dialogue_number_piker);
@@ -111,6 +114,7 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
 // 3. Get the AlertDialog from create()
         AlertDialog dialog = builder.create();
         dialog.setCancelable(false);
+        doPerpetualRun= false;
         dialog.show();
         }
 
@@ -129,8 +133,7 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
         public void onClick(DialogInterface dialogInterface, int i) {
             ((ManageLiftState)state).deletePseenger(index);
             state.validateData();
-            startActivity(new Intent(ManageLiftAct.this, LoadingScreenAct.class));
-
+            MediaManager.getInstance().askUpdate();
         }
     }
     //function for timepicker
@@ -169,6 +172,8 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
                 liftStartCalendar.set(Calendar.DAY_OF_YEAR, referenceCal.get(Calendar.DAY_OF_YEAR)+1);
 
             ((ManageLiftState)state).setDeparture(liftStartCalendar.getTime());
+            ((ManageLiftState)state).validateData();
+            MediaManager.getInstance().askUpdate();
             refreshTimeField();
         }
     }

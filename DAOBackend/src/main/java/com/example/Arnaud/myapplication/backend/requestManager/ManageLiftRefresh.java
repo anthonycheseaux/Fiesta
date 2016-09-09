@@ -80,7 +80,7 @@ class ManageLiftRefresh extends AbstractManager {
 
         lift.setDrinkers(new ArrayList<>(basket.values()));
 
-        ofy().save().entity(this.lift);
+        ofy().save().entity(this.lift).now();
 
 
         this.lift = ofy().load().entity(lift).now();

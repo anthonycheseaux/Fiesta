@@ -46,10 +46,6 @@ class DrinkerLifeCyle extends AbstractManager {
 
     }
 
-    @Override
-    protected void cleanMedia() {
-
-    }
 
     @Override
     protected void perfomeActions() {

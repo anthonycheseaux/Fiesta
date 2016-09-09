@@ -42,8 +42,8 @@ public class SearchTrasnportState extends MediaAdapter {
 
 
     //+-+-+-+-+-+- Actions -+-+-+-+-+-+-+-+
-    public void doSearchTrsp(){
-        adapted.setWantedState(MediaAdapter.SN_SEARCH_TRANSPORT_STATE);
+    public void unSearch(){
+        adapted.setWantedState(adapted.getAvailableStates().get(1));
     }
 
 }

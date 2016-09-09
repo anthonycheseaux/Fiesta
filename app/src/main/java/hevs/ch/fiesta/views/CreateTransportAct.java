@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +36,9 @@ public class CreateTransportAct extends HypermediaBrowser implements View.OnClic
     private Calendar liftStartCalendar;
     private Calendar referenceCal;
     private SimpleDateFormat timeFormat;
+
+    private final static String USER_DEST = "userDest";
+    private final static String USER_CAPACITY = "usercap";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,15 @@ public class CreateTransportAct extends HypermediaBrowser implements View.OnClic
         refreshTimeField();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        destinationTxt.setText(sharedPref.getString(USER_DEST,""));
+        int preferedCap =sharedPref.getInt(USER_CAPACITY,0);
+        if (preferedCap>0)
+            placepikerTxt.setText(preferedCap);
+    }
 
     @Override
     public void onClick(View view) {
@@ -88,16 +102,26 @@ public class CreateTransportAct extends HypermediaBrowser implements View.OnClic
         Date liftstart= liftStartCalendar.getTime();
         boolean hasAccepted = engagementChxBx.isChecked();
 
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
         String validationException="";
         //// TODO: 30.11.2015 loclaiser
         if(destination.equals(""))
             validationException += "renseigner la destination \n";
+        else
+            editor.putString(USER_DEST,destination);
         if(capacity < 1)
             validationException += "il faut qu'il y ait au moins 1 place \n";
+        else
+            editor.putInt(USER_CAPACITY,capacity);
         if(liftstart.getTime()<new Date().getTime())
             validationException += "le départ n'est pas correctemnt rensigné";
         if(false == hasAccepted)
             validationException += "vous devez vous engager à rester sobre et responsable";
+
+        editor.commit();
+
         if(false ==(validationException.equals("")) ){
             Toast.makeText(
                     getApplicationContext(),
@@ -106,6 +130,8 @@ public class CreateTransportAct extends HypermediaBrowser implements View.OnClic
                     .show();
             return;
         }
+
+
         // set data in State
         state.setDestination(destination);
         state.setCapacity(capacity);

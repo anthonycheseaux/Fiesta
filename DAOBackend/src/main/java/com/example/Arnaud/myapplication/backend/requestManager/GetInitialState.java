@@ -17,7 +17,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
  */
 class GetInitialState extends AbstractManager {
     static final String[] misssions = new String[]{
-            _NavigationsRules.SN_INSCRIPTION_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_INSCRIPTION_STATE
+            _NavigationsRules.SN_INSCRIPTION_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_INSCRIPTION_STATE,
+            _NavigationsRules.SN_SEARCH_TRANSPORT_STATE+ _NavigationsRules.CONNECTION_TO + _NavigationsRules.SN_INSCRIPTION_STATE
     };
 
     GetInitialState(){

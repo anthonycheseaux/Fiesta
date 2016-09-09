@@ -33,7 +33,7 @@ final class _NavigationsRules {
 
         List<String> from_searchTransp = new ArrayList(2);
         from_searchTransp.add(SN_SEARCH_TRANSPORT_STATE);
-        from_searchTransp.add(SN_IN_LIFT_STATE);
+        from_searchTransp.add(SN_INSCRIPTION_STATE);
 
         List<String> from_manageLift = new ArrayList(2);
         from_manageLift.add(SN_MANAGE_LIFT);

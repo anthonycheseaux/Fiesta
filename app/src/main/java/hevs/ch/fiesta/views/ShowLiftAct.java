@@ -50,8 +50,8 @@ public class ShowLiftAct extends HypermediaBrowser {
     private SimpleDateFormat timeFormat;
 
 
-    private static boolean doPerpetualRun = false;
-    private static int durationBeforeReUpdate = 3*1000;
+    protected static boolean doPerpetualRun = false;
+    protected static int durationBeforeReUpdate = 3*1000;
 
 
     @Override
