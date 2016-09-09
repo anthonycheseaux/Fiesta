@@ -35,9 +35,10 @@ public abstract class AbstractTrigger implements Runnable {
     protected abstract void performeAction();
 
     public void lauchTriggerChain(){
-        if (beforeTrigger == null)
-            createBackgroundThread(this).run();
-        else
+        if (beforeTrigger == null) {
+            //createBackgroundThread(this).run();  unpermissed on appEngine
+            this.run();
+        }else
             beforeTrigger.lauchTriggerChain();
     }
 
