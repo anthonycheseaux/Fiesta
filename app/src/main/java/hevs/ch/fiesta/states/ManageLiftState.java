@@ -61,6 +61,7 @@ public class ManageLiftState extends ShowLiftState {
         adapted.setLift(liftEntity);
         adapted.setWantedState(adapted.getAvailableStates().get(0));
     }
+    @Override
     public void unRegistration(){
         liftEntity.setDrinkers(drinkers);
         adapted.setLift(liftEntity);

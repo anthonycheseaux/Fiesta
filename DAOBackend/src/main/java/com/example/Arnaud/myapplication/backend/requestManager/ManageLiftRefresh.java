@@ -6,6 +6,11 @@ import com.example.Arnaud.myapplication.backend.service.Media;
 import com.example.Arnaud.myapplication.backend.triggers.NotifyDrinkers_LiftContentChange;
 import com.example.Arnaud.myapplication.backend.triggers.NotifyDrinkers_on_liftUpdate;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,33 +39,45 @@ class ManageLiftRefresh extends AbstractManager {
         this.lift = media.lift;
     }
 
+    /**
+     * how to manage:
+     * first put all drinkers who was in the old version of lif in a basket.
+     * then add all added-drinkers in the basquet
+     * finaly remove all removed-drinkers from th basket
+     * launch triggers and TADAAAAA
+     */
     @Override
     protected void perfomeActions() {
         List<UserEntity> added = new LinkedList<>();
         List<UserEntity> removed = new LinkedList<>();
         List<UserEntity> sended = lift.getDrinkers();
-        List<UserEntity> current = new LinkedList<>();
-        if (sended != null){
-            for (Iterator<UserEntity> iterator = sended.iterator(); iterator.hasNext();){
-                UserEntity tmp = iterator.next();
-                if (tmp.getUserName().equals("added")){
-                    tmp = ofy().load().type(UserEntity.class).id(tmp.getEmail()).now();
-                    added.add(tmp);
-                    current.add(tmp);
-                }else if (tmp.getUserName().equals("removed")){
-                    removed.add(tmp);
-                }
-                else {
-                    current.add(tmp);
-                }
+        List<UserEntity> old = ofy().load().type(LiftEntity.class).id(lift.getId()).now().getDrinkers();
+        HashMap<String, UserEntity> basket = new HashMap<>();
 
-            }
-
+        for (Iterator<UserEntity> iterator = old.iterator(); iterator.hasNext();){
+            UserEntity tmp = iterator.next();
+            basket.put(tmp.getEmail(), tmp);
         }
-        this.lift.setDrinkers(current);
-        ofy().save().entity(this.lift);
-        this.lift = ofy().load().entity(lift).now();
+        for (Iterator<UserEntity> iterator = sended.iterator(); iterator.hasNext();){
+            UserEntity tmp = iterator.next();
+            if (tmp.getUserName().equals("added")){
+                tmp = ofy().load().type(UserEntity.class).id(tmp.getEmail()).now();
+                basket.put(tmp.getEmail(),tmp);
+                added.add(tmp);
+            }else if (tmp.getUserName().equals("removed")){
+                basket.remove(tmp.getEmail());
+                removed.add(tmp);
+            }
+        }
         triggers.addAtEnd(new NotifyDrinkers_on_liftUpdate( added, removed, this.lift));
+
+        lift.setDrinkers(new ArrayList<>(basket.values()));
+
+        ofy().save().entity(this.lift);
+
+
+        this.lift = ofy().load().entity(lift).now();
+
         this.owner = ofy().load().entity(this.owner).now();
         this.owner.putMails();
     }
@@ -77,4 +94,5 @@ class ManageLiftRefresh extends AbstractManager {
         media.lift = this.lift;
 
     }
+
 }

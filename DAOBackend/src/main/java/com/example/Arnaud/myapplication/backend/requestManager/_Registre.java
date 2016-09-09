@@ -18,10 +18,11 @@ class _Registre {
             GetInitialState.class,      //A
             InscriptionAsDriver.class,  //B
             AddTransport.class,         //C
-            //AddTrasnportRefresh.class,   //G
             ManageLiftRefresh.class,    //D
             InscriptionAsDrinker.class, //E
-            LiftUnregistration.class    //F
+            LiftUnregistration.class,   //F
+            DrinkerUnregistration.class,//G
+            DrinkerLifeCyle.class       //H
     };
         /*
    Table of possible path, left is initail state, up is next step
@@ -34,9 +35,9 @@ class _Registre {
        -----------------------+---+---+---+---+---+
        manage Lift      (ml)  | F |   | D |   |   |
        -----------------------+---+---+---+---+---+
-       search transport (st)  |   |   |   | E | E |
+       search transport (st)  |   |   |   | H |Hsc|
        -----------------------+---+---+---+---+---+
-       drinker in lift  (dil) |   |   |   | Z | Z |
+       drinker in lift  (dil) |   |   |   |G/H| H |
        -----------------------+---+---+---+---+---+
 */
 

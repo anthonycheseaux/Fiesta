@@ -97,8 +97,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Supprimer mon transport"
-            android:visibility="gone"
+            android:text="Se desincrire"
             android:id="@+id/show_lift_btn_unsubcribe"
             android:background="@color/colorPrimary"
             android:textColor="@color/blanc"

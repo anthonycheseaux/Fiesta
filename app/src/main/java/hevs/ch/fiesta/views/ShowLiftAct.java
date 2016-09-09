@@ -41,6 +41,7 @@ public class ShowLiftAct extends HypermediaBrowser {
 
     protected Button refreshBtn;
     protected Button goToChatBtn;
+    protected Button unregistreButton;
 
 
     private SimpleDateFormat timeFormat;
@@ -61,6 +62,9 @@ public class ShowLiftAct extends HypermediaBrowser {
 
         refreshBtn = (Button) findViewById(R.id.show_lift_btn_refresh);
         goToChatBtn = (Button) findViewById(R.id.show_lift_btn_chat);
+        unregistreButton = (Button) findViewById(R.id.show_lift_btn_unsubcribe);
+
+
 
 
         timeFormat= new SimpleDateFormat("HH:mm");//TODO localiser la préférence de l'afichage (24 heure | am/pm)
@@ -69,7 +73,7 @@ public class ShowLiftAct extends HypermediaBrowser {
     @Override
     protected void onResume() {
         super.onResume();
-        state=(ManageLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
+        state=(ShowLiftState) MediaAdapter.adapt(stateStack.getUpdateMedia());
 
         drinverName.setText(state.getDriversName());
         destination.setText(state.getDestination());
@@ -97,6 +101,13 @@ public class ShowLiftAct extends HypermediaBrowser {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ShowLiftAct.this, ChatListAct.class));
+            }
+        });
+        unregistreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                state.unRegistration();
+                startActivity(new Intent(ShowLiftAct.this, LoadingScreenAct.class));
             }
         });
 

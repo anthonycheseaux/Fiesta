@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import hevs.ch.fiesta.views.ShowLiftAct;
+
 /**
  * Created by Arnaud on 07.09.2016.
  */
@@ -17,7 +19,7 @@ public class ShowLiftState extends MediaAdapter{
 
     @Override
     public Class<?> getNeededActivity() {
-        return ShowLiftState.class;
+        return ShowLiftAct.class;
     }
 
     //-+-+-+-+-+-+ Constructor -+-+-+-+-+-+-+-+-
@@ -43,6 +45,10 @@ public class ShowLiftState extends MediaAdapter{
     }
     public int getCapacity(){return liftEntity.getCapacity();}
     public Date getDeparture(){return new Date(liftEntity.getDeparture().getValue());}
+
+    public void unRegistration(){
+        adapted.setWantedState(adapted.getAvailableStates().get(1));
+    }
 
 
     @Override

@@ -29,11 +29,13 @@ public class NotifyDrinkers_on_liftUpdate extends AbstractTrigger {
             UserEntity removedDrinker = iterator.next();
             DrinkerMapperEntity dme = ofy().load().type(DrinkerMapperEntity.class).id(removedDrinker.getEmail()+eventId).now();
             dme.setLiftEntity(null);
+            ofy().save().entity(dme);
         }
         for (Iterator<UserEntity> iterator = added.iterator();iterator.hasNext();){
             UserEntity addedDrinker = iterator.next();
             DrinkerMapperEntity dme = ofy().load().type(DrinkerMapperEntity.class).id(addedDrinker.getEmail()+eventId).now();
             dme.setLiftEntity(liftEntity);
+            ofy().save().entity(dme);
         }
     }
 }

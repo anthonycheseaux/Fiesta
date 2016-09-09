@@ -30,22 +30,15 @@ public class ManageLiftAct extends ShowLiftAct implements AdapterView.OnItemClic
     private Calendar liftStartCalendar;
     private Calendar referenceCal;
 
-    private Button unregistreButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         list.setOnItemClickListener(this);
 
-        unregistreButton = (Button) findViewById(R.id.show_lift_btn_unsubcribe);
-        unregistreButton.setVisibility(View.VISIBLE);
-        unregistreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ((ManageLiftState)state).unRegistration();
-                startActivity(new Intent(ManageLiftAct.this, LoadingScreenAct.class));
-            }
-        });
+
+
+
 
 
         liftStartCalendar=Calendar.getInstance();

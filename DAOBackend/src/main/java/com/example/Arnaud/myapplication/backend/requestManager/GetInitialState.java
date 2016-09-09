@@ -6,6 +6,7 @@ import com.google.appengine.api.datastore.QueryResultIterator;
 import com.googlecode.objectify.cmd.Query;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -54,8 +55,11 @@ class GetInitialState extends AbstractManager {
         Query<EventEntity> query = ofy().load().type(EventEntity.class);
         QueryResultIterator<EventEntity> queryIterator = query.iterator();
         List<EventEntity> eventEntityList = new ArrayList<EventEntity>();
+        long now = new Date().getTime();
         while (queryIterator.hasNext()) {
-            eventEntityList.add(queryIterator.next());
+            EventEntity tmp =queryIterator.next();
+            if (0 <= tmp.getEnd().getTime()-now)
+                eventEntityList.add(tmp);
         }
         media.availableEvent=eventEntityList;
     }

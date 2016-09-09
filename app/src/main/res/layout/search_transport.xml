@@ -9,21 +9,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#E6B40404"
     android:orientation="vertical"
-    tools:context="hevs.ch.fiesta.TransportListing">
+    tools:context="hevs.ch.fiesta.views.SearchTransportAct">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/transport_list"
-        android:text="@string/transport_list"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="72dp"
         android:layout_height="wrap_content"
-        android:typeface="serif"
-        android:textSize="25dp"
-        android:layout_gravity="left"
-        android:textColor="@color/blanc"/>
+        android:text="Refresh"
+        android:layout_gravity="right"
+        android:id="@+id/search_transport_refresh_button"
+        android:background="@color/colorPrimary" />
 
     <Button
         android:layout_width="72dp"
@@ -34,7 +32,15 @@
         android:background="@color/colorPrimary" />
 
 </LinearLayout>
-
+    <TextView
+        android:id="@+id/transport_list"
+        android:text="@string/transport_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:typeface="serif"
+        android:textSize="25dp"
+        android:layout_gravity="left"
+        android:textColor="@color/blanc"/>
 
 
     <ListView

@@ -33,6 +33,7 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
     private ArrayAdapter adapter;
     private ListView list;
     private Button chatButton;
+    private Button refreshButton;
     private LiftEntity selectedLift;
 
     @Override
@@ -46,6 +47,13 @@ public class SearchTransportAct extends HypermediaBrowser implements AdapterView
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SearchTransportAct.this,ChatListAct.class));
+            }
+        });
+        refreshButton =(Button) findViewById(R.id.search_transport_refresh_button);
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SearchTransportAct.this,LoadingScreenAct.class));
             }
         });
         if(state.getLifts() == null || state.getLifts().size()==0)

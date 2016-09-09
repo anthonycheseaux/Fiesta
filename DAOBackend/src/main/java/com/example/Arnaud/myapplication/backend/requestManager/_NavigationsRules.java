@@ -35,12 +35,13 @@ final class _NavigationsRules {
         from_searchTransp.add(SN_SEARCH_TRANSPORT_STATE);
         from_searchTransp.add(SN_IN_LIFT_STATE);
 
-        List<String> from_manageLift = new ArrayList(1);
+        List<String> from_manageLift = new ArrayList(2);
         from_manageLift.add(SN_MANAGE_LIFT);
         from_manageLift.add(SN_INSCRIPTION_STATE);
 
-        List<String> from_inLift = new ArrayList(1);
+        List<String> from_inLift = new ArrayList(2);
         from_inLift.add(SN_IN_LIFT_STATE);
+        from_inLift.add(SN_SEARCH_TRANSPORT_STATE);
 
         paths.put(SN_INSCRIPTION_STATE,from_inscription);
         paths.put(SN_CREATE_TRANSPORT_STATE, from_createTrsp);

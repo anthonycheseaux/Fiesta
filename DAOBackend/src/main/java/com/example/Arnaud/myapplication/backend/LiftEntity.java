@@ -120,29 +120,20 @@ public class LiftEntity {
         driver_ref = Ref.create(driver);
         event_ref = Ref.create(event);
 
-        if (id != null)
-            if (drinkers != null && drinkers.size()>0) {
-                LiftMapperEntity mapper = null;
-                try {
-                    mapper = ofy().load().type(LiftMapperEntity.class).id(this.id).safe();
+        if (drinkers != null && drinkers.size()>0) {
+            LiftMapperEntity mapper  = new LiftMapperEntity(this.id);
+            mapper.setDrinkers(drinkers);
+            ofy().save().entity(mapper).now();
+            mapper = ofy().load().entity(mapper).now();
+            drinkers_ref = Ref.create(mapper);
+        }else {
+            drinkers_ref = null;
+            try {
+                ofy().delete().type(LiftMapperEntity.class).id(this.id).now();
+            } catch (Exception e) {
 
-                } catch (com.googlecode.objectify.NotFoundException e) {
-                    mapper = new LiftMapperEntity(this.id);
-                }
-                try {
-                    mapper.setDrinkers(drinkers);
-                    ofy().save().entity(mapper).now();
-                    mapper = ofy().load().entity(mapper).now();
-                    drinkers_ref = Ref.create(mapper);
-                } catch (IllegalStateException e) {
-                    ofy().delete().entity(mapper);
-                }
-            }else
-                try {
-                    ofy().delete().type(LiftMapperEntity.class).id(this.id).now();
-                } catch (com.googlecode.objectify.NotFoundException e) {
-
-                }
+            }
+        }
     }
 
 }

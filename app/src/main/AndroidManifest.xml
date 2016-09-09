@@ -32,6 +32,8 @@
         <activity android:name=".views.AdderChat" />
         <activity android:name=".views.Advantage" />
         <activity android:name=".views.APropos" />
+
+
     </application>
 
 </manifest>

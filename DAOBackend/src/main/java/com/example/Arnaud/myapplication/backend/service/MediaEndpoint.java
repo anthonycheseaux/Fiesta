@@ -1,6 +1,7 @@
 package com.example.Arnaud.myapplication.backend.service;
 
 import com.example.Arnaud.myapplication.backend.Chat.MailMapperEntity;
+import com.example.Arnaud.myapplication.backend.DrinkerMapperEntity;
 import com.example.Arnaud.myapplication.backend.EventEntity;
 import com.example.Arnaud.myapplication.backend.LiftEntity;
 import com.example.Arnaud.myapplication.backend.UserEntity;
@@ -47,6 +48,7 @@ public class MediaEndpoint {
         ObjectifyService.register(LiftEntity.class);
         ObjectifyService.register(EventEntity.class);
         ObjectifyService.register(MailMapperEntity.class);
+        ObjectifyService.register(DrinkerMapperEntity.class);
 
     }
 
